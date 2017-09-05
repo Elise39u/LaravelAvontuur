@@ -15,6 +15,5 @@ class SeedUsers extends Seeder
        //  (1, 'test', 'test@test.com', '$2y$10$AJUYfde8UKYw9FVnFR34jO0acO.LlvyE5jXraqkzUejCXX0zRM9Ty', NULL, '2017-06-21 07:39:26', '2017-06-21 07:39:26');
         DB::table('users')->truncate(); // maak leeg
         DB::table('users')->insert(['id' => 1, 'name' => 'test', 'email' => 'test@test.com', 'password' => '$2y$10$AJUYfde8UKYw9FVnFR34jO0acO.LlvyE5jXraqkzUejCXX0zRM9Ty']);
-        DB::table('users')->insert(['id' => 2, 'name' => 'justin van de laar', 'email' => 'justin555@live.nl', 'password' => '123456']);
     }
 }
