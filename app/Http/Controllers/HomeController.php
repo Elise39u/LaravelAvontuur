@@ -29,10 +29,10 @@ class HomeController extends Controller
     }
 
     public function open($id) {
-        $location = Location::find($id);
-        //dd($location->id);
-        // TODO: what to do if the given location does not exist?
-        if($location->id == '' or $location->id == NULL or !$location->id){
+        $location = Location::findOrFail($id);
+        if (!$location->exists()) {
+            return view('error');
+        } elseif($location->id == '' or $location->id == NULL or !$location->id){
             $location = Location::find(1);
             return view('home')->with('location', $location);
         } else {

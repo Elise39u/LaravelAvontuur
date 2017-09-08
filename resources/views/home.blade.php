@@ -11,11 +11,10 @@
                     <img class='storyimg' src="{{URL::asset($location->foto_url)}}" />
                     <p>{!!$location->story!!} </p>
                     <nav class="choice">
-                        {{$location->from_location_id}}
-                        <li class="menuchoice"><a class="link" href="/outside">Go outside</a></li>
-                        <li class="menuchoice"><a class="link" href="/kitchen">Go to you`re kitchen</a></li>
-                        <li class="menuchoice"><a class="link" href="/garden">Go to the garden</a></li>
-                        <li class="menuchoice"><a class="link" href="/bedroom">Go to the bedroom</a></li>
+
+                        @foreach($location->choices as $choice)
+                        <li class="menuchoice"><a class="link" href="/location/{{ $choice->to_location_id }}">{{ $choice->name }}</a></li>
+                        @endforeach
                     </nav>
                 </div>
             </div>

@@ -10,13 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {return view('Auth/login');});
 
 Route::get('login', function (){return view('Auth/login');});
 
 Auth::routes();
-
+Route::get('error', function() { return view('locationError'); } );
 Route::get('location/{id}', 'HomeController@open')->name('location');
 Route::get('location', 'HomeController@index')->name('home');
 Route::get('home', 'HomeController@index')->name('home2');

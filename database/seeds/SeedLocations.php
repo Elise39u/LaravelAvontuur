@@ -21,6 +21,9 @@ class SeedLocations extends Seeder
   Greetings Channel 6 <br>
   <b>Me:</b> Well what now ', 'foto_url' => '/img/Startscreen.png']);
         DB::table('choices')->insert(['name' => 'Go Outside', 'from_location_id' => 1, 'to_location_id' => 6]);
+        DB::table('choices')->insert(['name' => 'The kitchen', 'from_location_id' => 1, 'to_location_id' => 2]);
+        DB::table('choices')->insert(['name' => 'A nap some times', 'from_location_id' => 1, 'to_location_id' => 3]);
+        DB::table('choices')->insert(['name' => 'Garden work', 'from_location_id' => 1, 'to_location_id' => 4]);
 
         DB::table('locations')->insert(['id' => 2, 'name' => 'Bos', 'title' => 'boswandeling', 'story' => 'blfhejfkhsjka', 'foto_url' => '/image/default.png']);
         DB::table('choices')->insert(['name' => 'Ga naar het westen', 'from_location_id' => 2, 'to_location_id' => 1]);
