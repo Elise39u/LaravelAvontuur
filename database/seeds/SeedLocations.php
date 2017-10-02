@@ -14,7 +14,7 @@ class SeedLocations extends Seeder
         DB::table('locations')->truncate(); // maak leeg
         DB::table('choices')->truncate(); // maak leeg
 
-        DB::table('locations')->insert(['id' => 1, 'name' => 'Startpagina', 'title' => 'Deja vue', 'story' => 'You wake up after a great new eve<br>
+        DB::table('locations')->insert(['id' => 1, 'name' => 'Startpagina', 'title' => 'Deja vu', 'story' => 'You wake up after a great new eve<br>
  With a searfarer headache you hear the following <br>
  <b>Radio:</b> The town is been evacuated to a unkown virus <br>
   Everyone is advised to go the bridge else we wish you luck <br>

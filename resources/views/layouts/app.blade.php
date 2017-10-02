@@ -13,6 +13,17 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/game.css') }}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var audio = new Audio('{{ asset('inc/Dejavu.mp3') }}');
+        function playAudio() {
+            if (audio.duration > 0 && !audio.paused) {
+                alert('The Easter egg is already bizy');
+            } else {
+                audio.play();
+            }
+        }
+    </script>
 </head>
 <body>
     <div id="app">
