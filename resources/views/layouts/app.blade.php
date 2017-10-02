@@ -18,7 +18,6 @@
         var audio = new Audio('{{ asset('inc/Dejavu.mp3') }}');
         function playAudio() {
             if (audio.duration > 0 && !audio.paused) {
-                alert('The Easter egg is already bizy');
             } else {
                 audio.play();
             }
