@@ -13,5 +13,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(SeedLocations::class);
         $this->call(SeedUsers::class);
+        $this->call(SeedNpcs::class);
+        $this->call(SeedQuests::class);
+        $this->call(SeedNpcQuests::class);
     }
 }
