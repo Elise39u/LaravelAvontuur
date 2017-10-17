@@ -95,5 +95,26 @@ class SeedLocations extends Seeder
     But is it worth to go on or do you want to go back', 'foto_url' => '/img/sandroad.png']);
         DB::table('choices')->insert(['name' => 'Go on the sand road', 'from_location_id' => 10, 'to_location_id' => 15]);
         DB::table('choices')->insert(['name' => 'Go back towards the hotel', 'from_location_id' => 10, 'to_location_id' => 5]);
+
+        DB::table('locations')->insert(['id' => 11, 'name' => 'A Look around the city', 'title' => 'Question look `Deja vu`', 'story' => 'You look forward and see a new part of the city<br>
+    And a aircraft carrier laying still<br>
+    Only the question is why its laying still<br>
+    Is the crew dead? Is it abonded? or perhaps just out of fuel<br>
+    But only there is no way to go on the river else you want to swim <br>
+    Choice is on you but which is the correct one', 'foto_url' => '/img/edge.png']);
+        DB::table('choices')->insert(['name' => 'Go on the river', 'from_location_id' => 11, 'to_location_id' => 16]);
+        DB::table('choices')->insert(['name' => 'Go swimming', 'from_location_id' => 11, 'to_location_id' => 17]);
+        DB::table('choices')->insert(['name' => 'Go back towards the hotel', 'from_location_id' => 11, 'to_location_id' => 5]);
+
+        DB::table('locations')->insert(['id' => 12, 'name' => 'Futher down the street', 'title' => 'A new part of the city', 'story' => 'As you walk futher down the street you see the next things<br>
+    There is a man standing in the middle of the street<br>
+    A way left to a dead end it seems<br>
+    A bridge to the right and the road goes on<br>
+    Which way wil you go', 'foto_url' => '/img/street2.png']);
+        DB::table('choices')->insert(['name' => 'Go to the dead end', 'from_location_id' => 12, 'to_location_id' => 18]);
+        DB::table('choices')->insert(['name' => 'Go to the brige', 'from_location_id' => 12, 'to_location_id' => 19]);
+        DB::table('choices')->insert(['name' => 'Go further down the street', 'from_location_id' => 12, 'to_location_id' => 20]);
+        DB::table('choices')->insert(['name' => 'Go talk to man on the street', 'from_location_id' => 12, 'to_location_id' => 21]);
+        DB::table('choices')->insert(['name' => 'Go back towards the hotel', 'from_location_id' => 12, 'to_location_id' => 5]);
     }
 }
