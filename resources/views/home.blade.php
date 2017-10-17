@@ -1,8 +1,4 @@
 @extends('layouts.app')
-{{--audio id="audioBox" onplay="playAudio()" style="display: block;" controls>
-                        <source id='dejavu' src="{{ asset('inc/Dejavu.mp3') }}" type="audio/mp3">
-                    </audio>--}}
-
 @section('content')
 <div class="container">
     <div class="row">
@@ -11,7 +7,15 @@
                 <div class="panel-heading" onclick="playAudio()">{{$location->title or 'geen titel beschikbaar' }}</div>
 
                 <div class="panel-body">
-                    <img class='storyimg' src="{{URL::asset($location->foto_url)}}" />
+                    @if ($location->id === 6)
+                    @if ($currenttime == true)
+                        <img class="storyimg" src="{{URL::asset('img/NewYorkDAY.png')}}">
+                     @else
+                        <img class="storyimg" src="{{URL::asset('img/NewYorkEVE.png')}}">
+                    @endif
+                    @else
+                        <img class='storyimg' src="{{URL::asset($location->foto_url)}}" />
+                    @endif
                     <p>{!!$location->story!!} </p>
                     <nav class="choice">
 

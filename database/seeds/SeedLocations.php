@@ -59,11 +59,33 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['name' => 'Go to the electro store', 'from_location_id' => 5, 'to_location_id' => 9]);
         DB::table('choices')->insert(['name' => 'take the sandpath', 'from_location_id' => 5, 'to_location_id' => 10]);
         DB::table('choices')->insert(['name' => 'Look at the shore', 'from_location_id' => 5, 'to_location_id' => 11]);
+        DB::table('choices')->insert(['name' => 'Go futher down the streets', 'from_location_id' => 5, 'to_location_id' => 12]);
 
         DB::table('locations')->insert(['id' => 6, 'name' => 'The balcony', 'title' => 'A nice view', 'story' => 'As you look outside you think<br>
-    Its a nie view i paid for   <br>
+    Its a nice view i paid for   <br>
     But there is no sing of the infected outside  <br>
-    And the question is how long can i watch this view', 'foto_url' => '/img/NewYorkDAY.png']);
+    And the question is how long can i watch this view', 'foto_url' => '/img/']);
         DB::table('choices')->insert(['name' => 'Go back in the room', 'from_location_id' => 6, 'to_location_id' => 3]);
+
+        DB::table('locations')->insert(['id' => 7, 'name' => 'Nap time', 'title' => 'Time for a nap', 'story' => 'Zzzzzzzzzz   <br>
+    ZZZZzzzzzzzzzzzzzzzzzzz  <br>
+    As you wake up you think i feel healthier  <br>
+    But is this true?', 'foto_url' => '/img/bed.png']);
+        DB::table('choices')->insert(['name' => 'Be awake and escape', 'from_location_id' => 7, 'to_location_id' => 3]);
+
+        DB::table('locations')->insert(['id' => 8, 'name' => 'The wood store', 'title' => 'Want to go inside', 'story' => 'As you standing for store you`re thinking<br>
+    Is it safe to go inside and what lies behind<br>
+    Weapons, Materials, Wood, Dead, a paddle?  <br>
+    But is it the risk worth?', 'foto_url' => '/img/outsidewood.png']);
+        DB::table('choices')->insert(['name' => 'Go back on the street', 'from_location_id' => 8, 'to_location_id' => 5]);
+        DB::table('choices')->insert(['name' => 'Go inside if you dare', 'from_location_id' => 8, 'to_location_id' => 13]);
+
+        DB::table('locations')->insert(['id' => 9, 'name' => 'The electro store', 'title' => 'Want to go inside', 'story' => 'As you standing for store you`re thinking<br>
+    Is it safe to go inside and what lies behind<br>
+    Weapons, Materials, What else is there?<br>
+    At least there is a antenna on the roof <br>
+    But the question is it working or not?', 'foto_url' => '/img/outelectro.png']);
+        DB::table('choices')->insert(['name' => 'Go back on the street', 'from_location_id' => 9, 'to_location_id' => 5]);
+        DB::table('choices')->insert(['name' => 'Go inside if you dare', 'from_location_id' => 9, 'to_location_id' => 14]);
     }
 }
