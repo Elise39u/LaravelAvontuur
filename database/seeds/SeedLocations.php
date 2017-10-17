@@ -87,5 +87,13 @@ class SeedLocations extends Seeder
     But the question is it working or not?', 'foto_url' => '/img/outelectro.png']);
         DB::table('choices')->insert(['name' => 'Go back on the street', 'from_location_id' => 9, 'to_location_id' => 5]);
         DB::table('choices')->insert(['name' => 'Go inside if you dare', 'from_location_id' => 9, 'to_location_id' => 14]);
+
+        DB::table('locations')->insert(['id' => 10, 'name' => 'A sandy road', 'title' => 'Sand al around you', 'story' => 'As you walk the road you see nothing but sand<br>
+    Where does the road bring you is the question<br>
+    A way out perhaps? or maby more dead?<br>
+    No one knows until you go on<br>
+    But is it worth to go on or do you want to go back', 'foto_url' => '/img/sandroad.png']);
+        DB::table('choices')->insert(['name' => 'Go on the sand road', 'from_location_id' => 10, 'to_location_id' => 15]);
+        DB::table('choices')->insert(['name' => 'Go back towards the hotel', 'from_location_id' => 10, 'to_location_id' => 5]);
     }
 }
