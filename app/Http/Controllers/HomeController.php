@@ -39,21 +39,22 @@ class HomeController extends Controller
         } elseif($location->id == '' or $location->id == NULL or !$location->id){
             $location = Location::find(1);
             return view('home')->with('location', $location)->with('currenttime', $time);
-        } else {
+        }
+        else {
             return view('home')->with('location', $location)->with('currenttime', $time);
         }
     }
 
-    public function npc($id) {
-        if ($id == null) {
-            $id = 1;
-            $npc_id = Npcs::findOrFail($id);
-        } else {
-            $npc_id = Npcs::findOrFail($id);
-        }
+    public function npc($id = null) {
+        $npc_id = Npcs::findOrFail($id);
+        var_dump($id);
         if (!$npc_id->exists()) {
             return view('error');
-        } else {
+        }  elseif($npc_id->id == '' or $npc_id->id === NULL or !$npc_id->id) {
+            $npc_id = Npcs::find('id');
+            return view('npc')->with('npcinfo', $npc_id);
+        }
+        else {
             return view('npc')->with('npcinfo', $npc_id);
         }
     }
