@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Location;
+use App\Npcs;
 use Carbon\Carbon;
 
 class HomeController extends Controller
@@ -40,6 +41,20 @@ class HomeController extends Controller
             return view('home')->with('location', $location)->with('currenttime', $time);
         } else {
             return view('home')->with('location', $location)->with('currenttime', $time);
+        }
+    }
+
+    public function npc($id) {
+        if ($id == null) {
+            $id = 1;
+            $npc_id = Npcs::findOrFail($id);
+        } else {
+            $npc_id = Npcs::findOrFail($id);
+        }
+        if (!$npc_id->exists()) {
+            return view('error');
+        } else {
+            return view('npc')->with('npcinfo', $npc_id);
         }
     }
 }
