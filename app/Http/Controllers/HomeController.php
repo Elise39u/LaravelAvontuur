@@ -47,7 +47,6 @@ class HomeController extends Controller
 
     public function npc($id = null) {
         $npc_id = Npcs::findOrFail($id);
-        var_dump($id);
         if (!$npc_id->exists()) {
             return view('error');
         }  elseif($npc_id->id == '' or $npc_id->id === NULL or !$npc_id->id) {
