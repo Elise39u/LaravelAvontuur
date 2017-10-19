@@ -117,6 +117,18 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['name' => 'Go talk to man on the street', 'from_location_id' => 12, 'to_location_id' => '21/1']);
         DB::table('choices')->insert(['name' => 'Go back towards the hotel', 'from_location_id' => 12, 'to_location_id' => 5]);
 
+        DB::table('locations')->insert(['id' => 13, 'name' => 'Inside the wood store', 'title' => 'A wooden age', 'story' => 'Well there you are inside the store<br>
+    There are some tools lying around<br>
+    But not the paddle you were looking for<br>
+    So what is the call pick up some tools or go out<br>
+    The question is of course are they handy or not', 'foto_url' => '/img/insidewood.png']);
+        DB::table('choices')->insert(['name' => 'Go out the store', 'from_location_id' => 13, 'to_location_id' => 8]);
+        DB::table('choices')->insert(['name' => 'pick up the axe', 'from_location_id' => 13, 'to_location_id' => 22/1]);
+        DB::table('choices')->insert(['name' => 'pick up the baseball bat ', 'from_location_id' => 13, 'to_location_id' => 22/2]);
+        DB::table('choices')->insert(['name' => 'pick up the nail gun', 'from_location_id' => 13, 'to_location_id' => 22/3]);
+        DB::table('choices')->insert(['name' => 'pick up a wooden sword', 'from_location_id' => 13, 'to_location_id' => 22/4]);
+
         DB::table('locations')->insert(['id' => 21, 'name' => 'Npc time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
+        DB::table('locations')->insert(['id' => 22, 'name' => 'Item time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
     }
 }

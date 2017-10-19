@@ -50,10 +50,9 @@ class HomeController extends Controller
         if (!$npc_id->exists()) {
             return view('error');
         }  elseif($npc_id->id == '' or $npc_id->id === NULL or !$npc_id->id) {
-            $npc_id = Npcs::find('id');
+            $npc_id = Npcs::find(1);
             return view('npc')->with('npcinfo', $npc_id);
-        }
-        else {
+        } else {
             return view('npc')->with('npcinfo', $npc_id);
         }
     }
