@@ -93,7 +93,7 @@ class SeedLocations extends Seeder
     A way out perhaps? or maby more dead?<br>
     No one knows until you go on<br>
     But is it worth to go on or do you want to go back', 'foto_url' => '/img/sandroad.png']);
-        DB::table('choices')->insert(['name' => 'Go on the sand road', 'from_location_id' => 10, 'to_location_id' => 15]);
+        DB::table('choices')->insert(['name' => 'Go on the sand road', 'from_location_id' => 10, 'to_location_id' => '15/1']);
         DB::table('choices')->insert(['name' => 'Go back towards the hotel', 'from_location_id' => 10, 'to_location_id' => 5]);
 
         DB::table('locations')->insert(['id' => 11, 'name' => 'A Look around the city', 'title' => 'Question look `Deja vu`', 'story' => 'You look forward and see a new part of the city<br>
@@ -123,11 +123,36 @@ class SeedLocations extends Seeder
     So what is the call pick up some tools or go out<br>
     The question is of course are they handy or not', 'foto_url' => '/img/insidewood.png']);
         DB::table('choices')->insert(['name' => 'Go out the store', 'from_location_id' => 13, 'to_location_id' => 8]);
-        DB::table('choices')->insert(['name' => 'pick up the axe', 'from_location_id' => 13, 'to_location_id' => 22/1]);
-        DB::table('choices')->insert(['name' => 'pick up the baseball bat ', 'from_location_id' => 13, 'to_location_id' => 22/2]);
-        DB::table('choices')->insert(['name' => 'pick up the nail gun', 'from_location_id' => 13, 'to_location_id' => 22/3]);
-        DB::table('choices')->insert(['name' => 'pick up a wooden sword', 'from_location_id' => 13, 'to_location_id' => 22/4]);
+        DB::table('choices')->insert(['name' => 'pick up the axe', 'from_location_id' => 13, 'to_location_id' => '22/1']);
+        DB::table('choices')->insert(['name' => 'pick up the baseball bat ', 'from_location_id' => 13, 'to_location_id' => '22/2']);
+        DB::table('choices')->insert(['name' => 'pick up the nail gun', 'from_location_id' => 13, 'to_location_id' => '22/3']);
+        DB::table('choices')->insert(['name' => 'pick up a wooden sword', 'from_location_id' => 13, 'to_location_id' => '22/4']);
 
+        DB::table('locations')->insert(['id' => 14, 'name' => 'Inside the electro store', 'title' => 'A Time of electro', 'story' => 'Well there you are inside the store<br>
+    It is quite a big place for this kind of store<br>
+    There is nothing around here to pick up<br>
+    So there is a door a bit fuhter but i think its locked<br>
+    So what wil you do', 'foto_url' => '/img/insideelectro.png']);
+        DB::table('choices')->insert(['name' => 'Go out the store', 'from_location_id' => 14, 'to_location_id' => 9]);
+        DB::table('choices')->insert(['name' => 'Go to the backroom', 'from_location_id' => 14, 'to_location_id' => 23]);
+
+        DB::table('locations')->insert(['id' => 17, 'name' => 'Game over', 'title' => 'Good thinking', 'story' => 'Well you thought swimming was a good idea<br>
+    did i forgot to say the water is poisoned<br>
+    And there live fish here that kill humans <br>
+    They got infected too so they probably can walk or swim faster than you so<br>
+    Not a wise choice he smartie', 'foto_url' => '/img/dead.png']);
+        DB::table('choices')->insert(['name' => 'Try again', 'from_location_id' => 17, 'to_location_id' => 1]);
+
+        DB::table('locations')->insert(['id' => 18, 'name' => 'A dead end?', 'title' => 'This is a dead end?', 'story' => 'After walking a bit you discover this is not a dead end<br>
+    But instead it leads to a huge shopping mall<br>
+    Is this perhaps the connection to the other part of the city or not?<br>
+    I heard stories that the city has fallen apart but there are still some ways its stays connected<br>
+    Its probably better if i take a look inside<br>
+    On the other side is it safe there', 'foto_url' => '/img/deadend.png']);
+        DB::table('choices')->insert(['name' => 'Go back on the streets', 'from_location_id' => 18, 'to_location_id' => 12]);
+        DB::table('choices')->insert(['name' => 'Dare to look inside', 'from_location_id' => 18, 'to_location_id' => 24]);
+
+        DB::table('locations')->insert(['id' => 15, 'name' => 'You encounter something', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 21, 'name' => 'Npc time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 22, 'name' => 'Item time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
     }

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SeedItems extends Seeder
+class SeedAreas extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,7 @@ class SeedItems extends Seeder
      */
     public function run()
     {
-        DB::table('items')->truncate(); // maak leeg
+        DB::table('areas')->truncate(); // maak leeg
+        DB::table('areas')->insert(['id' => 1, 'name' => 'sandyroad']);
     }
 }

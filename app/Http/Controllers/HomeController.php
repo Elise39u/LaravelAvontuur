@@ -56,4 +56,12 @@ class HomeController extends Controller
             return view('npc')->with('npcinfo', $npc_id);
         }
     }
+
+    public function items($id){
+        var_dump('You`re on the item page with item_id ' . $id . ' ');
+    }
+
+    public function monstertime($area_id) {
+        var_dump('You`re on the monster page with area_id ' . $area_id . ' ');
+    }
 }
