@@ -21,6 +21,7 @@ class CreateNpcdialougTable extends Migration
             $table->string('Answer_2');
             $table->string('Answer_3');
             $table->integer('next_story_number');
+            $table->integer('need_npc_to_talk');
         });
     }
 

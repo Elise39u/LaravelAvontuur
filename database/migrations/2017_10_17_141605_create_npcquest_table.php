@@ -18,7 +18,8 @@ class CreateNpcquestTable extends Migration
             $table->integer('npc_id');
             $table->integer('quest_id');
             $table->integer('check_item_reward');
-            $table->integer('item_reward');
+            $table->integer('need_other_quest_done');
+            $table->string('reward', 1024);
         });
     }
 
