@@ -152,6 +152,27 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['name' => 'Go back on the streets', 'from_location_id' => 18, 'to_location_id' => 12]);
         DB::table('choices')->insert(['name' => 'Dare to look inside', 'from_location_id' => 18, 'to_location_id' => 24]);
 
+        DB::table('locations')->insert(['id' => 19, 'name' => 'The bridge', 'title' => 'A way out?', 'story' => 'As you approach the bridge you suddenly hear a voice<br>
+    <b>Unkown:</b>Are you not infected? <br>
+    If so we can only give you a way out of this mess if you bring us new guns<br>
+    We`re from the army and are in need of guns to protect the place here<br>
+    We wil provide you with a way out only if you have some guns for us<br>
+    Well what do you do now?', 'foto_url' => '/img/bridge.png']);
+        DB::table('choices')->insert(['name' => 'Go towards the bridge', 'from_location_id' => 19, 'to_location_id' => 25]);
+        DB::table('choices')->insert(['name' => 'Go back for the guns', 'from_location_id' => 19, 'to_location_id' => 12]);
+
+        DB::table('locations')->insert(['id' => 20, 'name' => 'The road goes on', 'title' => 'Deja vu agian', 'story' => 'That is quite a long walk and even more road to go<br>
+    There is a women standing on the side walk<br>
+    Its looks like there is a shop next to here<br>
+    I can see an other store it looks like and a garage<br>
+    But where in the heck does to road goes to?<br>
+    Well what are we gonna look at first friend?', 'foto_url' => '/img/street3.png']);
+        DB::table('choices')->insert(['name' => 'Go talk to pregnant lady', 'from_location_id' => 20, 'to_location_id' => '21/2']);
+        DB::table('choices')->insert(['name' => 'Go a step back', 'from_location_id' => 20, 'to_location_id' => 12]);
+        DB::table('choices')->insert(['name' => 'Go to the Garage', 'from_location_id' => 20, 'to_location_id' => 26]);
+        DB::table('choices')->insert(['name' => 'Go to potion shop', 'from_location_id' => 20, 'to_location_id' => '27/1']);
+        DB::table('choices')->insert(['name' => 'Go on the road???', 'from_location_id' => 20, 'to_location_id' => 28]);
+
         DB::table('locations')->insert(['id' => 15, 'name' => 'You encounter something', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 21, 'name' => 'Npc time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 22, 'name' => 'Item time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);

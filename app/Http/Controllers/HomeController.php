@@ -64,4 +64,8 @@ class HomeController extends Controller
     public function monstertime($area_id) {
         var_dump('You`re on the monster page with area_id ' . $area_id . ' ');
     }
+
+    public function shops($id) {
+        var_dump('You`re on the shop page with shop_id ' . $id . ' ');
+    }
 }
