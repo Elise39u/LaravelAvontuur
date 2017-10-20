@@ -17,5 +17,10 @@ class SeedNpcs extends Seeder
         I lived here in New york my whole life and know it better than any one <br>
         If you want to know something just ask <br>
         But i tell you lie to me and you dont get to know everything', 'location_id' => 12]);
+        DB::table('npcs')->insert(['id' => 2, 'name' => 'Pregnant New Emma', 'foto_url' => '/img/npc/Emma.png', 'story' => 'Well hi there i am Emma<br>
+        I Moved to new york like 3 years ago because on vacation i met my husband Eric<br>
+        Well i hoped he is okay because he left an hour to do grocery\'s and never came back<br>
+        I cant think about world where he not included <br>
+        Maby you can find him?', 'location_id' => 20]);
     }
 }
