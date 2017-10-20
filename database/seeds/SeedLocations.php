@@ -173,8 +173,29 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['name' => 'Go to potion shop', 'from_location_id' => 20, 'to_location_id' => '27/1']);
         DB::table('choices')->insert(['name' => 'Go on the road???', 'from_location_id' => 20, 'to_location_id' => 28]);
 
+        DB::table('locations')->insert(['id' => 26, 'name' => 'Car time', 'title' => 'Well Repair time', 'story' => 'There are we standing inside the garage<br>
+    I see a broken car or is it empty?<br>
+    At least a filled jerry can lying around<br>
+    But wait was it not that we needed the boat from the docks<br>
+    Maby with the car we can it bring to the edge<br>
+    But where was that damm boat?', 'foto_url' => '/img/garage.png']);
+        DB::table('choices')->insert(['name' => 'Take the jerry can', 'from_location_id' => 26, 'to_location_id' => '22/5']);
+        DB::table('choices')->insert(['name' => 'Leave the garage', 'from_location_id' => 26, 'to_location_id' => 20]);
+
+        DB::table('locations')->insert(['id' => 29, 'name' => 'The docks', 'title' => 'Docks with a boat time', 'story' => 'Well that was though battling that monster<br>
+    Unless you came with the car than you are fine i guesses<br>
+    Its i not that i complain but hitting something with a car is quite painful<br>
+    Or you had to take a other route with the car<br>
+    Never mind. At least if you with the car you can take the boat with you<br>
+    But are you with the car?', 'foto_url' => '/img/docks.png']);
+        DB::table('choices')->insert(['name' => 'Go back on the sandy road', 'from_location_id' => 29, 'to_location_id' => '15/1']);
+        DB::table('choices')->insert(['name' => 'Take the boat', 'from_location_id' => 29, 'to_location_id' => '22/6']);
+        DB::table('choices')->insert(['name' => 'Escape the city', 'from_location_id' => 29, 'to_location_id' => 30]);
+
+
         DB::table('locations')->insert(['id' => 15, 'name' => 'You encounter something', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 21, 'name' => 'Npc time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 22, 'name' => 'Item time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
+        DB::table('locations')->insert(['id' => 27, 'name' => 'Shop time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
     }
 }

@@ -19,6 +19,7 @@ class CreateNpcquestTable extends Migration
             $table->integer('quest_id');
             $table->integer('check_item_reward');
             $table->integer('need_other_quest_done');
+            $table->integer('need_friendship');
             $table->string('reward', 1024);
         });
     }
