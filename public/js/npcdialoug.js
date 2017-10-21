@@ -11,8 +11,7 @@ $(function() {
             }
         };
     }
-
-    console.log(answerButtons);
+    
     $("#dialog-2").dialog({
         autoOpen: false,
         width: 600,
