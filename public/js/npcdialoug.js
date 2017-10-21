@@ -4,6 +4,7 @@ $(function() {
     for (var i = 1; i < 4; i++) {
         answerButtons[i] = {
             text: dialouginfo[0]['Answer_' + i],
+            click: function () {$(this).dialog('close');}
         };
     }
 
