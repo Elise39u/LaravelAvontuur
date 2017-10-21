@@ -13,15 +13,14 @@ class CreateNpcdialougTable extends Migration
      */
     public function up()
     {
-        Schema::create('npcdialoug', function (Blueprint $table) {
+        Schema::create('npc_dialougs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('npc_id');
-            $table->integer('story_number');
+            $table->string('story');
             $table->string('Answer_1');
             $table->string('Answer_2');
             $table->string('Answer_3');
-            $table->integer('next_story_number');
-            $table->integer('need_npc_to_talk');
+            $table->integer('need_npc_to_talk')->nullable();
         });
     }
 
@@ -32,6 +31,6 @@ class CreateNpcdialougTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('npcdialoug');
+        Schema::dropIfExists('npc_dialougs');
     }
 }
