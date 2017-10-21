@@ -13,16 +13,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/game.css') }}" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        var audio = new Audio('{{ asset('inc/Dejavu.mp3') }}');
-        function playAudio() {
-            if (audio.duration > 0 && !audio.paused) {
-            } else {
-                audio.play();
-            }
-        }
-    </script>
+
+    <!-- dialoug stuff -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
 </head>
 <body>
     <div id="app">
@@ -83,5 +76,21 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="{{asset('https://rawgit.com/CodeOtter/thusspokenpc/master/index.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="{{asset('js/bootbox.min.js')}}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+        var audio = new Audio('{{ asset('inc/Dejavu.mp3') }}');
+        function playAudio() {
+            if (audio.duration > 0 && !audio.paused) {
+            } else {
+                audio.play();
+            }
+        }
+    </script>
+    <script type="text/javascript" src="{{asset('js/npcdialoug.js')}}"></script>
 </body>
 </html>

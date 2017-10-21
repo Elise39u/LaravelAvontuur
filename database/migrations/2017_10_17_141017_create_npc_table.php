@@ -18,6 +18,7 @@ class CreateNpcTable extends Migration
             $table->string('name');
             $table->string('foto_url');
             $table->string('story', 3578);
+            $table->string('Talk', 3578);
             $table->integer('location_id');
         });
     }
