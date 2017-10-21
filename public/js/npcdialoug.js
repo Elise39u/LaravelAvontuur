@@ -1,26 +1,44 @@
 $(function() {
     document.getElementById('Story').innerHTML = dialouginfo[0]['story'];
-    var Answer1 = dialouginfo[0]['Answer_1']
-    var Answer2 = dialouginfo[0]['Answer_2']
-    var Answer3 = dialouginfo[0]['Answer_3']
 
     $("#dialog-2").dialog({
         autoOpen: false,
         width: 600,
         buttons: [{
-            text: Answer1,
+            text: dialouginfo[0]['Answer_1'],
             "id": "Answer1",
             click: function () {
-                $(this).dialog('close');
+                document.getElementById('Story').innerHTML = dialouginfo[1]['story'];
+                $("#dialog-2").dialog({
+                    autoOpen: false,
+                    width: 600,
+                    buttons: [{
+                        text: dialouginfo[1]['Answer_1'],
+                        "id": "Answer1_1",
+                        click: function () {
+                            $(this).dialog('close');
+                        }}, {
+                        text: dialouginfo[1]['Answer_2'],
+                        "id": "Answer1_2",
+                        click: function () {
+                            $(this).dialog('close');
+                        }}, {
+                        text: dialouginfo[1]['Answer_3'],
+                        "id": "Answer1_3",
+                        click: function () {
+                            $(this).dialog('close');
+                        }},
+                    ],
+                });
             }
         }, {
-            text: Answer2,
+            text: dialouginfo[0]['Answer_2'],
             "id": "Answer2",
             click: function () {
                 $(this).dialog('close');
             }
         }, {
-            text: Answer3,
+            text: dialouginfo[0]['Answer_3'],
             "id": "Answer3",
             click: function () {
                 $(this).dialog('close');
