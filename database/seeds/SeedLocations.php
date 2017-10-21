@@ -192,6 +192,11 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['name' => 'Take the boat', 'from_location_id' => 29, 'to_location_id' => '22/6']);
         DB::table('choices')->insert(['name' => 'Escape the city', 'from_location_id' => 29, 'to_location_id' => 30]);
 
+        DB::table('locations')->insert(['id' => 30, 'name' => 'The end1', 'title' => 'You have escaped 1', 'story' => 'Well that was a though road<br>
+    But you know there are more endings <br>
+    this one was the easy one to escape infected new york<br>
+    Do you wanna try or not?', 'foto_url' => '/img/end1.png']);
+        DB::table('choices')->insert(['name' => 'Game Over', 'from_location_id' => 30, 'to_location_id' => 1]);
 
         DB::table('locations')->insert(['id' => 15, 'name' => 'You encounter something', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 21, 'name' => 'Npc time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
