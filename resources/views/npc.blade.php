@@ -18,7 +18,7 @@
             </div>
         </div>
         <script type="text/javascript">
-            var dialouginfo = {!! json_encode($npcinfo->dialoug->toArray()) !!}
+            var dialouginfo = {!! json_encode($npcinfo->dialougAnswers->toArray()) !!}
         </script>
     </div>
 </div>
