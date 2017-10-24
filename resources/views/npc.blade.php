@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
     <div class="row">
-        <div id = "dialog-2" title = "Dialouge">
+        <div id = "dialog-2" title = "dialoge">
             <p id="Story"></p>
         </div>
         <div class="col-md-10 col-md-offset-1">
@@ -14,11 +14,19 @@
                     <p>{!! $npcinfo->story !!}</p>
                     <li class="menuchoice"><a class="link" href="/location/{{ $npcinfo->location_id }}">Go back</a></li>
                     <button id="opener-2" class="npcbutton">{{$npcinfo->Talk}}</button>
+                    <script type="text/javascript">
+                        @foreach ($npcinfo->Dialogs->first()->Answers->all() as $answer)
+                            @foreach($answer->Actions as $action)
+                                    dialogactions.push({!! json_encode($action->toArray()) !!});
+                            @endforeach
+                        @endforeach
+                    </script>
                 </div>
             </div>
         </div>
         <script type="text/javascript">
-            var dialouginfo = {!! json_encode($npcinfo->dialougAnswers->toArray()) !!}
+            var dialoginfo = {!! json_encode($npcinfo->Dialogs->toArray()) !!}
+            var dialoganswers = {!! json_encode($npcinfo->Dialogs->first()->Answers->toArray()) !!}
         </script>
     </div>
 </div>

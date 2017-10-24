@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDialougAnswerTable extends Migration
+class CreatedialogAnswerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateDialougAnswerTable extends Migration
      */
     public function up()
     {
-        Schema::create('dialoug_answers', function (Blueprint $table) {
+        Schema::create('dialog_answers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('conditions_id')->nullable();
-            $table->integer('dialoug_id');
-            $table->string('action')->nullable();
-            $table->string('value')->nullable();
+            $table->integer('dialog_id');
+            $table->string('button_title');
+            $table->integer('condition')->nullable();
+            $table->integer('condition_value')->nullable();
         });
     }
 
@@ -29,6 +29,6 @@ class CreateDialougAnswerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dialoug_answers');
+        Schema::dropIfExists('dialog_answers');
     }
 }

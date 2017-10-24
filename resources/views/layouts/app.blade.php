@@ -14,8 +14,11 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/game.css') }}" rel="stylesheet">
 
-    <!-- dialoug stuff -->
+    <!-- dialog stuff -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <script type="text/javascript">
+        var dialogactions =[];
+    </script>
 </head>
 <body>
     <div id="app">
@@ -91,6 +94,6 @@
             }
         }
     </script>
-    <script type="text/javascript" src="{{asset('js/npcdialoug.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/npcdialog.js')}}"></script>
 </body>
 </html>
