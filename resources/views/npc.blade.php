@@ -24,9 +24,13 @@
                 </div>
             </div>
         </div>
+        <?php
+        //dd(App\Npcs::with(['Dialogs', 'Answers'])->get());
+        $npcAnswers = App\DialogAnswer::with('Actions')->get();
+        ?>
         <script type="text/javascript">
             var dialoginfo = {!! json_encode($npcinfo->Dialogs->toArray()) !!}
-            var dialoganswers = {!! json_encode($npcinfo->Dialogs->first()->Answers->toArray()) !!}
+            var dialoganswers =  {!! json_encode($npcAnswers->toArray()) !!}
         </script>
     </div>
 </div>

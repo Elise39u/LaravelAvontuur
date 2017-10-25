@@ -19,5 +19,9 @@ class SeedDialogAnswer extends Seeder
             'button_title' => 'Why is New york so beautiful']);
         DB::table('dialog_answers')->insert(['id' => 3, 'dialog_id' => 1,
             'button_title' => 'What is the best place to go out in New York']);
+        DB::table('dialog_answers')->insert(['id' => 4, 'dialog_id' => 2,
+            'button_title' => 'Okay what is the exercise?']);
+        DB::table('dialog_answers')->insert(['id' => 5, 'dialog_id' => 2,
+            'button_title' => 'Well i don`t have time']);
     }
 }

@@ -1,4 +1,5 @@
 $(function () {
+    var actionValueCheck;
 
     document.getElementById('Story').innerHTML = dialoginfo[0]['story'];
     var actionresult =[];
@@ -9,14 +10,38 @@ $(function () {
 function checkaction(actionresult) {
     switch (actionresult) {
         case "CLOSE DIALOG":
-            alert('i close')
+            $("#dialog-2").dialog('close');
             break;
         case "OPEN DIALOG":
-            alert('Ik werk')
+            var id = actionValueCheck
+            var answerid = actionValueCheck
+            var checkDialogArray = $.grep(dialoginfo, function (e) {
+                return e.id == id;
+            });
+            var checkAnswerArray = $.grep(dialoganswers, function (e) {
+                return e.dialog_id == answerid;
+            });
+            /*
+               Correct rewrite dialog met gegevens
+             */
+            if(checkDialogArray) {
+                buttoninfo = [];
+                $.each( checkAnswerArray, function (i, l) {
+                    buttoninfo.push({text: l['button_title']})
+                })
+                document.getElementById('Story').innerHTML = checkDialogArray[0]['story'];
+                $("#dialog-2").dialog({
+                    autoOpen: false,
+                    width: 600,
+                    buttons: buttoninfo
+                    }
+                )}
+                else {
+                alert('Not found')
+            }
             break;
     }
 }
-    console.log(actionresult, dialogactions);
 
     $("#dialog-2").dialog({
         autoOpen: false,
@@ -25,18 +50,21 @@ function checkaction(actionresult) {
             text: dialoganswers[0]['button_title'],
             "id": "Answer1",
             click: function () {
+                actionValueCheck = dialogactions[0]['action_value']
                 checkaction(actionresult[0])
             }
         }, {
             text: dialoganswers[1]['button_title'],
             "id": "Answer2",
             click: function () {
+                actionValueCheck = dialogactions[1]['action_value']
                 checkaction(actionresult[1])
             }
         }, {
             text: dialoganswers[2]['button_title'],
             "id": "Answer3",
             click: function () {
+                actionValueCheck = dialogactions[2]['action_value']
                 checkaction(actionresult[2])
             }
         }],
