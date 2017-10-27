@@ -14,10 +14,11 @@
                     <p>{!! $npcinfo->story !!}</p>
                     <li class="menuchoice"><a class="link" href="/location/{{ $npcinfo->location_id }}">Go back</a></li>
                     <button id="opener-2" class="npcbutton">{{$npcinfo->Talk}}</button>
+                    <?php $npcActions = App\DialogAnswer::with('Actions')->get(); ?>
                     <script type="text/javascript">
-                        @foreach ($npcinfo->Dialogs->first()->Answers->all() as $answer)
-                            @foreach($answer->Actions as $action)
-                                    dialogactions.push({!! json_encode($action->toArray()) !!});
+                        @foreach ($npcActions as $items)
+                            @foreach ($items->Actions as $actions)
+                                    dialogactions.push({!! json_encode($actions->toArray()) !!});
                             @endforeach
                         @endforeach
                     </script>

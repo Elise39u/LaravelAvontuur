@@ -21,13 +21,16 @@ function checkaction(actionresult) {
             var checkAnswerArray = $.grep(dialoganswers, function (e) {
                 return e.dialog_id == answerid;
             });
-            /*
-               Correct rewrite dialog met gegevens
-             */
+            console.log(checkAnswerArray, dialogactions)
             if(checkDialogArray) {
                 buttoninfo = [];
                 $.each( checkAnswerArray, function (i, l) {
-                    buttoninfo.push({text: l['button_title']})
+                    buttoninfo.push({text: l['button_title'], click: function () {
+                          l.actions.forEach(function (e) {
+                              actionValueCheck = e.action_value
+                              checkaction(e.action)
+                          })
+                    } })
                 })
                 document.getElementById('Story').innerHTML = checkDialogArray[0]['story'];
                 $("#dialog-2").dialog({
@@ -37,7 +40,6 @@ function checkaction(actionresult) {
                     }
                 )}
                 else {
-                alert('Not found')
             }
             break;
     }
