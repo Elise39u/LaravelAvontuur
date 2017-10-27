@@ -17,5 +17,10 @@ class SeedDialog extends Seeder
         DB::table('dialogs')->insert(['id' => 2, 'npc_id' => 1, 'story' => 'I have something that you can do for me']);
         DB::table('dialogs')->insert(['id' => 3, 'npc_id' => 1, 'story' => 'New york brooklyn of course friend']);
         DB::table('dialogs')->insert(['id' => 4, 'npc_id' => 1, 'story' => 'Bring me a green potion and i give something in return']);
+        DB::table('dialogs')->insert(['id' => 5, 'npc_id' => 1, 'story' => 'No the item is a surprise']);
+        DB::table('dialogs')->insert(['id' => 6, 'npc_id' => 1, 'story' => 'Okay come back if you have one']);
+        DB::table('dialogs')->insert(['id' => 7, 'npc_id' => 1, 'story' => 'Well all the places to go out and the monument and i hope you know the rest']);
+        DB::table('dialogs')->insert(['id' => 8, 'npc_id' => 1, 'story' => 'pfff don`t talk to me anymore']);
+        DB::table('dialogs')->insert(['id' => 9, 'npc_id' => 1, 'story' => 'Well who doesn`t like New york']);
     }
 }
