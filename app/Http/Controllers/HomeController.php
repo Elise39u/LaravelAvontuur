@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Areas;
 use Illuminate\Http\Request;
 use App\Location;
 use App\Npcs;
@@ -31,6 +32,7 @@ class HomeController extends Controller
     }
 
     public function open($id) {
+        $area_name = Areas::with('Location')->get();
         $currenttime = Carbon::now()->timezone('America/Nassau');
         $time = $currenttime->hour > 6 && $currenttime->hour < 19;
         $location = Location::findOrFail($id);
@@ -38,10 +40,12 @@ class HomeController extends Controller
             return view('error');
         } elseif($location->id == '' or $location->id == NULL or !$location->id){
             $location = Location::find(1);
-            return view('home')->with('location', $location)->with('currenttime', $time);
+            return view('home')->with('location', $location)->with('currenttime', $time)->with('areaname', $area_name)
+                ->with('time', $currenttime);
         }
         else {
-            return view('home')->with('location', $location)->with('currenttime', $time);
+            return view('home')->with('location', $location)->with('currenttime', $time)->with('areaname', $area_name)
+                ->with('time', $currenttime);
         }
     }
 

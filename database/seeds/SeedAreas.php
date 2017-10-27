@@ -12,6 +12,6 @@ class SeedAreas extends Seeder
     public function run()
     {
         DB::table('areas')->truncate(); // maak leeg
-        DB::table('areas')->insert(['id' => 1, 'name' => 'sandyroad']);
+        DB::table('areas')->insert(['id' => 1, 'name' => 'brooklyn']);
     }
 }
