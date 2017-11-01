@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SeedDialogAnswer::class);
         $this->call(SeedDialogAnswerActions::class);
         $this->call(SeedConditions::class);
+        $this->call(SeedChoiceConditions::class);
         $this->call(SeedUsers::class);
         $this->call(SeedNpcs::class);
         $this->call(SeedQuests::class);
@@ -22,5 +23,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SeedDialog::class);
         $this->call(SeedAreas::class);
         $this->call(SeedItems::class);
+        $this->call(SeedItemTypes::class);
+        $this->call(SeedInventories::class);
+        $this->call(SeedInventoryItem::class);
     }
 }

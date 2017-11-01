@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Areas;
+use App\inventories;
+use App\inventory_item;
+use App\item_type;
+use App\Items;
+use App\User;
 use Illuminate\Http\Request;
 use App\Location;
 use App\Npcs;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -29,6 +35,18 @@ class HomeController extends Controller
     {
         $location = Location::find(1);
         return view('home')->with('location', $location);
+    }
+
+    public function getInventory() {
+        $userid = Auth::user()->inventory_id;
+        $inventory = inventories::with('inventoryCheck')->where('id', $userid)->get();
+        foreach ($inventory as $item) {
+            if(empty($item->id)) {
+                var_dump('i`m empty');
+            } else{
+                return $item->id;
+            }
+        }
     }
 
     public function open($id) {
@@ -61,8 +79,46 @@ class HomeController extends Controller
         }
     }
 
-    public function items($id){
-        var_dump('You`re on the item page with item_id ' . $id . ' ');
+    public function items($id)
+    {
+        $item_id = item_type::findOrFail($id);
+        if (!$item_id->exists()) {
+            return view('error');
+        } elseif ($item_id->id == '' or $item_id->id == NULL or !$item_id->id) {
+            return abort(404);
+        } else {
+            /*
+                 Kijken of de player een Inventory heeft
+                 :nee Maak een nieuwe inventory aan
+                 :ja  Inventory van de player ophalen
+                 Kijken of de player de item heeft in zijn of haar inventory
+                 :nee voeg hem in de inventory van de player
+                 :ja  Wordt nog bedacht
+            */
+            $this->getInventory();
+            $userid = Auth::user()->inventory_id;
+            $inventorySpace = inventories::with('getInventoryItems')->where('id', $userid)->get();
+            foreach ($inventorySpace as $Space) {
+                foreach ($Space->getInventoryItems as $value) {
+                    if (in_array($value->item_id, (array) $item_id)) {
+                        var_dump($value->item_id . ' Deze zit nog niet in de inventory');
+                    } elseif($value->item_id != $item_id->id) {
+                        var_dump($item_id->id . ' Is niet gelijk aan ' . $value->item_id);
+                    }
+                    else {
+                        if ($value->item_id == $item_id->id) {
+                            var_dump($item_id->id . ' Bestaat al in je inventory');
+                        } else {
+                            $itemInventory = new inventory_item;
+                            $itemInventory->inventory_id = $userid;
+                            $itemInventory->item_id = $item_id->id;
+                            $itemInventory->save();
+                        }
+                    }
+                }
+            }
+        }
+            return view('item')->with('iteminfo', $item_id);
     }
 
     public function monstertime($area_id) {
