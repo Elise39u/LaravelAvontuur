@@ -181,6 +181,7 @@ class SeedLocations extends Seeder
     But where was that damm boat?', 'foto_url' => '/img/garage.png']);
         DB::table('choices')->insert(['name' => 'Take the jerry can', 'from_location_id' => 26, 'to_location_id' => '22/5']);
         DB::table('choices')->insert(['name' => 'Leave the garage', 'from_location_id' => 26, 'to_location_id' => 20]);
+        DB::table('choices')->insert(['name' => 'Take the car', 'from_location_id' => 26, 'to_location_id' => '22/7']);
 
         DB::table('locations')->insert(['id' => 29, 'name' => 'The docks', 'area_id' => 1, 'title' => 'Docks with a boat time', 'story' => 'Well that was though battling that monster<br>
     Unless you came with the car than you are fine i guesses<br>

@@ -13,6 +13,8 @@ class SeedChoiceConditions extends Seeder
     {
         DB::table('choice_conditions')->truncate();
 
-        DB::table('choice_conditions')->insert(['id' => 1, 'choice_id' => 27, 'action' => 'NEED ITEM', 'action_value' => 6]);
+        DB::table('choice_conditions')->insert(['choice_id' => 27, 'action' => 'NEED ITEM', 'action_value' => 6]);
+        DB::table('choice_conditions')->insert(['choice_id' => 54, 'action' => 'NEED ITEM', 'action_value' => 5]);
+        DB::table('choice_conditions')->insert(['choice_id' => 56, 'action' => 'NEED ITEM', 'action_value' => 7]);
     }
 }

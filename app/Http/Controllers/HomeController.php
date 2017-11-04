@@ -38,13 +38,20 @@ class HomeController extends Controller
     }
 
     public function getInventory() {
-        $userid = Auth::user()->inventory_id;
-        $inventory = inventories::with('inventoryCheck')->where('id', $userid)->get();
+        $inventory_id = Auth::user()->inventory_id;
+        $inventory = inventories::with('inventoryCheck')->where('id', $inventory_id)->get();
         foreach ($inventory as $item) {
             if(empty($item->id)) {
-                var_dump('i`m empty');
+                $Inventory = new inventories;
+                $Inventory->capacity = 30;
+                $Inventory->save();
+                $user_inv = new User;
+                $user_inv->inventory_id = $Inventory->id;
+                $user_inv->save();
             } else{
-                return $item->id;
+                $userid = Auth::user()->inventory_id;
+                $inventorySpace = inventories::with('getInventoryItems')->where('id', $userid)->get();
+                return $inventorySpace;
             }
         }
     }
@@ -53,17 +60,18 @@ class HomeController extends Controller
         $area_name = Areas::with('Location')->get();
         $currenttime = Carbon::now()->timezone('America/Nassau');
         $time = $currenttime->hour > 6 && $currenttime->hour < 19;
+        $inventory = json_decode($this->getInventory()[0]);
         $location = Location::findOrFail($id);
         if (!$location->exists()) {
             return view('error');
         } elseif($location->id == '' or $location->id == NULL or !$location->id){
             $location = Location::find(1);
             return view('home')->with('location', $location)->with('currenttime', $time)->with('areaname', $area_name)
-                ->with('time', $currenttime);
+                ->with('time', $currenttime)->with('inventory', $inventory);
         }
         else {
             return view('home')->with('location', $location)->with('currenttime', $time)->with('areaname', $area_name)
-                ->with('time', $currenttime);
+                ->with('time', $currenttime)->with('inventory', $inventory);
         }
     }
 
@@ -87,35 +95,30 @@ class HomeController extends Controller
         } elseif ($item_id->id == '' or $item_id->id == NULL or !$item_id->id) {
             return abort(404);
         } else {
-            /*
-                 Kijken of de player een Inventory heeft
-                 :nee Maak een nieuwe inventory aan
-                 :ja  Inventory van de player ophalen
-                 Kijken of de player de item heeft in zijn of haar inventory
-                 :nee voeg hem in de inventory van de player
-                 :ja  Wordt nog bedacht
-            */
-            $this->getInventory();
-            $userid = Auth::user()->inventory_id;
-            $inventorySpace = inventories::with('getInventoryItems')->where('id', $userid)->get();
-            foreach ($inventorySpace as $Space) {
-                foreach ($Space->getInventoryItems as $value) {
-                    if (in_array($value->item_id, (array) $item_id)) {
-                        var_dump($value->item_id . ' Deze zit nog niet in de inventory');
-                    } elseif($value->item_id != $item_id->id) {
-                        var_dump($item_id->id . ' Is niet gelijk aan ' . $value->item_id);
-                    }
-                    else {
-                        if ($value->item_id == $item_id->id) {
-                            var_dump($item_id->id . ' Bestaat al in je inventory');
+            $inventorySpace = $this->getInventory();
+            $item_check = $item_id->id;
+            foreach ($inventorySpace as $value) {
+                $invcheck  = json_decode($value->getInventoryItems);
+                if($invcheck  == '' || empty($invcheck)) {
+                    $result = 'failure';
+                } else {
+                    foreach ($value->getInventoryItems as $val) {
+                        if ($val['item_id'] == $item_check) {
+                            $result = 'success';
+                            break;
                         } else {
-                            $itemInventory = new inventory_item;
-                            $itemInventory->inventory_id = $userid;
-                            $itemInventory->item_id = $item_id->id;
-                            $itemInventory->save();
+                            $result = 'failure';
                         }
                     }
                 }
+            }
+            if($result == 'success') {
+            } else {
+                $inv_id = Auth::user()->inventory_id;
+                $itemInventory = new inventory_item;
+                $itemInventory->inventory_id = $inv_id;
+                $itemInventory->item_id = $item_id->id;
+                $itemInventory->save();
             }
         }
             return view('item')->with('iteminfo', $item_id);

@@ -37,3 +37,13 @@
 .ui-dialog-titlebar-close {
     visibility: hidden;
 }
+
+.invNav{
+    list-style-type: none;
+}
+
+.inventory {
+    display: inline-block;
+    width: 40%;
+    color: #ff0000;
+}

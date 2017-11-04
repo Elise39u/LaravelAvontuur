@@ -34,6 +34,18 @@
                     </nav>
                 </div>
             </div>
+
+            <div class="panel panel-default">
+            <div class="panel-heading"><p>You`re inventory</p></div>
+            <div class="panel-body">
+                <nav class="invNav">
+                    <li class="inventory">Space left: {{$inventory->capacity}}</li>
+                    @foreach ($inventory->get_inventory_items as $invItem)
+                    <li class="inventory">item in you`re inventory: {{$invItem->item_id}}</li>
+                    @endforeach
+                </nav>
+            </div>
+        </div>
         </div>
     </div>
 </div>

@@ -15,7 +15,7 @@ class ChoiceConditions extends Migration
     {
         Schema::create('choice_conditions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('choice_id');
+            $table->string('choice_id');
             $table->string('action')->nullable();
             $table->string('action_value')->nullable();
         });
