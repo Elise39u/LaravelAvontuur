@@ -26,15 +26,26 @@
                         <?php
                         foreach($location->choices as $choice) {
                             $choiceCondition = json_encode($choice->conditions);
-                        if($choiceCondition == '[]') { ?>
+                         if($choiceCondition == '[]') { ?>
                             <li class="menuchoice"><a class="link" href="/location/{{ $choice->to_location_id }}">{{ $choice->name }}</a></li>
-                        <?php }  else {?>
-                            <li class="menuchoice" style="display: none;"><a class="link" href="/location/{{ $choice->to_location_id }}">{{ $choice->name }}</a></li>
-                        <?php } }?>
+                        <?php } else {
+                             $choiceCheck = json_decode($choiceCondition);
+                             $ItemCheck = json_decode(json_encode($inventory->get_inventory_items), true);
+                             $length = count($ItemCheck);
+                             foreach ($choiceCheck as $ChoiceCheck) {
+                                 for($i = 0; $i < $length; $i++) {
+                                     if($ItemCheck[$i]['item_id'] == $ChoiceCheck->action_value){ ?>
+                                         <li class="menuchoice"><a class="link" href="/location/{{ $choice->to_location_id }}">{{ $choice->name }}</a></li>
+                                     <?php } else {  ?>
+                                         <li class="menuchoice" style="display: none;"><a class="link" href="/location/{{ $choice->to_location_id }}">{{ $choice->name }}</a></li>
+                                     <?php  }
+                                 }?>
+                            <?php  } } }?>
                     </nav>
                 </div>
             </div>
 
+            @if (isset($inventory))
             <div class="panel panel-default">
             <div class="panel-heading"><p>You`re inventory</p></div>
             <div class="panel-body">
@@ -46,6 +57,7 @@
                 </nav>
             </div>
         </div>
+            @endif
         </div>
     </div>
 </div>

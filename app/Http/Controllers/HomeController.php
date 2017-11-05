@@ -45,7 +45,7 @@ class HomeController extends Controller
                 $Inventory = new inventories;
                 $Inventory->capacity = 30;
                 $Inventory->save();
-                $user_inv = new User;
+                $user_inv = User::find(Auth::user()->id);
                 $user_inv->inventory_id = $Inventory->id;
                 $user_inv->save();
             } else{
