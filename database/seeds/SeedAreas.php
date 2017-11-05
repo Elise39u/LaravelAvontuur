@@ -13,5 +13,6 @@ class SeedAreas extends Seeder
     {
         DB::table('areas')->truncate(); // maak leeg
         DB::table('areas')->insert(['id' => 1, 'name' => 'brooklyn']);
+        DB::table('areas')->insert(['id' => 2, 'name' => 'Staten Island']);
     }
 }

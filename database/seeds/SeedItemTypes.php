@@ -23,5 +23,9 @@ class SeedItemTypes extends Seeder
             'attack' => 15, 'defense' => 5, 'location_id' => 13]);
         DB::table('item_types')->insert(['id' => 5, 'name' => 'Jerry can', 'price' => '1200', 'shop_category' => 'items',
             'attack' => 0, 'defense' => 0, 'location_id' => 26]);
+        DB::table('item_types')->insert(['id' => 6, 'name' => 'The boat', 'price' => '100000', 'shop_category' => 'items',
+            'attack' => 0, 'defense' => 0, 'location_id' => 11]);
+        DB::table('item_types')->insert(['id' => 7, 'name' => 'A car', 'price' => '260000', 'shop_category' => 'items',
+            'attack' => 0, 'defense' => 1500, 'location_id' => 29]);
     }
 }

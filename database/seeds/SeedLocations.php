@@ -199,6 +199,23 @@ class SeedLocations extends Seeder
     Do you wanna try or not?', 'foto_url' => '/img/end1.png']);
         DB::table('choices')->insert(['name' => 'Game Over', 'from_location_id' => 30, 'to_location_id' => 1]);
 
+        DB::table('locations')->insert(['id' => 16, 'name' => 'The River', 'area_id' => 0, 'title' => 'Explore the city', 'story' => 'Well there you are on the river<br>
+    You see the neighbour Staten Island <br>
+    And to the right is the abandoned carrier  <br>
+    But where are we going?', 'foto_url' => '/img/riverside.png']);
+        DB::table('choices')->insert(['name' => 'Go on to Staten Island', 'from_location_id' => 16, 'to_location_id' => 31]);
+        DB::table('choices')->insert(['name' => 'Go to the Carrier', 'from_location_id' => 16, 'to_location_id' => 32]);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 16, 'to_location_id' => 11]);
+
+        DB::table('locations')->insert(['id' => 31, 'name' => 'A new Time', 'area_id' => 2, 'title' => 'Staten Island', 'story' => 'So a new area new chance<br>
+    But There is a wat right and one left<br>
+    but the question is what is where <br>
+    Do we go left or right?', 'foto_url' => '/img/shore.png']);
+        DB::table('choices')->insert(['name' => 'Go left', 'from_location_id' => 31, 'to_location_id' => 33]);
+        DB::table('choices')->insert(['name' => 'Go Right', 'from_location_id' => 31, 'to_location_id' => 34]);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 31, 'to_location_id' => 16]);
+
+
         DB::table('locations')->insert(['id' => 15, 'name' => 'You encounter something', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 21, 'name' => 'Npc time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 22, 'name' => 'Item time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
