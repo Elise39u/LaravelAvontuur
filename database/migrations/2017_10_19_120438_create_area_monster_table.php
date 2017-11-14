@@ -13,7 +13,11 @@ class CreateAreaMonsterTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('area_monsters', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('area_id');
+            $table->integer('monster_id');
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class CreateAreaMonsterTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('area_monsters');
     }
 }

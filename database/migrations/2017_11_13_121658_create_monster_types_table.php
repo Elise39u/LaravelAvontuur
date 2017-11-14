@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateItemTypesTable extends Migration
+class CreateMonsterTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,16 @@ class CreateItemTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('item_types', function (Blueprint $table) {
+        Schema::create('monster_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('price');
-            $table->string('shop_category');
+            $table->string('image_url');
             $table->string('attack');
             $table->string('defense');
-            $table->string('location_id')->nullable();
+            $table->string('curhp');
+            $table->string('xp');
+            $table->string('gold');
+            $table->string('chance')->nullable();
         });
     }
 
@@ -31,6 +33,6 @@ class CreateItemTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('item_types');
+        Schema::dropIfExists('monster_types');
     }
 }

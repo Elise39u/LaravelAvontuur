@@ -26,5 +26,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SeedItemTypes::class);
         $this->call(SeedInventories::class);
         $this->call(SeedInventoryItem::class);
+        $this->call(SeederMonster::class);
+        $this->call(SeederMonsterTypes::class);
+        $this->call(SeedAreaMonsters::class);
     }
 }

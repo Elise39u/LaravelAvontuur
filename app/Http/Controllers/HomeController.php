@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\AreaMonsters;
 use App\Areas;
 use App\inventories;
 use App\inventory_item;
 use App\item_type;
 use App\Items;
+use App\monster_type;
+use App\Monsters;
 use App\User;
 use Illuminate\Http\Request;
 use App\Location;
 use App\Npcs;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -66,10 +70,16 @@ class HomeController extends Controller
             return view('error');
         } elseif($location->id == '' or $location->id == NULL or !$location->id){
             $location = Location::find(1);
+            $user_currentLocation = User::find(Auth::user()->id);
+            $user_currentLocation->current_location_id = $location->id;
+            $user_currentLocation->save();
             return view('home')->with('location', $location)->with('currenttime', $time)->with('areaname', $area_name)
                 ->with('time', $currenttime)->with('inventory', $inventory);
         }
         else {
+            $user_currentLocation = User::find(Auth::user()->id);
+            $user_currentLocation->current_location_id = $location->id;
+            $user_currentLocation->save();
             return view('home')->with('location', $location)->with('currenttime', $time)->with('areaname', $area_name)
                 ->with('time', $currenttime)->with('inventory', $inventory);
         }
@@ -125,7 +135,118 @@ class HomeController extends Controller
     }
 
     public function monstertime($area_id) {
-        var_dump('You`re on the monster page with area_id ' . $area_id . ' ');
+        $user_currentLocation = User::find(Auth::user()->id);
+        $user  = json_decode(json_encode($user_currentLocation), true);
+        Session::put('location_id', $user['current_location_id']);
+        $area = Areas::findOrFail($area_id);
+        if (!$area->exists()) {
+            return view('error');
+        } elseif ($area->id == '' or $area->id == NULL or !$area->id) {
+            return abort(404, 'area not found');
+        } else {
+            $areamonsters = AreaMonsters::where('area_id', $area_id)
+                ->inRandomOrder()->first();
+            $Monstercheck = json_decode($areamonsters);
+            if(empty($Monstercheck) || !isset($Monstercheck)) {
+                return abort(404, 'No monster Has been found');
+            } else {
+                $id = $Monstercheck->monster_id;
+                $monsterinfo = Monsters::with('getMonster')->where('id', $id)
+               ->get();
+               if(empty($monsterinfo) || !$monsterinfo) {
+                   return abort(404, 'No info about the monster has been found');
+               } else {
+                   $user = Auth::user();
+                    return view('monster')->with('monsterinfo', $monsterinfo)->with('userinfo', $user);
+               }
+            }
+        }
+        /*
+        In case of attacking
+        $combat = array();
+        $turns = 0;
+        while ($player['curhp'] > 0 && $monster['curhp'] > 0) {
+            if ($turns % 2 != 0) {
+                $attacker = &$monster;
+                $defender = &$player;
+            } else {
+                $attacker = &$player;
+                $defender = &$monster;
+            }
+            $damage = 0;
+            if ($attacker['attack'] > $defender['defense']) {
+                $damage = $attacker['attack'] - $defender['defense'];
+            }
+            if ($attacker['attack'] < $defender['defense']) {
+                $damage = $attacker['attack'] = 15;
+            }
+            $defender['curhp'] -= $damage;
+            $combat[$turns] = array(
+                'attacker' => $attacker['name'],
+                'defender' => $defender['name'],
+                'damage' => $damage
+            );
+            $turns++;
+        }
+         */
+       /*
+        3. Kijken wat de player drukt
+        .Run away = Player wordt terug gestuurd naar de laatste locatie
+        .Cry ga naar php en kijk of de player met een kans van 5% het monster wegjaagt en door te gaan
+        .Taunt Probeer het monster met een kans van 15% vriendelijke te maken en door te gaan
+        .Attack Val het monster aan
+        4. Kijk wat er is gedrukt en voer het uit met code
+        4.1 Attack moet eerst gaan kijken of wat de player attack kracht is en E.V.T magische kracht
+        . Dit moet bij eklaar worden opgeteld en afgetrokken van het monster zijn defense VB: attack = 150 + 10(Fireball) - 260 defense
+        . Als er een negatief getal kom print dan het volgende: Het monster->name heeft een te krachtig verdediging 0 damage gedaan
+        . Een Posetief getal moet dan het volgende printen: Het monster->name heeft zoveel (wat er overblijft van de attack kracht) opgelopen
+       4.1.2 Monster attack de player altijd
+        . Een monster heeft dezelfde dingen als bij 4.1 maar dan i.p.v monster is het player
+        . Eem monster heeft verschillende aanvallen
+       4.1.3
+        .Na een Attack van of de player of het monster moet het current hp worden geupdate min de attack kracht
+        4.1.3.1
+        .Als het current hp van de monster lager is dan 0 en de player heeft nog hp print het volgende: Congrats you defeated monster->naam and gain
+            (gold drop for player) and exp (exp dropped for player) and the item(random item dropped from a table)
+        .En er worden de 2 locaties geladen waar de player naar toe kan VB: area 1 -> Sandpath of naar de Docks
+        4.1.3.2
+        .Als het current hp van de player lager is dan 0 en de monster heeft nog health print het volgende: You have been defeated by monster->name and become infteced
+        .Reset de player stats, Clear de inventory, Clear de party, En de stuur de player teurg naar de begin pagina
+        4.2
+         .Taunt is simpel een radom getal functie die kijkt of het getal lager is dan 16
+        4.2.1
+         .Als het zo is print het volgende: You have taunted the monster->name congrats you can pass
+         .Ga nnu door net als bij 4.1.3.1
+        4.2.2
+         .Als het niet zo is print het volgende Taunt failed
+         .Het monster doet nu een tegen aanval en ga verder als bij 4.1.2
+         .Voer ook nog uit als 4.1.3
+        4.3
+        Als de player de kmp cry drukt ga met een random getal function kijken of ie de 5% kirjgt dus < 6%
+          4.3.1
+           Als de Player het lukt het monster weg te jagen print het volgende: You scared the monter->name away nice one
+            Ga nu door als bij 4.1.3.1
+          4.3.2
+          .Anders Print: Cry You thought that wil help? LOL
+          .Het monster doet nu een tegen aanval en ga verder als bij 4.1.2
+          .Voer ook nog uit als 4.1.3
+       4.4
+        Run away pressed is simpel send the player back to last known location
+        */
+    }
+
+    public function checkAttack()
+    {
+        if(isset($_POST['attack'])) {
+            var_dump('You pressed attack');
+        } elseif(isset($_POST['taunt'])) {
+            var_dump('You pressed taunt');
+        } elseif(isset($_POST['cry'])) {
+            var_dump('You pressed cry');
+        } elseif(isset($_POST['run'])) {
+            $backing = Session::get('location_id');
+            redirect()->to('location/'. $backing)->send();
+        }
     }
 
     public function shops($id) {

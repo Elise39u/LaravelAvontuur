@@ -13,7 +13,11 @@ class CreateMonsterTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('monsters', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('monster_type_id');
+            $table->integer('inventory_id')->nullable();
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class CreateMonsterTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('monsters');
     }
 }

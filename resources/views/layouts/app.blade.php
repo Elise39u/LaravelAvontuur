@@ -19,6 +19,8 @@
     <script type="text/javascript">
         var dialogactions =[];
     </script>
+    <?php  $user = Auth::user();
+           $userinfo  = json_decode(json_encode($user), true); ?>
 </head>
 <body>
     <div id="app">
@@ -38,8 +40,9 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <p>Current level&nbsp;<strong>1</strong></p>
-                        <p>Exp to next level&nbsp;<strong>500</strong></p>
+                        <p>Current level&nbsp;<strong>{{$user['level']}}</strong></p>
+                        <p>Current Exp   <strong>{{$user['current_exp']}}</strong></p>
+                        <p>Exp to next level&nbsp;<strong>{{$user['exp_needed_to_next_level']}}</strong></p>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
