@@ -30,7 +30,25 @@
                     <input type="submit" name="cry" value="Cry for the {{$monster[0]['name']}}"><br>
                     <input type="submit" name="run" value="Run away"><br>
                     </form>
-                </div>
+                    <?php $cry     = Session::get('cry');
+                          $won     = Session::get('won');?>
+                    @if (isset($won) || isset($lose))
+                        @if ($won == 1)
+                            <p>You defeated {{$monster[0]['name']}}</p>
+                            <button><a href="/location/10">Go on with the sand</a></button> <br>
+                            <button><a href="/location/29">Go towards the docks</a></button> <br>
+                        @elseif ($lose == 1)
+                            <p>You have been killed by {{$monster[0]['name']}}</p>
+                            <li><a href="/location/1">Game over</a></li>
+                        @endif
+                    @endif
+                @if (isset($cry))
+                    <div class="alert alert-danger alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Too bad</strong>
+                        <ul>
+                            <li>{{$cry}}</li>
+                        </ul>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

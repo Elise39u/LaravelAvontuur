@@ -139,6 +139,8 @@ class HomeController extends Controller
         $user  = json_decode(json_encode($user_currentLocation), true);
         Session::put('location_id', $user['current_location_id']);
         $area = Areas::findOrFail($area_id);
+        $areainfo = json_decode(json_encode($area), true);
+        Session::put('area_id', $areainfo['id']);
         if (!$area->exists()) {
             return view('error');
         } elseif ($area->id == '' or $area->id == NULL or !$area->id) {
@@ -157,6 +159,7 @@ class HomeController extends Controller
                    return abort(404, 'No info about the monster has been found');
                } else {
                    $user = Auth::user();
+                   Session::put('monsterinfo', $monsterinfo);
                     return view('monster')->with('monsterinfo', $monsterinfo)->with('userinfo', $user);
                }
             }
@@ -212,37 +215,85 @@ class HomeController extends Controller
         4.1.3.2
         .Als het current hp van de player lager is dan 0 en de monster heeft nog health print het volgende: You have been defeated by monster->name and become infteced
         .Reset de player stats, Clear de inventory, Clear de party, En de stuur de player teurg naar de begin pagina
-        4.2
-         .Taunt is simpel een radom getal functie die kijkt of het getal lager is dan 16
-        4.2.1
-         .Als het zo is print het volgende: You have taunted the monster->name congrats you can pass
-         .Ga nnu door net als bij 4.1.3.1
-        4.2.2
-         .Als het niet zo is print het volgende Taunt failed
-         .Het monster doet nu een tegen aanval en ga verder als bij 4.1.2
-         .Voer ook nog uit als 4.1.3
-        4.3
-        Als de player de kmp cry drukt ga met een random getal function kijken of ie de 5% kirjgt dus < 6%
-          4.3.1
-           Als de Player het lukt het monster weg te jagen print het volgende: You scared the monter->name away nice one
-            Ga nu door als bij 4.1.3.1
-          4.3.2
-          .Anders Print: Cry You thought that wil help? LOL
-          .Het monster doet nu een tegen aanval en ga verder als bij 4.1.2
-          .Voer ook nog uit als 4.1.3
-       4.4
-        Run away pressed is simpel send the player back to last known location
         */
     }
 
     public function checkAttack()
     {
         if(isset($_POST['attack'])) {
-            var_dump('You pressed attack');
+            $combat = array();
+            $turns = 0;
+            $playerinfo = Auth::user();
+            $player = json_decode(json_encode($playerinfo), true);
+            $monsterinfo = Session::get('monsterinfo');
+            $monster = json_decode(json_encode($monsterinfo[0]->getmonster), true);
+            while ($player['curhp'] > 0 && $monster[0]['curhp'] > 0) {
+                if ($turns % 2 != 0) {
+                    $attacker = &$monster[0];
+                    $defender = &$player;
+                } else {
+                    $attacker = &$player;
+                    $defender = &$monster[0];
+                }
+                $damage = 0;
+                if ($attacker['attack'] > $defender['defense']) {
+                    $damage = $attacker['attack'] - $defender['defense'];
+                }
+                if ($attacker['attack'] < $defender['defense']) {
+                    $damage = $attacker['attack'] = 15;
+                }
+                $defender['curhp'] -= $damage;
+                $combat[$turns] = array(
+                    'attacker' => $attacker['name'],
+                    'defender' => $defender['name'],
+                    'damage' => $damage
+                );
+                $turns++;
+            }
+            $user_curhp = User::find(Auth::user()->id);
+            $user_curhp->curhp = $player['curhp'];
+            $user_curhp->save();
+            $area_id = Session::get('area_id');
+            if($player['curhp'] > 0) {
+                $won = 1;
+                $user_curhp = User::find(Auth::user()->id);
+                $user_curhp->curhp = $player['curhp'];
+                $user_curhp->current_exp = $player['current_exp'] + $monster[0]['xp'];
+                $user_curhp->gold  = $player['gold'] + $monster[0]['gold'];
+                $user_curhp->save();
+                return redirect()->to('/location/15/' . $area_id)->with('won', $won);
+            } else {
+                $user = User::find(Auth::user()->id);
+                $user->attack = 50;
+                $user->magical_attack = 10;
+                $user->defense = 80;
+                $user->curhp = 200;
+                $user->maxhp = 250;
+                $user->current_exp = 0;
+                $user->exp_needed_to_next_level = 250;
+                $user->level = 1;
+                $user->save();
+                return redirect('/location/1');
+            }
         } elseif(isset($_POST['taunt'])) {
-            var_dump('You pressed taunt');
+            $area_id = Session::get('area_id');
+            $chance = rand(0, 100);
+            if($chance < 16) {
+                $won = 1;
+                return redirect()->to('/location/15/' . $area_id)->with('won', $won);
+            } else {
+                $backing = Session::get('location_id');
+                redirect()->to('location/'. $backing)->send();
+            }
         } elseif(isset($_POST['cry'])) {
-            var_dump('You pressed cry');
+            $area_id = Session::get('area_id');
+            $chance = rand(0, 100);
+            if($chance < 6) {
+                $won = 1;
+                return redirect()->to('/location/15/' . $area_id)->with('won', $won);
+            } else {
+                return redirect('/location/15/' . $area_id)->with('cry', 'cry action failed and lol you tried');
+            }
         } elseif(isset($_POST['run'])) {
             $backing = Session::get('location_id');
             redirect()->to('location/'. $backing)->send();
