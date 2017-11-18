@@ -29,5 +29,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SeederMonster::class);
         $this->call(SeederMonsterTypes::class);
         $this->call(SeedAreaMonsters::class);
+        $this->call(SeederShops::class);
     }
 }

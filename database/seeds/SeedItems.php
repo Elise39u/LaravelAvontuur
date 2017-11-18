@@ -21,5 +21,7 @@ class SeedItems extends Seeder
         DB::table('items')->insert(['item_type_id' => 6]);
         DB::table('items')->insert(['item_type_id' => 7]);
         DB::table('items')->insert(['item_type_id' => 8]);
+        DB::table('items')->insert(['item_type_id' => 9]);
+        DB::table('items')->insert(['item_type_id' => 10]);
     }
 }

@@ -10,6 +10,7 @@ use App\item_type;
 use App\Items;
 use App\monster_type;
 use App\Monsters;
+use App\shops;
 use App\User;
 use Illuminate\Http\Request;
 use App\Location;
@@ -66,6 +67,18 @@ class HomeController extends Controller
         $time = $currenttime->hour > 6 && $currenttime->hour < 19;
         $inventory = json_decode($this->getInventory()[0]);
         $location = Location::findOrFail($id);
+        $user = User::find(Auth::user()->id);
+        if($user->curhp <= 0) {
+            $user->attack = 50;
+            $user->magical_attack = 10;
+            $user->defense = 80;
+            $user->curhp = 200;
+            $user->maxhp = 250;
+            $user->current_exp = 0;
+            $user->exp_needed_to_next_level = 250;
+            $user->level = 1;
+            $user->save();
+        }
         if (!$location->exists()) {
             return view('error');
         } elseif($location->id == '' or $location->id == NULL or !$location->id){
@@ -134,9 +147,10 @@ class HomeController extends Controller
             return view('item')->with('iteminfo', $item_id);
     }
 
-    public function monstertime($area_id) {
+    public function monstertime($area_id)
+    {
         $user_currentLocation = User::find(Auth::user()->id);
-        $user  = json_decode(json_encode($user_currentLocation), true);
+        $user = json_decode(json_encode($user_currentLocation), true);
         Session::put('location_id', $user['current_location_id']);
         $area = Areas::findOrFail($area_id);
         $areainfo = json_decode(json_encode($area), true);
@@ -149,73 +163,21 @@ class HomeController extends Controller
             $areamonsters = AreaMonsters::where('area_id', $area_id)
                 ->inRandomOrder()->first();
             $Monstercheck = json_decode($areamonsters);
-            if(empty($Monstercheck) || !isset($Monstercheck)) {
+            if (empty($Monstercheck) || !isset($Monstercheck)) {
                 return abort(404, 'No monster Has been found');
             } else {
                 $id = $Monstercheck->monster_id;
                 $monsterinfo = Monsters::with('getMonster')->where('id', $id)
-               ->get();
-               if(empty($monsterinfo) || !$monsterinfo) {
-                   return abort(404, 'No info about the monster has been found');
-               } else {
-                   $user = Auth::user();
-                   Session::put('monsterinfo', $monsterinfo);
+                    ->get();
+                if (empty($monsterinfo) || !$monsterinfo) {
+                    return abort(404, 'No info about the monster has been found');
+                } else {
+                    $user = Auth::user();
+                    Session::put('monsterinfo', $monsterinfo);
                     return view('monster')->with('monsterinfo', $monsterinfo)->with('userinfo', $user);
-               }
+                }
             }
         }
-        /*
-        In case of attacking
-        $combat = array();
-        $turns = 0;
-        while ($player['curhp'] > 0 && $monster['curhp'] > 0) {
-            if ($turns % 2 != 0) {
-                $attacker = &$monster;
-                $defender = &$player;
-            } else {
-                $attacker = &$player;
-                $defender = &$monster;
-            }
-            $damage = 0;
-            if ($attacker['attack'] > $defender['defense']) {
-                $damage = $attacker['attack'] - $defender['defense'];
-            }
-            if ($attacker['attack'] < $defender['defense']) {
-                $damage = $attacker['attack'] = 15;
-            }
-            $defender['curhp'] -= $damage;
-            $combat[$turns] = array(
-                'attacker' => $attacker['name'],
-                'defender' => $defender['name'],
-                'damage' => $damage
-            );
-            $turns++;
-        }
-         */
-       /*
-        3. Kijken wat de player drukt
-        .Run away = Player wordt terug gestuurd naar de laatste locatie
-        .Cry ga naar php en kijk of de player met een kans van 5% het monster wegjaagt en door te gaan
-        .Taunt Probeer het monster met een kans van 15% vriendelijke te maken en door te gaan
-        .Attack Val het monster aan
-        4. Kijk wat er is gedrukt en voer het uit met code
-        4.1 Attack moet eerst gaan kijken of wat de player attack kracht is en E.V.T magische kracht
-        . Dit moet bij eklaar worden opgeteld en afgetrokken van het monster zijn defense VB: attack = 150 + 10(Fireball) - 260 defense
-        . Als er een negatief getal kom print dan het volgende: Het monster->name heeft een te krachtig verdediging 0 damage gedaan
-        . Een Posetief getal moet dan het volgende printen: Het monster->name heeft zoveel (wat er overblijft van de attack kracht) opgelopen
-       4.1.2 Monster attack de player altijd
-        . Een monster heeft dezelfde dingen als bij 4.1 maar dan i.p.v monster is het player
-        . Eem monster heeft verschillende aanvallen
-       4.1.3
-        .Na een Attack van of de player of het monster moet het current hp worden geupdate min de attack kracht
-        4.1.3.1
-        .Als het current hp van de monster lager is dan 0 en de player heeft nog hp print het volgende: Congrats you defeated monster->naam and gain
-            (gold drop for player) and exp (exp dropped for player) and the item(random item dropped from a table)
-        .En er worden de 2 locaties geladen waar de player naar toe kan VB: area 1 -> Sandpath of naar de Docks
-        4.1.3.2
-        .Als het current hp van de player lager is dan 0 en de monster heeft nog health print het volgende: You have been defeated by monster->name and become infteced
-        .Reset de player stats, Clear de inventory, Clear de party, En de stuur de player teurg naar de begin pagina
-        */
     }
 
     public function checkAttack()
@@ -254,6 +216,7 @@ class HomeController extends Controller
             $user_curhp->curhp = $player['curhp'];
             $user_curhp->save();
             $area_id = Session::get('area_id');
+            $monsters = $_POST['monster'];
             if($player['curhp'] > 0) {
                 $won = 1;
                 $user_curhp = User::find(Auth::user()->id);
@@ -261,19 +224,10 @@ class HomeController extends Controller
                 $user_curhp->current_exp = $player['current_exp'] + $monster[0]['xp'];
                 $user_curhp->gold  = $player['gold'] + $monster[0]['gold'];
                 $user_curhp->save();
-                return redirect()->to('/location/15/' . $area_id)->with('won', $won);
+                return redirect()->to('/location/15/' . $area_id)->with('won', $won)->with('combat', $combat)->with('monster', $monsters);
             } else {
-                $user = User::find(Auth::user()->id);
-                $user->attack = 50;
-                $user->magical_attack = 10;
-                $user->defense = 80;
-                $user->curhp = 200;
-                $user->maxhp = 250;
-                $user->current_exp = 0;
-                $user->exp_needed_to_next_level = 250;
-                $user->level = 1;
-                $user->save();
-                return redirect('/location/1');
+                $lose = 1;
+                return redirect()->to('/location/15/' . $area_id)->with('lose', $lose)->with('combat', $combat)->with('monster', $monsters);
             }
         } elseif(isset($_POST['taunt'])) {
             $area_id = Session::get('area_id');
@@ -301,6 +255,13 @@ class HomeController extends Controller
     }
 
     public function shops($id) {
-        var_dump('You`re on the shop page with shop_id ' . $id . ' ');
+        $info = shops::findOrFail($id);
+        if(!$info->exists()) {
+            return view('error');
+        } elseif ($info->id == '' or $info->id === NULL or !$info->id) {
+            return abort(404);
+        } else {
+            return view('shop')->with('shopinfo', $info);
+        }
     }
 }

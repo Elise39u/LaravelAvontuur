@@ -22,25 +22,35 @@
                         <li> defense: {{$user['defense']}}</li>
                         <li> curhp: {{$user['curhp']}}/{{$user['maxhp']}} </li>
                     </ul> <br><br><br>
-                    <p> What are we gonna do {{$user['name']}}?</p>
-                    <form action="{{action('HomeController@checkAttack')}}" method="post">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <input type="submit" name="attack" value="Attack the {{$monster[0]['name']}}"><br>
-                    <input type="submit" name="taunt" value="Try to Taunt the {{$monster[0]['name']}}"><br>
-                    <input type="submit" name="cry" value="Cry for the {{$monster[0]['name']}}"><br>
-                    <input type="submit" name="run" value="Run away"><br>
-                    </form>
                     <?php $cry     = Session::get('cry');
-                          $won     = Session::get('won');?>
+                          $won     = Session::get('won');
+                          $lose    = Session::get('lose');
+                          $combat  = Session::get('combat');
+                          $monstername = Session::get('monster');?>
+                    @if (isset($combat))
+                        @foreach ($combat as $info)
+                            <li><strong>{{$info['attacker']}} attacks {{$info['defender']}} for the amount of {{$info['damage']}}</strong></li>
+                        @endforeach
+                    @endif
                     @if (isset($won) || isset($lose))
                         @if ($won == 1)
-                            <p>You defeated {{$monster[0]['name']}}</p>
+                            <p>You defeated {{$monstername}}</p>
                             <button><a href="/location/10">Go on with the sand</a></button> <br>
                             <button><a href="/location/29">Go towards the docks</a></button> <br>
                         @elseif ($lose == 1)
-                            <p>You have been killed by {{$monster[0]['name']}}</p>
+                            <p>You have been killed by {{$monstername}}</p>
                             <li><a href="/location/1">Game over</a></li>
-                        @endif
+                    @endif
+                    @else
+                    <p> What are we gonna do {{$user['name']}}?</p>
+                    <form action="{{action('HomeController@checkAttack')}}" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="submit" name="attack" value="Attack the {{$monster[0]['name']}}"><br>
+                        <input type="submit" name="taunt" value="Try to Taunt the {{$monster[0]['name']}}"><br>
+                        <input type="submit" name="cry" value="Cry for the {{$monster[0]['name']}}"><br>
+                        <input type="submit" name="run" value="Run away"><br>
+                        <input type='hidden' name='monster' value="{{$monster[0]['name']}}" />
+                    </form>
                     @endif
                 @if (isset($cry))
                     <div class="alert alert-danger alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Too bad</strong>
