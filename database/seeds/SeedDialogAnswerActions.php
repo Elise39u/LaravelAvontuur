@@ -35,5 +35,7 @@ class SeedDialogAnswerActions extends Seeder
             'action' => 'OPEN DIALOG', 'action_value' => '9']);
         DB::table('dialog_answer_actions')->insert(['id' => 11, 'dialog_answer_id' => 11,
             'action' => 'CLOSE DIALOG', 'action_value' => '']);
+        DB::table('dialog_answer_actions')->insert(['id' => 12, 'dialog_answer_id' => 12,
+            'action' => 'CLOSE DIALOG, START QUEST', 'action_value' => '']);
     }
 }

@@ -61,7 +61,7 @@
                     <nav class="invNav">
                         <li class="inventory">Space left: {{$inventory->capacity}}</li>
                         @foreach ($inventory->get_inventory_items as $invItem)
-                        <li class="inventory">item in you`re inventory: {{$invItem->item_id}}</li>
+                        <li class="inventory">item {{$invItem->item_id}} aantal {{$invItem->quantity}}</li>
                         @endforeach
                     </nav>
                 </div>

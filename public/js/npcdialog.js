@@ -12,6 +12,10 @@ function checkaction(actionresult) {
         case "CLOSE DIALOG":
             $("#dialog-2").dialog('close');
             break;
+        case "CLOSE DIALOG, START QUEST":
+            alert('Quest Started');
+            $("#dialog-2").dialog('close');
+            break;
         case "OPEN DIALOG":
             var id = actionValueCheck
             var answerid = actionValueCheck
@@ -21,7 +25,6 @@ function checkaction(actionresult) {
             var checkAnswerArray = $.grep(dialoganswers, function (e) {
                 return e.dialog_id == answerid;
             });
-            console.log(checkAnswerArray, dialogactions)
             if(checkDialogArray) {
                 buttoninfo = [];
                 $.each( checkAnswerArray, function (i, l) {

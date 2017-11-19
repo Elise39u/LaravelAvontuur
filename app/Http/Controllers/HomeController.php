@@ -72,6 +72,7 @@ class HomeController extends Controller
             $user->attack = 50;
             $user->magical_attack = 10;
             $user->defense = 80;
+            $user->gold = 250;
             $user->curhp = 200;
             $user->maxhp = 250;
             $user->current_exp = 0;
@@ -256,6 +257,7 @@ class HomeController extends Controller
 
     public function shops($id) {
         $info = shops::findOrFail($id);
+        Session::put('shop_id', $info->id);
         if(!$info->exists()) {
             return view('error');
         } elseif ($info->id == '' or $info->id === NULL or !$info->id) {
@@ -263,5 +265,75 @@ class HomeController extends Controller
         } else {
             return view('shop')->with('shopinfo', $info);
         }
+    }
+
+    public function checkBuy()
+    {
+        $user_gold = User::find(Auth::user()->id);
+        $gold= json_decode(json_encode($user_gold), true);
+        $shopid = Session::get('shop_id');
+        if(isset($_POST['buy'])) {
+            if($_POST['quantity'] == '' || empty($_POST['quantity']) || $_POST['quantity'] <= 0) {
+                $item_id = $_POST['id'];
+                $quantity = 1;
+                $price = $_POST['price'];
+            } else {
+                $price = $_POST['price'];
+                $item_id = $_POST['id'];
+                $quantity = $_POST['quantity'];
+            }
+            $cost = $price * $quantity;
+            if($cost <= 0) {
+                return redirect('/location/27/' . $shopid)->with('cost', 'Dont fill in a negative number');
+            }
+            $totalprice = $gold['gold'] - $cost;
+            if ($totalprice < 0) {
+                return redirect('/location/27/' . $shopid)->with('toomuch', 'You can not spend more gold than you have');
+            } else {
+                if($quantity > 1) {
+                    $user_gold->gold = $totalprice;
+                    $user_gold->save();
+                    $inv_id = Auth::user()->inventory_id;
+                    $itemInventory = new inventory_item;
+                    $itemInventory->inventory_id = $inv_id;
+                    $itemInventory->item_id = $item_id;
+                    $itemInventory->quantity = $quantity;
+                    $itemInventory->save();
+                    return redirect('/location/27/' . $shopid);
+                } else {
+                    $user_gold->gold = $totalprice;
+                    $user_gold->save();
+                    $inv_id = Auth::user()->inventory_id;
+                    $itemInventory = new inventory_item;
+                    $itemInventory->inventory_id = $inv_id;
+                    $itemInventory->item_id = $item_id;
+                    $itemInventory->save();
+                    return redirect('/location/27/' . $shopid);
+                }
+            }
+        }
+
+        if(isset($_POST['healit'])) {
+            if($_POST['heal'] == '' OR $_POST['heal'] == NULL OR $_POST['heal'] <= 0) {
+                $healing = 1;
+            } else {
+                $healing = $_POST['heal'];
+            }
+            $cost = $healing;
+            if($cost > $gold['gold']) {
+                return redirect('/location/27/' . $shopid)->with('toomuch', 'You can not spend more gold than you have');
+            } else {
+                $health = $healing + $gold['curhp'];
+                if($health > $gold['maxhp']) {
+                    return redirect('/location/27/' . $shopid)->with('toomuch', 'You can heal more than you`re max hp');
+                } else {
+                    $goldprice = $gold['gold'] - $cost;
+                    $user_gold->gold = $goldprice;
+                    $user_gold->curhp = $health;
+                    $user_gold->save();
+                    return redirect('/location/27/' . $shopid);
+                }
+            }
+         }
     }
 }

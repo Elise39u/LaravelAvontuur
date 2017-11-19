@@ -17,6 +17,7 @@ class CreateInventoryItemsTable extends Migration
             $table->increments('id');
             $table->string('inventory_id');
             $table->string('item_id');
+            $table->string('quantity')->default(1);
         });
     }
 

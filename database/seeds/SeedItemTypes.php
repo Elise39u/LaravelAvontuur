@@ -27,11 +27,41 @@ class SeedItemTypes extends Seeder
             'attack' => 0, 'defense' => 0, 'location_id' => 11]);
         DB::table('item_types')->insert(['name' => 'A car', 'price' => '260000', 'shop_category' => 'items',
             'attack' => 0, 'defense' => 1500, 'location_id' => 29]);
+
+        // End items
         DB::table('item_types')->insert(['name' => 'Paddle', 'price' => '1000000000', 'shop_category' => 'End',
             'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
+
+        // Potion Shop items
         DB::table('item_types')->insert(['name' => 'Black Potion', 'price' => '150', 'shop_category' => 'potion',
             'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
         DB::table('item_types')->insert(['name' => 'Green potion', 'price' => '250', 'shop_category' => 'potion',
+            'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
+        DB::table('item_types')->insert(['name' => 'Red potion', 'price' => '650', 'shop_category' => 'potion',
+            'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
+        DB::table('item_types')->insert(['name' => 'Light Red Potion', 'price' => '350', 'shop_category' => 'potion',
+            'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
+        DB::table('item_types')->insert(['name' => 'Maroon potion', 'price' => '850', 'shop_category' => 'potion',
+            'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
+        DB::table('item_types')->insert(['name' => 'Light Green potion', 'price' => '150', 'shop_category' => 'potion',
+            'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
+        DB::table('item_types')->insert(['name' => 'Dark Green potion', 'price' => '450', 'shop_category' => 'potion',
+            'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
+        DB::table('item_types')->insert(['name' => 'Aqua potion', 'price' => '5500', 'shop_category' => 'potion',
+            'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
+        DB::table('item_types')->insert(['name' => 'Light Aqua Potion', 'price' => '2500', 'shop_category' => 'potion',
+            'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
+        DB::table('item_types')->insert(['name' => 'Dark Aqua potion', 'price' => '8500', 'shop_category' => 'potion',
+            'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
+        DB::table('item_types')->insert(['name' => 'Orange potion', 'price' => '850', 'shop_category' => 'potion',
+            'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
+        DB::table('item_types')->insert(['name' => 'Light Orange Potion', 'price' => '650', 'shop_category' => 'potion',
+            'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
+        DB::table('item_types')->insert(['name' => 'Dark Orange Potion', 'price' => '1150', 'shop_category' => 'potion',
+            'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
+        DB::table('item_types')->insert(['name' => 'Yellow Potion', 'price' => '500', 'shop_category' => 'potion',
+            'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
+        DB::table('item_types')->insert(['name' => 'Rainbow potion', 'price' => '125000', 'shop_category' => 'potion',
             'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
     }
 }
