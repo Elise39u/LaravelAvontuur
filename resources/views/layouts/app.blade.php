@@ -42,7 +42,7 @@
                     <ul class="nav navbar-nav">
                         <p>Current level&nbsp;<strong>{{$user['level']}}</strong></p>
                         <p>Current Exp   <strong>{{$user['current_exp']}}</strong></p>
-                        <p>Exp to next level&nbsp;<strong>{{$user['exp_needed_to_next_level']}}</strong></p>
+                        <p>Exp to next level&nbsp;<strong>{{$user['level'] + 1}} {{$user['exp_needed_to_next_level']}}</strong></p>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -54,21 +54,22 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->name }}
                                 </a>
 
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
+                        <li>
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+                                Logout
+                            </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+
+                                <ul class="dropdown-menu" role="menu">
                                 </ul>
                             </li>
                         @endif
