@@ -24,9 +24,10 @@
                             <input type="submit" value="heal me" name="healit">
                             </form>
                             @endif <br>
+                            <img class="shopimg" src="{{URL::asset($shop['foto_url'])}}">
                             <p>Below are the items for sale</p>
                             @for ($i = 0; $i < $length; $i++)
-                            <form action="{{action('HomeController@checkBuy')}}" method="post">
+                            <form class="shop" action="{{action('HomeController@checkBuy')}}" method="post">
                                 <strong>{{$shopitems[$i]['name']}} </strong> <em>{{$shopitems[$i]['price']}}gold</em> <br>
                                 <input type="hidden" name="id" value="{{$shopitems[$i]['id']}}">
                                 <input type="hidden" name="price" value="{{$shopitems[$i]['price']}}">

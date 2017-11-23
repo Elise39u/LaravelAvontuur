@@ -1,6 +1,19 @@
 $(function () {
     var actionValueCheck;
 
+    function getObjects(obj, key, val) {
+        var objects = [];
+        for (var i in obj) {
+            if (!obj.hasOwnProperty(i)) continue;
+            if (typeof obj[i] == 'object') {
+                objects = objects.concat(getObjects(obj[i], key, val));
+            } else if (i == key && obj[key] == val) {
+                objects.push(obj);
+            }
+        }
+        return objects;
+    }
+
     document.getElementById('Story').innerHTML = dialoginfo[0]['story'];
     var actionresult =[];
     $.each( dialogactions, function (i, l) {
@@ -48,29 +61,38 @@ function checkaction(actionresult) {
     }
 }
 
+    var currentDialog = getObjects(dialoganswers, 'dialog_id', dialoginfo[0]['id'])
+    var NewDialogActions = [];
+    for (i = 0; i < currentDialog.length; i++) {
+       NewDialogActions.push(getObjects(dialogactions, 'dialog_answer_id', currentDialog[i]['id']));
+    }
+    var actions = []
+    for (i = 0; i < NewDialogActions.length; i++) {
+        actions.push(getObjects(dialogactions, 'id', currentDialog[i]['id']))
+    }
     $("#dialog-2").dialog({
         autoOpen: false,
         width: 600,
         buttons: [{
-            text: dialoganswers[0]['button_title'],
+            text: currentDialog[0]['button_title'],
             "id": "Answer1",
             click: function () {
-                actionValueCheck = dialogactions[0]['action_value']
-                checkaction(actionresult[0])
+                actionValueCheck = NewDialogActions[0][0]['action_value']
+                checkaction(actions[0][0]['action'])
             }
         }, {
-            text: dialoganswers[1]['button_title'],
+            text: currentDialog[1]['button_title'],
             "id": "Answer2",
             click: function () {
-                actionValueCheck = dialogactions[1]['action_value']
-                checkaction(actionresult[1])
+                actionValueCheck = NewDialogActions[1][0]['action_value']
+                checkaction(actions[1][0]['action'])
             }
         }, {
-            text: dialoganswers[2]['button_title'],
+            text: currentDialog[2]['button_title'],
             "id": "Answer3",
             click: function () {
-                actionValueCheck = dialogactions[2]['action_value']
-                checkaction(actionresult[2])
+                actionValueCheck = NewDialogActions[2][0]['action_value']
+                checkaction(actions[2][0]['action'])
             }
         }],
     });

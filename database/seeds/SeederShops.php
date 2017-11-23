@@ -13,6 +13,7 @@ class SeederShops extends Seeder
     {
         DB::table('shops')->truncate(); // maak leeg
 
-        DB::table('shops')->insert(['name' => 'Potion shops', 'category' => 'potion', 'extra' => 'healer', 'location_id' => '20']);
+        DB::table('shops')->insert(['name' => 'Potion shops', 'category' => 'potion', 'extra' => 'healer', 'location_id' => '20',
+            'foto_url' => '/img/shops/potion.png']);
     }
 }

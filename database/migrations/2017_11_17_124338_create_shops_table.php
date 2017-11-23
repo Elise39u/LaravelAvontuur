@@ -19,6 +19,7 @@ class CreateShopsTable extends Migration
             $table->string('category'); // Om de items op te halen
             $table->string('extra'); // Als er extra`s elementen zijn zoal bij de potion shop een healer
             $table->string('location_id')->nullable(); // To go back to last know location
+            $table->string('foto_url'); // image
         });
     }
 

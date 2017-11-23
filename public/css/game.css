@@ -5,6 +5,24 @@
     margin: 0 10px 10px 0;
 }
 
+.shopimg {
+    width: 43%;
+    height: 43%;
+    float: left;
+    margin: 0 10px 10px 0;
+}
+
+.npcimg {
+    width: 38%;
+    height: 38%;
+    float: left;
+    margin: 0 10px 10px 0;
+}
+
+.shop {
+    display: inline-block;
+}
+
 .choice {
     list-style-type: none;
     margin: 0;

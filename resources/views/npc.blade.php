@@ -10,7 +10,7 @@
                 <div class="panel-heading">{{$npcinfo->name}}</div>
 
                 <div class="panel-body">
-                    <img class="storyimg" src="{{URL::asset($npcinfo->foto_url)}}">
+                    <img class="npcimg" src="{{URL::asset($npcinfo->foto_url)}}">
                     <p>{!! $npcinfo->story !!}</p>
                     <li class="menuchoice"><a class="link" href="/location/{{ $npcinfo->location_id }}">Go back</a></li>
                     <button id="opener-2" class="npcbutton">{{$npcinfo->Talk}}</button>

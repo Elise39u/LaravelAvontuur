@@ -37,5 +37,9 @@ class SeedDialogAnswer extends Seeder
             'button_title' => 'Well this was a waste']);
         DB::table('dialog_answers')->insert(['id' => 12, 'dialog_id' => 5,
             'button_title' => 'Okay']);
+
+        DB::table('dialog_answers')->insert(['id' => 13, 'dialog_id' => 10, 'button_title' => 'When do you give birth?']);
+        DB::table('dialog_answers')->insert(['id' => 14, 'dialog_id' => 10, 'button_title' => 'Ány friends?']);
+        DB::table('dialog_answers')->insert(['id' => 15, 'dialog_id' => 10, 'button_title' => 'How is life before the outbreak?']);
     }
 }
