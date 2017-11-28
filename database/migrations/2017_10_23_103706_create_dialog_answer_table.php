@@ -17,8 +17,8 @@ class CreatedialogAnswerTable extends Migration
             $table->increments('id');
             $table->integer('dialog_id');
             $table->string('button_title');
-            $table->integer('condition')->nullable();
-            $table->integer('condition_value')->nullable();
+            $table->string('condition')->nullable();
+            $table->string('condition_value')->nullable();
         });
     }
 

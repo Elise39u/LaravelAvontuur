@@ -15,8 +15,15 @@ class CreateQuestTable extends Migration
     {
         Schema::create('quests', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('npc_id');
             $table->string('name');
             $table->string('description');
+            $table->integer('item_reward')->nullable();
+            $table->integer('gold');
+            $table->string('progress');
+            $table->string('reward', 1024)->nullable();
+            $table->string('condition')->nullable();
+            $table->string('condition_value')->nullable();
         });
     }
 

@@ -37,9 +37,21 @@ class SeedDialogAnswer extends Seeder
             'button_title' => 'Well this was a waste']);
         DB::table('dialog_answers')->insert(['id' => 12, 'dialog_id' => 5,
             'button_title' => 'Okay']);
+        DB::table('dialog_answers')->insert(['id' => 13, 'dialog_id' => 7,
+            'button_title' => 'Okay than']);
+        DB::table('dialog_answers')->insert(['id' => 14, 'dialog_id' => 8,
+            'button_title' => 'Okay than']);
+        DB::table('dialog_answers')->insert(['id' => 15, 'dialog_id' => 9,
+            'button_title' => 'Okay than']);
 
-        DB::table('dialog_answers')->insert(['id' => 13, 'dialog_id' => 10, 'button_title' => 'When do you give birth?']);
-        DB::table('dialog_answers')->insert(['id' => 14, 'dialog_id' => 10, 'button_title' => 'Ány friends?']);
-        DB::table('dialog_answers')->insert(['id' => 15, 'dialog_id' => 10, 'button_title' => 'How is life before the outbreak?']);
+        DB::table('dialog_answers')->insert(['id' => 16, 'dialog_id' => 10, 'button_title' => 'When do you give birth?']);
+        DB::table('dialog_answers')->insert(['id' => 17, 'dialog_id' => 10, 'button_title' => 'Ány friends?']);
+        DB::table('dialog_answers')->insert(['id' => 18, 'dialog_id' => 10, 'button_title' => 'How is life before the outbreak?']);
+        DB::table('dialog_answers')->insert(['id' => 19, 'dialog_id' => 11, 'button_title' => 'Unless what?']);
+        DB::table('dialog_answers')->insert(['id' => 20, 'dialog_id' => 11, 'button_title' => 'Okay bye']);
+        DB::table('dialog_answers')->insert(['id' => 21, 'dialog_id' => 12, 'button_title' => 'Okay Where can i find here?']);
+        DB::table('dialog_answers')->insert(['id' => 22, 'dialog_id' => 12, 'button_title' => 'Well she is with me',
+        'condition' => 'NEED NPC', 'condition_value' => '']);
+        DB::table('dialog_answers')->insert(['id' => 23, 'dialog_id' => 12, 'button_title' => 'We talk later']);
     }
 }

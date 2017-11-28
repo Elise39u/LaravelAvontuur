@@ -37,12 +37,28 @@ class SeedDialogAnswerActions extends Seeder
             'action' => 'CLOSE DIALOG', 'action_value' => '']);
         DB::table('dialog_answer_actions')->insert(['id' => 12, 'dialog_answer_id' => 12,
             'action' => 'CLOSE DIALOG, START QUEST', 'action_value' => '']);
-
         DB::table('dialog_answer_actions')->insert(['id' => 13, 'dialog_answer_id' => 13,
-            'action' => 'OPEN DIALOG', 'action_value' => '']);
+            'action' => 'CLOSE DIALOG', 'action_value' => '']);
         DB::table('dialog_answer_actions')->insert(['id' => 14, 'dialog_answer_id' => 14,
-            'action' => 'OPEN DIALOG', 'action_value' => '']);
+            'action' => 'CLOSE DIALOG', 'action_value' => '']);
         DB::table('dialog_answer_actions')->insert(['id' => 15, 'dialog_answer_id' => 15,
+            'action' => 'CLOSE DIALOG', 'action_value' => '']);
+
+        DB::table('dialog_answer_actions')->insert(['id' => 16, 'dialog_answer_id' => 16,
+            'action' => 'OPEN DIALOG', 'action_value' => '11']);
+        DB::table('dialog_answer_actions')->insert(['id' => 17, 'dialog_answer_id' => 17,
             'action' => 'OPEN DIALOG', 'action_value' => '']);
+        DB::table('dialog_answer_actions')->insert(['id' => 18, 'dialog_answer_id' => 18,
+            'action' => 'OPEN DIALOG', 'action_value' => '']);
+        DB::table('dialog_answer_actions')->insert(['id' => 19, 'dialog_answer_id' => 19,
+            'action' => 'OPEN DIALOG', 'action_value' => '12']);
+        DB::table('dialog_answer_actions')->insert(['id' => 20, 'dialog_answer_id' => 20,
+            'action' => 'CLOSE DIALOG', 'action_value' => '']);
+        DB::table('dialog_answer_actions')->insert(['id' => 21, 'dialog_answer_id' => 21,
+            'action' => 'OPEN DIALOG', 'action_value' => '']);
+        DB::table('dialog_answer_actions')->insert(['id' => 22,  'dialog_answer_id' => 22,
+            'action' => 'OPEN DIALOG', 'action_value' => '']);
+        DB::table('dialog_answer_actions')->insert(['id' => 23,  'dialog_answer_id' => 23,
+            'action' => 'CLOSE DIALOG', 'action_value' => '']);
     }
 }

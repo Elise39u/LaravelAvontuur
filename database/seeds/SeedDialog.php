@@ -24,5 +24,7 @@ class SeedDialog extends Seeder
         DB::table('dialogs')->insert(['id' => 9, 'npc_id' => 1, 'story' => 'Well who doesn`t like New york']);
 
         DB::table('dialogs')->insert(['id' => 10, 'npc_id' => 2, 'story' => 'Well how can i help you before i get birth']);
+        DB::table('dialogs')->insert(['id' => 11, 'npc_id' => 2, 'story' => 'I don`t talk to you unless.....']);
+        DB::table('dialogs')->insert(['id' => 12, 'npc_id' => 2, 'story' => 'Now i talk only to Coach Marieke']);
     }
 }

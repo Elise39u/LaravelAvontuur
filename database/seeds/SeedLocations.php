@@ -151,6 +151,7 @@ class SeedLocations extends Seeder
     On the other side is it safe there', 'foto_url' => '/img/deadend.png']);
         DB::table('choices')->insert(['name' => 'Go back on the streets', 'from_location_id' => 18, 'to_location_id' => 12]);
         DB::table('choices')->insert(['name' => 'Dare to look inside', 'from_location_id' => 18, 'to_location_id' => 24]);
+        DB::table('choices')->insert(['name' => 'Go to the shore', 'from_location_id' => 18, 'to_location_id' => 35]);
 
         DB::table('locations')->insert(['id' => 19, 'name' => 'The bridge', 'area_id' => 1, 'title' => 'A way out?', 'story' => 'As you approach the bridge you suddenly hear a voice<br>
     <b>Unkown:</b>Are you not infected? <br>
@@ -215,6 +216,14 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['name' => 'Go Right', 'from_location_id' => 31, 'to_location_id' => 34]);
         DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 31, 'to_location_id' => 16]);
 
+        DB::table('locations')->insert(['id' => 35, 'name' => 'On the shore', 'area_id' => 1, 'title' => 'A nice view', 'story' => 'Well that is weird<br>
+        The water here is glowing purple here<br>
+        Is it the light of the bridge? or is it so poisoned<br>
+        Well its see i cant find a way to that bridge<br>
+        Maby if i go through tha mall?', 'foto_url' => '/img/Brooklyn.jpg']);
+        DB::table('choices')->insert(['name' => 'Go towards the bridge', 'from_location_id' => 35, 'to_location_id' => 36]);
+        DB::table('choices')->insert(['name' => 'Go walking futher near the shore', 'from_location_id' => 35, 'to_location_id' => 37]);
+        DB::table('choices')->insert(['name' => 'go back', 'from_location_id' => 35, 'to_location_id' => 18]);
 
         DB::table('locations')->insert(['id' => 15, 'name' => 'You encounter something', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 21, 'name' => 'Npc time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
