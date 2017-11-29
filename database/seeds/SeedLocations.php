@@ -225,6 +225,48 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['name' => 'Go walking futher near the shore', 'from_location_id' => 35, 'to_location_id' => 37]);
         DB::table('choices')->insert(['name' => 'go back', 'from_location_id' => 35, 'to_location_id' => 18]);
 
+        DB::table('locations')->insert(['id' => 33, 'name' => 'More shops', 'area_id' => 2, 'title' => 'New times ahed', 'story' => 'Well that was a pad<br>
+        over the dangerous river but never mind<br>
+        Never mind we are here and alive but where are the people<br>
+        Maby if i go on?', 'foto_url' => '/img/ahead.png']);
+        DB::table('choices')->insert(['name' => 'Go on?', 'from_location_id' => 33, 'to_location_id' => 38]);
+        DB::table('choices')->insert(['name' => 'Go to the weapon shop', 'from_location_id' => 33, 'to_location_id' => '27/2']);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 33, 'to_location_id' => 31]);
+
+        DB::table('locations')->insert(['id' => 37, 'name' => 'A secret way', 'area_id' => 1, 'title' => 'Well a tunnel', 'story' => 'The walk near the shore leads to tunnel<br>
+        Is it safe to go in? are there more surivors there?<br>
+        And about the dangers lying with in the cave?<br>
+        One way to find out <br>
+        Or doe we skip this one?', 'foto_url' => '/img/tunnel.png']);
+        DB::table('choices')->insert(['name' => 'Go in the cave', 'from_location_id' => 37, 'to_location_id' => 39]);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 37, 'to_location_id' => 33]);
+
+        DB::table('locations')->insert(['id' => 39, 'name' => 'A journey ahead', 'area_id' => 0, 'title' => 'A journey?', 'story' => 'Well the entrance was accessible<br>
+        but where leads this tunnel too that is the real question?<br>
+        But may baby its a way out or not<br>
+        And are there monsters in this cave? <br>
+        One way to find out or not', 'foto_url' => '/img/underground.png']);
+        DB::table('choices')->insert(['name' => 'Go further in the cave', 'from_location_id' => 39, 'to_location_id' => 40]);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 39, 'to_location_id' => 37]);
+
+        DB::table('locations')->insert(['id' => 40, 'name' => 'A journey ahead', 'area_id' => 0, 'title' => 'A railway?', 'story' => 'Well not expecting that one<br>
+        There is a subway station here but no people<br>
+        If i go up wil i find people there or are they all gone<br>
+        i can try to go on and maby find a way out<br>
+        But is that a wise choice', 'foto_url' => '/img/stationtunnel.png']);
+        DB::table('choices')->insert(['name' => 'Go on the tracks', 'from_location_id' => 40, 'to_location_id' => 41]);
+        DB::table('choices')->insert(['name' => 'Go up', 'from_location_id' => 40, 'to_location_id' => 42]);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 40, 'to_location_id' => 39]);
+
+        DB::table('locations')->insert(['id' => 41, 'name' => 'More rails', 'area_id' => 0, 'title' => 'No end ahead', 'story' => 'Well this is not fun<br>
+        A abandoned train on the rails?<br>
+        No way that people never use the tracks anymore its blocked<br>
+        Perhaps we can use the train to ride this tracks<br>
+        The question is does it still works?', 'foto_url' => '/img/traintracks.png']);
+        DB::table('choices')->insert(['name' => 'Go on if you want?', 'from_location_id' => 41, 'to_location_id' => 43]);
+        DB::table('choices')->insert(['name' => 'Go inside the train', 'from_location_id' => 41, 'to_location_id' => 44]);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 41, 'to_location_id' => 40]);
+
         DB::table('locations')->insert(['id' => 15, 'name' => 'You encounter something', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 21, 'name' => 'Npc time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 22, 'name' => 'Item time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
