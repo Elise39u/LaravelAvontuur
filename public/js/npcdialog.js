@@ -23,18 +23,6 @@ $(function () {
         return "";
     }
 
-    function checkCookie() {
-        var user = getCookie("username");
-        if (user != "") {
-            alert("Welcome again " + user);
-        } else {
-            user = prompt("Please enter your name:", "");
-            if (user != "" && user != null) {
-                setCookie("username", user, 365);
-            }
-        }
-    }
-
     function getObjects(obj, key, val) {
         var objects = [];
         for (var i in obj) {
@@ -61,7 +49,14 @@ function checkaction(actionresult) {
             break;
         case "CLOSE DIALOG, START QUEST":
             alert('Quest Started');
-            setCookie('Quest' + dialoginfo[0]['npc_id'], 1, 5);
+            $.ajax({
+                url: "/checkQuest",
+                dataType: 'json',
+                data:{npc_id: currentDialog[0]['id']},
+                success:function(result){
+                   alert(result.test + result.status);
+                }
+            })
             $("#dialog-2").dialog('close');
             break;
         case "OPEN DIALOG":
@@ -106,6 +101,11 @@ function checkaction(actionresult) {
         actions.push(getObjects(dialogactions, 'id', currentDialog[i]['id']))
     }
     $("#dialog-2").dialog({
+        /*
+        Kijken dat de user een quest heeft gestart
+        Zo ja toon voor nu een alert
+        Nee laad de dialog box
+         */
         autoOpen: false,
         width: 600,
         buttons: [{

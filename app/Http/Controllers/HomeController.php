@@ -9,7 +9,9 @@ use App\inventory_item;
 use App\item_type;
 use App\Items;
 use App\monster_type;
+use App\Quest;
 use App\Monsters;
+use App\PlayerQuest;
 use App\shops;
 use App\User;
 use Illuminate\Http\Request;
@@ -432,5 +434,27 @@ class HomeController extends Controller
                 }
             }
          }
+    }
+
+    public function checkQuest()
+    {
+        $npc_id = $_GET['npc_id'];
+        $status = 1;
+        //$status = json_encode(Quest::with('checkQuest')->where('id', $npc_id)->get());
+        if($status == '' or empty($status) or !$status) {
+            $test = false;
+        } else {
+            $test = true;
+        }
+        echo json_encode(array("test"=>$npc_id, "status"=>$test));
+    }
+
+    public function activateQuest($npc_id, $quest_id)
+    {
+
+    }
+
+    public function deactivateQuest($npc_id, $quest_id) {
+
     }
 }

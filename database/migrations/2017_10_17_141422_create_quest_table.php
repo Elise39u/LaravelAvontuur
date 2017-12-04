@@ -18,9 +18,9 @@ class CreateQuestTable extends Migration
             $table->integer('npc_id');
             $table->string('name');
             $table->string('description');
-            $table->integer('item_reward')->nullable();
+            $table->string('item_reward')->nullable();
             $table->integer('gold');
-            $table->string('progress');
+            $table->integer('experience');
             $table->string('reward', 1024)->nullable();
             $table->string('condition')->nullable();
             $table->string('condition_value')->nullable();

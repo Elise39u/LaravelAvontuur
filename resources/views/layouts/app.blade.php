@@ -62,6 +62,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }}
                                 </a>
+                            </li>
 
                         <li>
                             <a href="{{ route('logout') }}"
@@ -77,7 +78,16 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                 </ul>
-                            </li>
+
+                        <?php
+                        $check = App\Quest::get();
+                        $status = App\PlayerQuest::where('player_id', Auth::user()->id)->get();
+                        $info = json_encode(json_decode($check), true);
+                        $time = json_encode(json_decode($status), true);
+                        ?>
+                        <!-- Trigger the modal with a button -->
+                        <li type="button" class="btn btn-info" data-toggle="modal"
+                            data-target="#myModal">Open Journey</li>
                         @endif
                     </ul>
                 </div>
@@ -105,5 +115,31 @@
         }
     </script>
     <script type="text/javascript" src="{{asset('js/npcdialog.js')}}"></script>
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Quest Journey</h4>
+                </div>
+                <div class="modal-body">
+                <?php $quests = json_decode($info);
+                      $statuss = json_decode($time);
+                    foreach ($quests as $quest) { ?>
+                        <p>Quest name: <?= $quest->name ?> <?php foreach ($statuss as $active) { ?>
+                            Status: <?= $active->status ?>
+                            <?php } ?></p>
+                   <?php } ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </body>
 </html>

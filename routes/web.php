@@ -17,6 +17,7 @@ Route::get('login', function (){return view('Auth/login');});
 Auth::routes();
 Route::get('error', function() { return view('locationError'); } );
 Route::get('location/{id}', 'HomeController@open')->name('location');
+Route::any('checkQuest', 'HomeController@checkQuest')->name('checkQuest');
 Route::post('checkAttack', 'HomeController@checkAttack');
 Route::post('checkBuy', 'HomeController@checkBuy');
 Route::get('location/15/{area_id}', 'HomeController@monstertime')->name('monstertime');

@@ -267,6 +267,14 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['name' => 'Go inside the train', 'from_location_id' => 41, 'to_location_id' => 44]);
         DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 41, 'to_location_id' => 40]);
 
+        DB::table('locations')->insert(['id' => 43, 'name' => 'rails', 'area_id' => 0, 'title' => 'Rails, rails, rails', 'story' => 'Well i can see a end<br>
+        But the question remains is that a end?<br>
+        perhaps its a anther train station and than can we walk more and more<br>
+        But if its the end were wil we end?<br>
+        Are we still in new york or outside it?', 'foto_url' => '/img/laststop.png']);
+        DB::table('choices')->insert(['name' => 'Go on to the light', 'from_location_id' => 43, 'to_location_id' => 45]);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 43, 'to_location_id' => 41]);
+
         DB::table('locations')->insert(['id' => 15, 'name' => 'You encounter something', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 21, 'name' => 'Npc time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 22, 'name' => 'Item time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
