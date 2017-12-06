@@ -81,7 +81,7 @@
 
                         <?php
                         $check = App\Quest::get();
-                        $status = App\PlayerQuest::where('player_id', Auth::user()->id)->get();
+                        $status = App\UserQuest::where('player_id', Auth::user()->id)->get();
                         $info = json_encode(json_decode($check), true);
                         $time = json_encode(json_decode($status), true);
                         ?>
@@ -126,13 +126,18 @@
                     <h4 class="modal-title">Quest Journey</h4>
                 </div>
                 <div class="modal-body">
-                <?php $quests = json_decode($info);
-                      $statuss = json_decode($time);
-                    foreach ($quests as $quest) { ?>
-                        <p>Quest name: <?= $quest->name ?> <?php foreach ($statuss as $active) { ?>
-                            Status: <?= $active->status ?>
-                            <?php } ?></p>
-                   <?php } ?>
+                <?php
+                if(isset($info)) {
+                    $quests = json_decode($info);
+                } if(isset($time)) {
+                    $statuss = json_decode($time);
+                }
+                if(isset($quests)) {
+                    $number = count($quests);
+                    for ($i = 0; $i < $number; $i++) { ?>
+                        <p>Quest name: {{$quests[$i]->name}} Status: {{$statuss[$i]->status}}</p>
+                    <?php }
+                }?>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

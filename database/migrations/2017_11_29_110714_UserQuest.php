@@ -4,16 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PlayerQuest extends Migration
+class UserQuest extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
+     *
      */
     public function up()
     {
-        Schema::create('player_quests', function (Blueprint $table) {
+        Schema::create('user_quests', function (Blueprint $table) {
             $table->increments('id');
             $table->string('quest_id');
             $table->string('player_id');
@@ -32,6 +33,6 @@ class PlayerQuest extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('player_quests');
+        Schema::dropIfExists('user_quests');
     }
 }

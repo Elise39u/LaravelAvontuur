@@ -11,7 +11,7 @@ use App\Items;
 use App\monster_type;
 use App\Quest;
 use App\Monsters;
-use App\PlayerQuest;
+use App\UserQuest;
 use App\shops;
 use App\User;
 use Illuminate\Http\Request;
@@ -439,22 +439,26 @@ class HomeController extends Controller
     public function checkQuest()
     {
         $npc_id = $_GET['npc_id'];
-        $status = 1;
-        //$status = json_encode(Quest::with('checkQuest')->where('id', $npc_id)->get());
-        if($status == '' or empty($status) or !$status) {
-            $test = false;
+        $user_id =  Auth::user()->id;
+        //$status = json_encode(Quest::with('checkQuest')->where('npc_id', $npc_id)->get());
+        $status = json_encode(UserQuest::with('checkQuest')->where('quest_id', $npc_id)->where('player_id', $user_id)->get());
+        $test = json_decode($status);
+        if($test[0]->status == 'unknown') {
+            //:wherequest_id  ->whereplayer_id
+            $user_status = UserQuest::wherequest_id($npc_id)->whereplayer_id($user_id)->get();
+            $quest_state = json_decode($user_status);
+            $user_status[0]->status = 'Active';
+            $user_status[0]->save();
+            var_dump($user_status[0]);
+            echo json_encode(array("trick"=>'Quest ' . $test[0]->check_quest[0]->name . ' Activated'));
         } else {
-            $test = true;
+            echo json_encode(array("trick"=>'Quest is already active'));
         }
-        echo json_encode(array("test"=>$npc_id, "status"=>$test));
     }
 
-    public function activateQuest($npc_id, $quest_id)
+    public function updateQuest($npc_id, $quest_id)
     {
 
     }
 
-    public function deactivateQuest($npc_id, $quest_id) {
-
-    }
 }

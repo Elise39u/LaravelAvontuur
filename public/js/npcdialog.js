@@ -48,13 +48,12 @@ function checkaction(actionresult) {
             $("#dialog-2").dialog('close');
             break;
         case "CLOSE DIALOG, START QUEST":
-            alert('Quest Started');
             $.ajax({
                 url: "/checkQuest",
                 dataType: 'json',
                 data:{npc_id: currentDialog[0]['id']},
                 success:function(result){
-                   alert(result.test + result.status);
+                   alert(result.trick);
                 }
             })
             $("#dialog-2").dialog('close');
