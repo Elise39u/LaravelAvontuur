@@ -31,5 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SeederMonsterTypes::class);
         $this->call(SeedAreaMonsters::class);
         $this->call(SeederShops::class);
+        $this->call(SeedWarehouses::class);
     }
 }

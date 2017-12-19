@@ -239,7 +239,7 @@ class SeedLocations extends Seeder
         One way to find out <br>
         Or doe we skip this one?', 'foto_url' => '/img/tunnel.png']);
         DB::table('choices')->insert(['name' => 'Go in the cave', 'from_location_id' => 37, 'to_location_id' => 39]);
-        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 37, 'to_location_id' => 33]);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 37, 'to_location_id' => 35]);
 
         DB::table('locations')->insert(['id' => 39, 'name' => 'A journey ahead', 'area_id' => 0, 'title' => 'A journey?', 'story' => 'Well the entrance was accessible<br>
         but where leads this tunnel too that is the real question?<br>
@@ -275,9 +275,21 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['name' => 'Go on to the light', 'from_location_id' => 43, 'to_location_id' => 45]);
         DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 43, 'to_location_id' => 41]);
 
+        DB::table('locations')->insert(['id' => 24, 'name' => 'Mall times', 'area_id' => 0, 'title' => 'A mall?', 'story' => 'Well this is quite a large mall <br>
+        I see that some shops are still open or are the doors never closed <br>
+        Well there is one thing that is sure i need to check it out <br>
+        But what remains is it safe to go inside <br>
+        Well do we go or not', 'foto_url' => '/img/mall.png']);
+        DB::table('choices')->insert(['name' => 'Go to the warehouse', 'from_location_id' => 24, 'to_location_id' => '46/1']);
+        DB::table('choices')->insert(['name' => 'Go to the item shop', 'from_location_id' => 24, 'to_location_id' => '27/3']);
+        DB::table('choices')->insert(['name' => 'Go to the grocery store', 'from_location_id' => 24, 'to_location_id' => 47]);
+        DB::table('choices')->insert(['name' => 'Go to the Liquor shop', 'from_location_id' => 24, 'to_location_id' => 48]);
+        DB::table('choices')->insert(['name' => 'Go outside', 'from_location_id' => 24, 'to_location_id' => 18]);
+
         DB::table('locations')->insert(['id' => 15, 'name' => 'You encounter something', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 21, 'name' => 'Npc time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 22, 'name' => 'Item time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 27, 'name' => 'Shop time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
+        DB::table('locations')->insert(['id' => 46, 'name' => 'Warehouses', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
     }
 }

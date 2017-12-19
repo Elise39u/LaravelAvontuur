@@ -14,6 +14,7 @@ use App\Monsters;
 use App\UserQuest;
 use App\shops;
 use App\User;
+use App\Warehouse;
 use Illuminate\Http\Request;
 use App\Location;
 use App\Npcs;
@@ -40,7 +41,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $location = Location::find(1);
+        $location_id = Auth::user()->current_location_id;
+        $location = Location::find($location_id);
         return view('home')->with('location', $location);
     }
 
@@ -461,4 +463,15 @@ class HomeController extends Controller
 
     }
 
+    public function warehouses($warehouse_id) {
+        $user_currentLocation = User::find(Auth::user()->id);
+        $user = json_decode(json_encode($user_currentLocation), true);
+        Session::put('last_known_location', $user['current_location_id']);
+        $warehouse_info = Warehouse::findOrFail($warehouse_id);
+        if(empty($warehouse_info) || $warehouse_info == NULL) {
+            return abort(404, 'warehouse not found');
+        } else {
+            return view('warehouse')->with('warehouse', $warehouse_info);
+        }
+    }
 }

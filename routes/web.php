@@ -24,5 +24,6 @@ Route::get('location/15/{area_id}', 'HomeController@monstertime')->name('monster
 Route::get('location/21/{id}', 'Homecontroller@npc')->name('npc');
 Route::get('location/22/{id}', 'Homecontroller@items')->name('item');
 Route::get('location/27/{id}', 'Homecontroller@shops')->name('shops');
+Route::get('location/46/{id}', 'Homecontroller@warehouses')->name('warehouses');
 Route::get('location', 'HomeController@index')->name('home');
 Route::get('home', 'HomeController@index')->name('home2');
