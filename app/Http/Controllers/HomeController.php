@@ -42,7 +42,12 @@ class HomeController extends Controller
     public function index()
     {
         $location_id = Auth::user()->current_location_id;
-        $location = Location::find($location_id);
+        if ($location_id == Null || $location_id == 0 || $location_id == '0') {
+            $location_id = 1;
+            $location = Location::find($location_id);
+        } else {
+            $location = Location::find($location_id);
+        }
         return view('home')->with('location', $location);
     }
 
@@ -468,10 +473,41 @@ class HomeController extends Controller
         $user = json_decode(json_encode($user_currentLocation), true);
         Session::put('last_known_location', $user['current_location_id']);
         $warehouse_info = Warehouse::findOrFail($warehouse_id);
+        $inventory_id = Auth::user()->inventory_id;
+        $user_inv = json_decode($this->getInventory($inventory_id[0]));
         if(empty($warehouse_info) || $warehouse_info == NULL) {
             return abort(404, 'warehouse not found');
         } else {
-            return view('warehouse')->with('warehouse', $warehouse_info);
+            return view('warehouse')->with('warehouse', $warehouse_info)->with('items', $user_inv[0]->get_inventory_items);
+        }
+    }
+
+    public function checkUse() {
+        if(isset($_POST['submit'])) {
+            var_dump($_POST);
+            /* :TODO
+                1. Get the items Quantity and Category
+                2. Check if quantity is Null or negative
+                    2.1 Yes: Make it 1 and check it with the item quantity
+                    2.2 No: Go on with the quantity field
+                3. Check if the quantity that is filled in is bigger than the item quantity
+                    3.1 Yes: Send a error back that toomuch had been filled in
+                    3.2 No: Continue with 4
+                4. Check the category of the item
+                    4.1 If its potion go further with 5.
+                    4.2 Else go further with 6.
+                5. Now execute the function Use potion with ($item_nam)
+                    5.1 Met de item gaan we in een array zoeken naar de token naam VB: array('Light Red potion' => 'L_Red_Potion')
+                    5.2 Met die token halen we de gegevens uit het database
+                    5.3 Voer het als volgt uit
+                        $user_stat = User::find(Auth::user->id())
+                        $user_stat->Opgegeven_stat = $user_stat->Opgegeven_stat + $effect (VB: /1.5 of +100)
+                        $user_stat->save()
+                6. Now execute the function ItemUse with ()
+                        $user_stat = User::find(Auth::user->id())
+                        $user_stat->gold = $user_stat->gold + 50
+                        $user_stat->save()
+            */
         }
     }
 }

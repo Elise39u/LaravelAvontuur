@@ -61,7 +61,8 @@
                     <nav class="invNav">
                         <li class="inventory">Space left: {{$inventory->capacity}}</li>
                         @foreach ($inventory->get_inventory_items as $invItem)
-                        <li class="inventory">item {{$invItem->item_id}} aantal {{$invItem->quantity}}</li>
+                        <?php $check = \App\item_type::with('getItemName')->where('id', $invItem->item_id)->get();?>
+                        <li class="inventory">{{$check[0]->name}} Quantity {{$invItem->quantity}}</li>
                         @endforeach
                     </nav>
                 </div>

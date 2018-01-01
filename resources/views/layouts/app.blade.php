@@ -133,10 +133,14 @@
                     $statuss = json_decode($time);
                 }
                 if(isset($quests)) {
-                    $number = count($quests);
-                    for ($i = 0; $i < $number; $i++) { ?>
-                        <p>Quest name: {{$quests[$i]->name}} Status: {{$statuss[$i]->status}}</p>
-                    <?php }
+                    if($statuss == [] || $quests == []) {
+                        echo "No quest yet has been made for you";
+                    } else {
+                        $number = count($quests);
+                        for ($i = 0; $i < $number; $i++) { ?>
+                            <p>Quest name: {{$quests[$i]->name}} Status: {{$statuss[$i]->status}}</p>
+                        <?php }
+                    }
                 }?>
                 </div>
                 <div class="modal-footer">

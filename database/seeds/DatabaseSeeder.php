@@ -32,5 +32,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SeedAreaMonsters::class);
         $this->call(SeederShops::class);
         $this->call(SeedWarehouses::class);
+        $this->call(SeedTokens::class);
     }
 }

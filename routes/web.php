@@ -20,6 +20,7 @@ Route::get('location/{id}', 'HomeController@open')->name('location');
 Route::any('checkQuest', 'HomeController@checkQuest')->name('checkQuest');
 Route::post('checkAttack', 'HomeController@checkAttack');
 Route::post('checkBuy', 'HomeController@checkBuy');
+Route::post('checkUse', 'HomeController@checkUse');
 Route::get('location/15/{area_id}', 'HomeController@monstertime')->name('monstertime');
 Route::get('location/21/{id}', 'Homecontroller@npc')->name('npc');
 Route::get('location/22/{id}', 'Homecontroller@items')->name('item');
