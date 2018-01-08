@@ -25,6 +25,21 @@
                             Email: JNLHelper@outlook.com</p>
                             <li><a href="/location/12">Go back</a></li>
                     @endif
+                    <?php $toomuch = Session::get('toomuch');
+                          $gold = Session::get('gold');?>
+                    @if (isset($toomuch))
+                    <div class="alert alert-danger alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Problem?</strong>
+                        <ul>
+                            <li>{{$toomuch}}</li>
+                        </ul>
+                    </div>
+                    @endif @if (isset($gold))
+                    <div class="alert alert-danger alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Gold added</strong>
+                        <ul>
+                            <li>{{$gold}}</li>
+                        </ul>
+                    </div>
+                    @endif
                     </div>
             </div>
         </div>

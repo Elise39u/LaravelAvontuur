@@ -51,17 +51,18 @@ class HomeController extends Controller
         return view('home')->with('location', $location);
     }
 
-    public function getInventory($inventory_id) {
+    public function getInventory($inventory_id)
+    {
         $inventory = inventories::with('inventoryCheck')->where('id', $inventory_id)->get();
         foreach ($inventory as $item) {
-            if(empty($item->id)) {
+            if (empty($item->id)) {
                 $Inventory = new inventories;
                 $Inventory->capacity = 30;
                 $Inventory->save();
                 $user_inv = User::find(Auth::user()->id);
                 $user_inv->inventory_id = $Inventory->id;
                 $user_inv->save();
-            } else{
+            } else {
                 $userid = Auth::user()->inventory_id;
                 $inventorySpace = inventories::with('getInventoryItems')->where('id', $userid)->get();
                 return $inventorySpace;
@@ -69,31 +70,31 @@ class HomeController extends Controller
         }
     }
 
-    public function checkInventory($item_id, $inventory_id) {
-        if($inventory_id == NULL || !isset($inventory_id)) {
+    public function checkInventory($item_id, $inventory_id)
+    {
+        if ($inventory_id == NULL || !isset($inventory_id)) {
             $inventory_id = Auth::user()->inventory_id;
             $inventorySpace = $this->getInventory($inventory_id);
         } else {
             $inventorySpace = $this->getInventory($inventory_id);
         }
-        if(is_int($item_id)) {
+        if (is_int($item_id)) {
             $item_check = $item_id->id;
         } else {
             $item_check = $item_id;
         }
         foreach ($inventorySpace as $value) {
-            $invcheck  = json_decode($value->getInventoryItems);
-            if($invcheck  == '' || empty($invcheck)) {
+            $invcheck = json_decode($value->getInventoryItems);
+            if ($invcheck == '' || empty($invcheck)) {
                 $result = 'failure';
             } else {
                 foreach ($value->getInventoryItems as $val) {
                     $item = json_decode($val['item_id']);
-                    if(is_int($item_check)) {
+                    if (is_int($item_check)) {
                         $item_checkInt = $item_check;
-                    } elseif(is_string($item_check)) {
+                    } elseif (is_string($item_check)) {
                         $item_checkInt = $item_check;
-                    }
-                    else {
+                    } else {
                         $item_checkInt = $item_check->id;
                     }
                     if ($item == $item_checkInt) {
@@ -108,7 +109,8 @@ class HomeController extends Controller
         }
     }
 
-    public function open($id) {
+    public function open($id)
+    {
         $area_name = Areas::with('Location')->get();
         $currenttime = Carbon::now()->timezone('America/Nassau');
         $time = $currenttime->hour > 6 && $currenttime->hour < 19;
@@ -116,7 +118,7 @@ class HomeController extends Controller
         $inventory = json_decode($this->getInventory($inventory_id)[0]);
         $location = Location::findOrFail($id);
         $user = User::find(Auth::user()->id);
-        if($user->curhp <= 0) {
+        if ($user->curhp <= 0) {
             $user->attack = 50;
             $user->magical_attack = 10;
             $user->defense = 80;
@@ -130,15 +132,14 @@ class HomeController extends Controller
         }
         if (!$location->exists()) {
             return view('error');
-        } elseif($location->id == '' or $location->id == NULL or !$location->id){
+        } elseif ($location->id == '' or $location->id == NULL or !$location->id) {
             $location = Location::find(1);
             $user_currentLocation = User::find(Auth::user()->id);
             $user_currentLocation->current_location_id = $location->id;
             $user_currentLocation->save();
             return view('home')->with('location', $location)->with('currenttime', $time)->with('areaname', $area_name)
                 ->with('time', $currenttime)->with('inventory', $inventory);
-        }
-        else {
+        } else {
             $user_currentLocation = User::find(Auth::user()->id);
             $user_currentLocation->current_location_id = $location->id;
             $user_currentLocation->save();
@@ -147,11 +148,12 @@ class HomeController extends Controller
         }
     }
 
-    public function npc($id = null) {
+    public function npc($id = null)
+    {
         $npc_id = Npcs::findOrFail($id);
         if (!$npc_id->exists()) {
             return view('error');
-        }  elseif($npc_id->id == '' or $npc_id->id === NULL or !$npc_id->id) {
+        } elseif ($npc_id->id == '' or $npc_id->id === NULL or !$npc_id->id) {
             $npc_id = Npcs::find(1);
             return view('npc')->with('npcinfo', $npc_id);
         } else {
@@ -169,7 +171,7 @@ class HomeController extends Controller
         } else {
             $inventory_id = NULL;
             $result = $this->checkInventory($item_id, $inventory_id);
-            if($result == 'success') {
+            if ($result == 'success') {
                 $rows = inventory_item::whereitem_id($item_id->id)->get();
                 $rows[0]->quantity = $rows[0]->quantity + 1;
                 $rows[0]->save();
@@ -181,7 +183,7 @@ class HomeController extends Controller
                 $itemInventory->save();
             }
         }
-            return view('item')->with('iteminfo', $item_id);
+        return view('item')->with('iteminfo', $item_id);
     }
 
     public function monstertime($area_id)
@@ -206,7 +208,8 @@ class HomeController extends Controller
                 $id = $Monstercheck->monster_id;
                 $monsterinfo = Monsters::with('getMonster')->where('id', $id)
                     ->get();
-                if($monsterinfo[0]->inventory_id == NULL) {} else {
+                if ($monsterinfo[0]->inventory_id == NULL) {
+                } else {
                     Session::put('monster_inventory', $monsterinfo[0]->inventory_id);
                 }
                 if (empty($monsterinfo) || !$monsterinfo) {
@@ -226,7 +229,7 @@ class HomeController extends Controller
         $player = json_decode(json_encode($playerinfo), true);
         $monsterinfo = Session::get('monsterinfo');
         $monster = json_decode(json_encode($monsterinfo[0]->getmonster), true);
-        if(isset($_POST['attack'])) {
+        if (isset($_POST['attack'])) {
             $combat = array();
             $turns = 0;
             while ($player['curhp'] > 0 && $monster[0]['curhp'] > 0) {
@@ -257,7 +260,7 @@ class HomeController extends Controller
             $user_curhp->save();
             $area_id = Session::get('area_id');
             $monsters = $_POST['monster'];
-            if($player['curhp'] > 0) {
+            if ($player['curhp'] > 0) {
                 $won = 1;
                 $random = rand(0, 100);
                 $chance = $monster[0]['chance'];
@@ -272,7 +275,8 @@ class HomeController extends Controller
                     $monster_inventory = Session::get('monster_inventory');
                     $inventory = inventories::with('getInventoryItems')->where('id', $monster_inventory)->get();
                     $items = json_decode(json_encode($inventory), true);
-                    if(empty($items) || !isset($items)) {} else {
+                    if (empty($items) || !isset($items)) {
+                    } else {
                         foreach ($items[0]['get_inventory_items'] as $info) {
                             $item_id = $info['item_id'];
                         }
@@ -305,48 +309,49 @@ class HomeController extends Controller
                         return redirect()->to('/location/15/' . $area_id)->with('won', $won)->with('combat', $combat)->with('monster', $monsters);
                     }
                 }
-            }else {
+            } else {
                 $lose = 1;
                 return redirect()->to('/location/15/' . $area_id)->with('lose', $lose)->with('combat', $combat)->with('monster', $monsters);
             }
-        } elseif(isset($_POST['taunt'])) {
+        } elseif (isset($_POST['taunt'])) {
             $area_id = Session::get('area_id');
             $chance = rand(0, 100);
-            if($chance < 16) {
+            if ($chance < 16) {
                 $won = 1;
                 $user_curhp = User::find(Auth::user()->id);
                 $user_curhp->current_exp = $player['current_exp'] + $monster[0]['xp'];
-                $user_curhp->gold  = $player['gold'] + $monster[0]['gold'];
+                $user_curhp->gold = $player['gold'] + $monster[0]['gold'];
                 $user_curhp->save();
                 return redirect()->to('/location/15/' . $area_id)->with('won', $won);
             } else {
                 $backing = Session::get('location_id');
-                redirect()->to('location/'. $backing)->send();
+                redirect()->to('location/' . $backing)->send();
             }
-        } elseif(isset($_POST['cry'])) {
+        } elseif (isset($_POST['cry'])) {
             $area_id = Session::get('area_id');
             $chance = rand(0, 100);
-            if($chance < 6) {
+            if ($chance < 6) {
                 $won = 1;
                 $user_curhp = User::find(Auth::user()->id);
                 $user_curhp->current_exp = $player['current_exp'] + $monster[0]['xp'];
                 $gold = $monster[0]['gold'] * 2;
-                $user_curhp->gold  = $player['gold'] + $gold;
+                $user_curhp->gold = $player['gold'] + $gold;
                 $user_curhp->save();
                 return redirect()->to('/location/15/' . $area_id)->with('won', $won);
             } else {
                 return redirect('/location/15/' . $area_id)->with('cry', 'cry action failed and lol that you did that');
             }
-        } elseif(isset($_POST['run'])) {
+        } elseif (isset($_POST['run'])) {
             $backing = Session::get('location_id');
-            redirect()->to('location/'. $backing)->send();
+            redirect()->to('location/' . $backing)->send();
         }
     }
 
-    public function shops($id) {
+    public function shops($id)
+    {
         $info = shops::findOrFail($id);
         Session::put('shop_id', $info->id);
-        if(!$info->exists()) {
+        if (!$info->exists()) {
             return view('error');
         } elseif ($info->id == '' or $info->id === NULL or !$info->id) {
             return abort(404);
@@ -390,21 +395,21 @@ class HomeController extends Controller
                         if ($info['item_id'] == $item_id AND $info['quantity'] >= 1) {
                             $time = 'add';
                             break;
-                        }else {
+                        } else {
                             $time = 'false';
                         }
                     }
-                        if($time == 'add') {
-                            $rows = inventory_item::whereitem_id($item_id)->get();
-                            $rows[0]->quantity = $rows[0]->quantity + $quantity;
-                            $rows[0]->save();
-                        } else {
-                            $itemInventory = new inventory_item;
-                            $itemInventory->inventory_id = $inv_id;
-                            $itemInventory->item_id = $item_id;
-                            $itemInventory->quantity = $quantity;
-                            $itemInventory->save();
-                        }
+                    if ($time == 'add') {
+                        $rows = inventory_item::whereitem_id($item_id)->get();
+                        $rows[0]->quantity = $rows[0]->quantity + $quantity;
+                        $rows[0]->save();
+                    } else {
+                        $itemInventory = new inventory_item;
+                        $itemInventory->inventory_id = $inv_id;
+                        $itemInventory->item_id = $item_id;
+                        $itemInventory->quantity = $quantity;
+                        $itemInventory->save();
+                    }
                     return redirect('/location/27/' . $shopid);
                 } else {
                     $user_gold->gold = $totalprice;
@@ -413,24 +418,25 @@ class HomeController extends Controller
                     $itemInventory = new inventory_item;
                     $itemInventory->inventory_id = $inv_id;
                     $itemInventory->item_id = $item_id;
+                    $itemInventory->quantity = $quantity;
                     $itemInventory->save();
                     return redirect('/location/27/' . $shopid);
                 }
             }
         }
 
-        if(isset($_POST['healit'])) {
-            if($_POST['heal'] == '' OR $_POST['heal'] == NULL OR $_POST['heal'] <= 0) {
+        if (isset($_POST['healit'])) {
+            if ($_POST['heal'] == '' OR $_POST['heal'] == NULL OR $_POST['heal'] <= 0) {
                 $healing = 1;
             } else {
                 $healing = $_POST['heal'];
             }
             $cost = $healing;
-            if($cost > $gold['gold']) {
+            if ($cost > $gold['gold']) {
                 return redirect('/location/27/' . $shopid)->with('toomuch', 'You can not spend more gold than you have');
             } else {
                 $health = $healing + $gold['curhp'];
-                if($health > $gold['maxhp']) {
+                if ($health > $gold['maxhp']) {
                     return redirect('/location/27/' . $shopid)->with('toomuch', 'You can heal more than you`re max hp');
                 } else {
                     $goldprice = $gold['gold'] - $cost;
@@ -440,26 +446,26 @@ class HomeController extends Controller
                     return redirect('/location/27/' . $shopid);
                 }
             }
-         }
+        }
     }
 
     public function checkQuest()
     {
         $npc_id = $_GET['npc_id'];
-        $user_id =  Auth::user()->id;
+        $user_id = Auth::user()->id;
         //$status = json_encode(Quest::with('checkQuest')->where('npc_id', $npc_id)->get());
         $status = json_encode(UserQuest::with('checkQuest')->where('quest_id', $npc_id)->where('player_id', $user_id)->get());
         $test = json_decode($status);
-        if($test[0]->status == 'unknown') {
+        if ($test[0]->status == 'unknown') {
             //:wherequest_id  ->whereplayer_id
             $user_status = UserQuest::wherequest_id($npc_id)->whereplayer_id($user_id)->get();
             $quest_state = json_decode($user_status);
             $user_status[0]->status = 'Active';
             $user_status[0]->save();
             var_dump($user_status[0]);
-            echo json_encode(array("trick"=>'Quest ' . $test[0]->check_quest[0]->name . ' Activated'));
+            echo json_encode(array("trick" => 'Quest ' . $test[0]->check_quest[0]->name . ' Activated'));
         } else {
-            echo json_encode(array("trick"=>'Quest is already active'));
+            echo json_encode(array("trick" => 'Quest is already active'));
         }
     }
 
@@ -468,46 +474,79 @@ class HomeController extends Controller
 
     }
 
-    public function warehouses($warehouse_id) {
+    public function warehouses($warehouse_id)
+    {
         $user_currentLocation = User::find(Auth::user()->id);
         $user = json_decode(json_encode($user_currentLocation), true);
         Session::put('last_known_location', $user['current_location_id']);
         $warehouse_info = Warehouse::findOrFail($warehouse_id);
+        Session::put('warehouse_id', $warehouse_info->id);
         $inventory_id = Auth::user()->inventory_id;
         $user_inv = json_decode($this->getInventory($inventory_id[0]));
-        if(empty($warehouse_info) || $warehouse_info == NULL) {
+        if (empty($warehouse_info) || $warehouse_info == NULL) {
             return abort(404, 'warehouse not found');
         } else {
             return view('warehouse')->with('warehouse', $warehouse_info)->with('items', $user_inv[0]->get_inventory_items);
         }
     }
 
-    public function checkUse() {
-        if(isset($_POST['submit'])) {
-            var_dump($_POST);
+    public function checkUse()
+    {
+        $warehouse_id = Session::get('warehouse_id');
+        if (isset($_POST['submit'])) {
+            $item_id = $_POST['id'];
+            $quantity = $_POST['quantity'];
+            if ($quantity == '' || $quantity <= 0) {
+                $quantity = '1';
+            }
+            $storage = [];
+            $inventroy_id = Auth::user()->inventory_id;
+            $test = $this->getInventory($inventroy_id);
+            $inv_info = json_decode(json_encode($test[0]), true);
+            foreach ($inv_info['get_inventory_items'] as $item) {
+                if ($item['item_id'] === $item_id) {
+                    array_push($storage, $item);
+                }
+            }
+            if ($quantity > $storage[0]['quantity']) {
+                return redirect('/location/46/' . $warehouse_id)->with('toomuch', 'Quantity is less than the number that has been filled in');
+            }
+            $category_item = item_type::where('id', $item_id)->get();
+            if ($category_item[0]->shop_category == 'potion') {
+                echo 'I am potion';
+            } else {
+                $gold = $this->useItem($quantity);
+                $test = $this->checkInventory($item_id, $inventroy_id);
+                if ($test == 'success') {
+                    $rows = inventory_item::whereitem_id($item_id)->get();
+                    if($quantity > $rows[0]->quantity) {
+                        return redirect('/location/46/' . $warehouse_id)->with('toomuch', 'You cant use more items than you have');
+                    } else {
+                        $rows[0]->quantity = $rows[0]->quantity - $quantity;
+                        $rows[0]->save();
+                    }
+                }
+                return redirect('/location/46/' . $warehouse_id)->with('gold', 'Gold has been added amount ' . $gold);
+            }
             /* :TODO
-                1. Get the items Quantity and Category
-                2. Check if quantity is Null or negative
-                    2.1 Yes: Make it 1 and check it with the item quantity
-                    2.2 No: Go on with the quantity field
-                3. Check if the quantity that is filled in is bigger than the item quantity
-                    3.1 Yes: Send a error back that toomuch had been filled in
-                    3.2 No: Continue with 4
-                4. Check the category of the item
                     4.1 If its potion go further with 5.
-                    4.2 Else go further with 6.
-                5. Now execute the function Use potion with ($item_nam)
+                5. Now execute the function Use potion with ($item_name, $quantity)
                     5.1 Met de item gaan we in een array zoeken naar de token naam VB: array('Light Red potion' => 'L_Red_Potion')
                     5.2 Met die token halen we de gegevens uit het database
                     5.3 Voer het als volgt uit
-                        $user_stat = User::find(Auth::user->id())
+                        $effect = $update_stat * $quantity
+                        $user_stat = User::find(Auth::user()->id)
                         $user_stat->Opgegeven_stat = $user_stat->Opgegeven_stat + $effect (VB: /1.5 of +100)
                         $user_stat->save()
-                6. Now execute the function ItemUse with ()
-                        $user_stat = User::find(Auth::user->id())
-                        $user_stat->gold = $user_stat->gold + 50
-                        $user_stat->save()
-            */
+         */
         }
+    }
+
+    public function useItem($quantity) {
+        $gold = 50 * $quantity;
+        $user_stat = User::find(Auth::user()->id);
+        $user_stat->gold = $user_stat->gold + $gold;
+        $user_stat->save();
+        return $gold;
     }
 }
