@@ -55,5 +55,13 @@ class SeedTokens extends Seeder
             'item_type' => 'Potion']);
         DB::table('tokens')->insert(['name' => 'Items', 'effect' => '+50', 'stat_influence' => 'gold',
             'item_type' => 'items']);
+        DB::table('tokens')->insert(['name' => 'Yellow_Potion', 'effect' => '+190', 'stat_influence' => 'gold',
+            'item_type' => 'items']);
+        DB::table('tokens')->insert(['name' => 'Red_Potion', 'effect' => '+100', 'stat_influence' => 'attack',
+            'item_type' => 'items']);
+        DB::table('tokens')->insert(['name' => 'Orange_Potion', 'effect' => '*2.5', 'stat_influence' => 'inbank',
+            'item_type' => 'items']);
+        DB::table('tokens')->insert(['name' => 'Pink_Potion', 'effect' => '-250', 'stat_influence' => 'maxhp',
+            'item_type' => 'items']);
     }
 }

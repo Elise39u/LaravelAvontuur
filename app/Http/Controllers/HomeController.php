@@ -513,13 +513,18 @@ class HomeController extends Controller
             }
             $category_item = item_type::where('id', $item_id)->get();
             if ($category_item[0]->shop_category == 'potion') {
-                echo 'I am potion';
+                $item_name = $category_item[0]->name;
+                $potion = $this->usePotion($item_name, $quantity);
             } else {
                 $gold = $this->useItem($quantity);
                 $test = $this->checkInventory($item_id, $inventroy_id);
                 if ($test == 'success') {
-                    $rows = inventory_item::whereitem_id($item_id)->get();
-                    if($quantity > $rows[0]->quantity) {
+                    $rows = inventory_item::whereitem_id($item_id)->where('inventory_id', $inventroy_id)->get();
+                    if($quantity == $rows[0]->quantity){
+                        $rows[0]->delete();
+                        $rows[0]->save();
+                    }
+                    elseif($quantity > $rows[0]->quantity) {
                         return redirect('/location/46/' . $warehouse_id)->with('toomuch', 'You cant use more items than you have');
                     } else {
                         $rows[0]->quantity = $rows[0]->quantity - $quantity;
@@ -540,6 +545,17 @@ class HomeController extends Controller
                         $user_stat->save()
          */
         }
+    }
+
+    public function usePotion($item_name, $quantity) {
+        // Keys and values om draaien Omdat array search zoekt op value
+        $tokenArray = ['Black Potion' => 'Black_Potion', 'Green potion' => 'Green_Potion', 'Red potion' => 'Red_Potion', 'Light Red Potion' => 'L_Red_Potion', 'Maroon potion' => 'D_Red_Potion',
+            'Light Green potion' => 'L_Green_Potion', 'Dark Green potion' => 'D_Green_Potion', 'Aqua potion' => 'Aqua_Potion', 'Light Aqua Potion' => 'L_Aqua_Potion', 'Dark Aqua potion' => 'D_Aqua_Potion',
+            'Orange potion' => 'Orange_Potion', 'Light Orange Potion' => 'L_Orange_Potion', 'Dark Orange Potion' => 'D_Orange_Potion', 'Yellow Potion' => 'Yellow_Potion', 'Rainbow potion' => 'Rainbow_Potion',
+            'Purple Potion' => 'Purple_Potion', 'Light Purple potion' => 'L_Purple_Potion', 'Dark Purple potion' => 'D_Purple_Potion', 'Pink potion' => 'Pink_Potion', 'Dark Pink potion' => 'D_Pink_Potion',
+            'Light Pink potion' => 'L_Pink_Potion', 'Light Yellow potion' => 'L_Yellow_Potion', 'Dark Yellow potion' => 'D_Yellow_Potion'];
+        $check = array_search($item_name, $tokenArray);
+        var_dump($check, $item_name, $tokenArray);
     }
 
     public function useItem($quantity) {
