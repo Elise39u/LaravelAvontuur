@@ -11,6 +11,7 @@ use App\Items;
 use App\monster_type;
 use App\Quest;
 use App\Monsters;
+use App\Token;
 use App\UserQuest;
 use App\shops;
 use App\User;
@@ -123,6 +124,7 @@ class HomeController extends Controller
             $user->magical_attack = 10;
             $user->defense = 80;
             $user->gold = 250;
+            $user->inbank = 1500;
             $user->curhp = 200;
             $user->maxhp = 250;
             $user->current_exp = 0;
@@ -453,16 +455,13 @@ class HomeController extends Controller
     {
         $npc_id = $_GET['npc_id'];
         $user_id = Auth::user()->id;
-        //$status = json_encode(Quest::with('checkQuest')->where('npc_id', $npc_id)->get());
         $status = json_encode(UserQuest::with('checkQuest')->where('quest_id', $npc_id)->where('player_id', $user_id)->get());
         $test = json_decode($status);
         if ($test[0]->status == 'unknown') {
-            //:wherequest_id  ->whereplayer_id
             $user_status = UserQuest::wherequest_id($npc_id)->whereplayer_id($user_id)->get();
             $quest_state = json_decode($user_status);
             $user_status[0]->status = 'Active';
             $user_status[0]->save();
-            var_dump($user_status[0]);
             echo json_encode(array("trick" => 'Quest ' . $test[0]->check_quest[0]->name . ' Activated'));
         } else {
             echo json_encode(array("trick" => 'Quest is already active'));
@@ -515,14 +514,14 @@ class HomeController extends Controller
             if ($category_item[0]->shop_category == 'potion') {
                 $item_name = $category_item[0]->name;
                 $potion = $this->usePotion($item_name, $quantity);
-            } else {
-                $gold = $this->useItem($quantity);
                 $test = $this->checkInventory($item_id, $inventroy_id);
                 if ($test == 'success') {
                     $rows = inventory_item::whereitem_id($item_id)->where('inventory_id', $inventroy_id)->get();
-                    if($quantity == $rows[0]->quantity){
+                    if($rows[0]->quantity == '1'){
                         $rows[0]->delete();
-                        $rows[0]->save();
+                    }
+                    elseif ($quantity == $rows[0]->quantity) {
+                        $rows[0]->delete();
                     }
                     elseif($quantity > $rows[0]->quantity) {
                         return redirect('/location/46/' . $warehouse_id)->with('toomuch', 'You cant use more items than you have');
@@ -531,31 +530,158 @@ class HomeController extends Controller
                         $rows[0]->save();
                     }
                 }
+                return redirect('/location/46/' . $warehouse_id)->with('gold', 'Stat has ben influenced ' . $potion);
+            } else {
+                $gold = $this->useItem($quantity);
+                $test = $this->checkInventory($item_id, $inventroy_id);
+                if ($test == 'success') {
+                    $rows = inventory_item::whereitem_id($item_id)->where('inventory_id', $inventroy_id)->get();
+                    if ($rows[0]->quantity == '1') {
+                        $rows[0]->delete();
+                    } elseif ($quantity == $rows[0]->quantity) {
+                        $rows[0]->delete();
+                    } elseif ($quantity > $rows[0]->quantity) {
+                        return redirect('/location/46/' . $warehouse_id)->with('toomuch', 'You cant use more items than you have');
+                    }
+                    else {
+                        $rows[0]->quantity = $rows[0]->quantity - $quantity;
+                        $rows[0]->save();
+                    }
+                }
                 return redirect('/location/46/' . $warehouse_id)->with('gold', 'Gold has been added amount ' . $gold);
             }
-            /* :TODO
-                    4.1 If its potion go further with 5.
-                5. Now execute the function Use potion with ($item_name, $quantity)
-                    5.1 Met de item gaan we in een array zoeken naar de token naam VB: array('Light Red potion' => 'L_Red_Potion')
-                    5.2 Met die token halen we de gegevens uit het database
-                    5.3 Voer het als volgt uit
-                        $effect = $update_stat * $quantity
-                        $user_stat = User::find(Auth::user()->id)
-                        $user_stat->Opgegeven_stat = $user_stat->Opgegeven_stat + $effect (VB: /1.5 of +100)
-                        $user_stat->save()
-         */
         }
     }
 
     public function usePotion($item_name, $quantity) {
-        // Keys and values om draaien Omdat array search zoekt op value
-        $tokenArray = ['Black Potion' => 'Black_Potion', 'Green potion' => 'Green_Potion', 'Red potion' => 'Red_Potion', 'Light Red Potion' => 'L_Red_Potion', 'Maroon potion' => 'D_Red_Potion',
-            'Light Green potion' => 'L_Green_Potion', 'Dark Green potion' => 'D_Green_Potion', 'Aqua potion' => 'Aqua_Potion', 'Light Aqua Potion' => 'L_Aqua_Potion', 'Dark Aqua potion' => 'D_Aqua_Potion',
-            'Orange potion' => 'Orange_Potion', 'Light Orange Potion' => 'L_Orange_Potion', 'Dark Orange Potion' => 'D_Orange_Potion', 'Yellow Potion' => 'Yellow_Potion', 'Rainbow potion' => 'Rainbow_Potion',
-            'Purple Potion' => 'Purple_Potion', 'Light Purple potion' => 'L_Purple_Potion', 'Dark Purple potion' => 'D_Purple_Potion', 'Pink potion' => 'Pink_Potion', 'Dark Pink potion' => 'D_Pink_Potion',
-            'Light Pink potion' => 'L_Pink_Potion', 'Light Yellow potion' => 'L_Yellow_Potion', 'Dark Yellow potion' => 'D_Yellow_Potion'];
+        $tokenArray = ['Black_Potion' => 'Black Potion', 'Green_Potion' => 'Green potion', 'Red_Potion' => 'Red potion', 'L_Red_Potion' => 'Light Red Potion', 'D_Red_Potion' => 'Maroon potion',
+            'L_Green_Potion' => 'Light Green potion', 'D_Green_Potion' => 'Dark Green potion', 'Aqua_Potion' => 'Aqua potion', 'L_Aqua_Potion' => 'Light Aqua Potion', 'D_Aqua_Potion' => 'Dark Aqua potion',
+            'Orange_Potion' => 'Orange potion', 'L_Orange_Potion' => 'Light Orange Potion', 'D_Orange_Potion' => 'Dark Orange Potion', 'Yellow_Potion' => 'Yellow Potion', 'Rainbow_Potion' => 'Rainbow potion',
+            'Purple_Potion' => 'Purple potion', 'L_Purple_Potion' => 'Light Purple potion', 'D_Purple_Potion' => 'Dark Purple potion', 'Pink_Potion' => 'Pink potion', 'D_Pink_Potion' => 'Dark Pink potion',
+            'L_Pink_Potion' => 'Light Pink potion', 'L_Yellow_Potion' => 'Light Yellow potion', 'D_Yellow_Potion' => 'Dark Yellow potion', 'Secret_Potion' => 'Secret Potion'];
         $check = array_search($item_name, $tokenArray);
-        var_dump($check, $item_name, $tokenArray);
+        $Tokeninfo = Token::where('name', $check)->get();
+        $effect = $Tokeninfo[0]->effect;
+        $stat = $Tokeninfo[0]->stat_influence;
+        if(strpos($effect, '+') !== false) {
+            $multi_effect = $effect * $quantity;
+            $new_effect = str_replace('+' , '', $multi_effect);
+            $user_stat = User::find(Auth::user()->id);
+            $user_stat->$stat = $user_stat->$stat + $new_effect;
+            $user_stat->save();
+        } elseif(strpos($effect, '-') !== false ) {
+            $multi_effect = $effect * $quantity;
+            $new_effect = str_replace('-' , '', $multi_effect);
+            $user_stat = User::find(Auth::user()->id);
+            $user_stat->$stat = $user_stat->$stat - $new_effect;
+            $user_stat->save();
+        } elseif(strpos($effect, '/') !== false) {
+            $multi_effect = $effect * $quantity;
+            $new_effect = str_replace('/' , '', $multi_effect);
+            $user_stat = User::find(Auth::user()->id);
+            $user_stat->$stat = $user_stat->$stat / $new_effect;
+            $user_stat->save();
+        } elseif(strpos($effect, '*') !== false) {
+            $multi_effect = $effect * $quantity;
+            $new_effect = str_replace('*' , '', $multi_effect);
+            $user_stat = User::find(Auth::user()->id);
+            $user_stat->$stat = $user_stat->$stat * $new_effect;
+            $user_stat->save();
+        } else {
+            switch ($check) {
+                case 'Black_Potion';
+                    $user = User::find(Auth::user()->id);
+                    $user->attack = 50;
+                    $user->magical_attack = 10;
+                    $user->defense = 80;
+                    $user->gold = 250;
+                    $user->inbank = 1500;
+                    $user->curhp = 200;
+                    $user->maxhp = 250;
+                    $user->current_exp = 0;
+                    $user->exp_needed_to_next_level = 250;
+                    $user->level = 1;
+                    $user->save();
+                    break;
+                 case 'L_Green_Potion';
+                    $user_stat = User::find(Auth::user()->id);
+                    $user_stat->curhp = $user_stat->curhp = 1;
+                    $user_stat->save();
+                    break;
+                case 'Green_Potion';
+                    $user_stat = User::find(Auth::user()->id);
+                    $user_stat->curhp = $user_stat->curhp = 200;
+                    $user_stat->save();
+                    break;
+                case 'D_Green_Potion';
+                    $user_stat = User::find(Auth::user()->id);
+                    $user_stat->curhp = $user_stat->curhp = $user_stat->maxhp;
+                    $user_stat->save();
+                    break;
+                case 'Rainbow_Potion';
+                    $attack_effect = 100 * $quantity;
+                    $defense_effect = 75 * $quantity;
+                    $mag_attack_effect = 25 * $quantity;
+                    $gold_effect = 500 * $quantity;
+                    $curhp_effect = 100 * $quantity;
+                    $maxhp_effect = 150 * $quantity;
+
+                    $user = User::find(Auth::user()->id);
+                    $user->attack = $user->attack + $attack_effect;
+                    $user->magical_attack = $user->magical_attack + $mag_attack_effect;
+                    $user->defense = $user->defense + $defense_effect;
+                    $user->gold = $user->gold + $gold_effect;
+                    $user->inbank = $user->inbank + $gold_effect;
+                    $user->curhp = $user->curhp + $curhp_effect;
+                    $user->maxhp = $user->maxhp + $maxhp_effect;
+                    $user->save();
+                    break;
+                case 'Secret_Potion';
+                    $random_number = rand(0, 10);
+                    $user = User::find(Auth::user()->id);
+                    if($random_number == 0) {
+                        $inc_attk = 150  * $quantity;
+                        $user->attack = $user->attack + $inc_attk;
+                        $user->save();
+                    } elseif($random_number == 1) {
+                        $inc_def = 100 * $quantity;
+                        $user->defense = $user->defense + $inc_def;
+                        $user->save();
+                    } elseif($random_number == 2) {
+                        $less_def = 100 * $quantity;
+                        $user->defense = $user->defense - $less_def;
+                        $user->save();
+                    } elseif($random_number == 3) {
+                        $user->inbank = $user->inbank / 5;
+                        $user->save();
+                    } elseif ($random_number == 4) {
+                        $user->curhp = 1;
+                        $user->save();
+                    } elseif($random_number == 5) {
+                        $user->gold = $user->gold / 3;
+                        $user->save();
+                    } elseif($random_number == 6) {
+                        $inc_gold = 50 * $quantity;
+                        $user->gold = $user->gold + $inc_gold;
+                        $user->save();
+                    } elseif ($random_number == 7) {
+                        $user->curhp = 500;
+                        $user->save();
+                    } elseif($random_number == 8) {
+                        $dec_attk = 50 * $quantity;
+                        $user->attack = $user->attack - $dec_attk;
+                        $user->save();
+                    } elseif($random_number == 9) {
+                        $inc_bank = 500 * $quantity;
+                        $user->inbank = $user->inbank + $inc_bank;
+                        $user->save();
+                    } elseif($random_number == 10) {
+                        $user->maxhp = 1000;
+                        $user->save();
+                    }
+                    break;
+            }
+        }
     }
 
     public function useItem($quantity) {

@@ -80,5 +80,7 @@ class SeedItemTypes extends Seeder
             'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
         DB::table('item_types')->insert(['name' => 'Dark Yellow potion', 'price' => '1250', 'shop_category' => 'potion',
             'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
+        DB::table('item_types')->insert(['name' => 'Secret Potion', 'price' => '1600', 'shop_category' => 'potion',
+            'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
     }
 }
