@@ -53,9 +53,8 @@ function checkaction(actionresult) {
                 dataType: 'json',
                 data:{npc_id: currentDialog[0]['id']},
                 success:function(result){
-                   alert(result.trick);
-                }
-            })
+                    alert(result.trick)
+            },})
             $("#dialog-2").dialog('close');
             break;
         case "OPEN DIALOG":
@@ -99,37 +98,43 @@ function checkaction(actionresult) {
     for (i = 0; i < NewDialogActions.length; i++) {
         actions.push(getObjects(dialogactions, 'id', currentDialog[i]['id']))
     }
-    $("#dialog-2").dialog({
-        /*
-        Kijken dat de user een quest heeft gestart
-        Zo ja toon voor nu een alert
-        Nee laad de dialog box
-         */
-        autoOpen: false,
-        width: 600,
-        buttons: [{
-            text: currentDialog[0]['button_title'],
-            "id": "Answer1",
-            click: function () {
-                actionValueCheck = NewDialogActions[0][0]['action_value']
-                checkaction(actions[0][0]['action'])
+    $.ajax({
+        url: "/checkQuest",
+        dataType: 'json',
+        data:{npc_id: currentDialog[0]['id']},
+        success:function(result){
+            if(result.Answer == 'Active'){
+                $("#dialog-2").hide();
+                alert('Complete the quest first')
+            } else {
+                $("#dialog-2").dialog({
+                    autoOpen: false,
+                    width: 600,
+                    buttons: [{
+                        text: currentDialog[0]['button_title'],
+                        "id": "Answer1",
+                        click: function () {
+                            actionValueCheck = NewDialogActions[0][0]['action_value']
+                            checkaction(actions[0][0]['action'])
+                        }
+                    }, {
+                        text: currentDialog[1]['button_title'],
+                        "id": "Answer2",
+                        click: function () {
+                            actionValueCheck = NewDialogActions[1][0]['action_value']
+                            checkaction(actions[1][0]['action'])
+                        }
+                    }, {
+                        text: currentDialog[2]['button_title'],
+                        "id": "Answer3",
+                        click: function () {
+                            actionValueCheck = NewDialogActions[2][0]['action_value']
+                            checkaction(actions[2][0]['action'])
+                        }
+                    }],
+                });
             }
-        }, {
-            text: currentDialog[1]['button_title'],
-            "id": "Answer2",
-            click: function () {
-                actionValueCheck = NewDialogActions[1][0]['action_value']
-                checkaction(actions[1][0]['action'])
-            }
-        }, {
-            text: currentDialog[2]['button_title'],
-            "id": "Answer3",
-            click: function () {
-                actionValueCheck = NewDialogActions[2][0]['action_value']
-                checkaction(actions[2][0]['action'])
-            }
-        }],
-    });
+        },})
 
     $("#opener-2").click(function () {
         $("#dialog-2").dialog("open");

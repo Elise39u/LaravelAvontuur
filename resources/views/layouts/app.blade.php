@@ -133,8 +133,20 @@
                     $statuss = json_decode($time);
                 }
                 if(isset($quests)) {
-                    if($statuss == [] || $quests == []) {
-                        echo "No quest yet has been made for you";
+                    $user_id = Auth::user()->id;
+                    if($statuss == [] || $quests == [] ) {
+                        $quests = json_decode(App\Quest::all());
+                        $data = [];
+                        foreach ($quests as $quest) {
+                            $data[] = [
+                                'quest_id' => $quest->id,
+                                'player_id'  => $user_id,
+                                'status' => 'unknown',
+                                'tasks' => 'static for now'
+                            ];
+                        }
+                        App\UserQuest::insert($data);
+                        echo 'Reset the page with CTRL+F5';
                     } else {
                         $number = count($quests);
                         for ($i = 0; $i < $number; $i++) { ?>

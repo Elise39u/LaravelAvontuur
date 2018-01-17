@@ -462,9 +462,9 @@ class HomeController extends Controller
             $quest_state = json_decode($user_status);
             $user_status[0]->status = 'Active';
             $user_status[0]->save();
-            echo json_encode(array("trick" => 'Quest ' . $test[0]->check_quest[0]->name . ' Activated'));
+            echo json_encode(array("trick" => 'Quest ' . $test[0]->check_quest[0]->name . ' Activated', 'Answer' => 'Unknown'));
         } else {
-            echo json_encode(array("trick" => 'Quest is already active'));
+            echo json_encode(array("trick" => 'Quest is already active', 'Answer' => 'Active'));
         }
     }
 
@@ -576,10 +576,10 @@ class HomeController extends Controller
             $user_stat->$stat = $user_stat->$stat - $new_effect;
             $user_stat->save();
         } elseif(strpos($effect, '/') !== false) {
-            $multi_effect = $effect * $quantity;
-            $new_effect = str_replace('/' , '', $multi_effect);
+            $new_effect = str_replace('/' , '', $effect);
+            $update = $new_effect * $quantity;
             $user_stat = User::find(Auth::user()->id);
-            $user_stat->$stat = $user_stat->$stat / $new_effect;
+            $user_stat->$stat = $user_stat->$stat / $update;
             $user_stat->save();
         } elseif(strpos($effect, '*') !== false) {
             $multi_effect = $effect * $quantity;

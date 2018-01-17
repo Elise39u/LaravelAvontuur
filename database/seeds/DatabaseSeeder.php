@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SeedDialogAnswerActions::class);
         $this->call(SeedConditions::class);
         $this->call(SeedChoiceConditions::class);
-        $this->call(SeedUsers::class);
         $this->call(SeedNpcs::class);
         $this->call(SeedQuests::class);
         $this->call(SeederUserQuest::class);

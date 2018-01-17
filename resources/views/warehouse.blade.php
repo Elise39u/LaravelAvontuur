@@ -34,7 +34,7 @@
                         </ul>
                     </div>
                     @endif @if (isset($gold))
-                    <div class="alert alert-danger alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Gold added</strong>
+                    <div class="alert alert-danger alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Item used</strong>
                         <ul>
                             <li>{{$gold}}</li>
                         </ul>
