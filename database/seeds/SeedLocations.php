@@ -286,6 +286,67 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['name' => 'Go to the Liquor shop', 'from_location_id' => 24, 'to_location_id' => 48]);
         DB::table('choices')->insert(['name' => 'Go outside', 'from_location_id' => 24, 'to_location_id' => 18]);
 
+        DB::table('locations')->insert(['id' => 34, 'name' => 'Time for the cops', 'area_id' => 2, 'title' => 'Cop time', 'story' => 'Well that is terrifying a abandoned police station <br>
+        Well the road goes on but to where is the question? <br>
+        And the same goes for if the road safe is? <br>
+        Yeah one way to know if the road is safe but is the station open<br>
+        And you know what could lie in', 'foto_url' => '/img/Police.png']);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 34, 'to_location_id' => 31]);
+        DB::table('choices')->insert(['name' => 'Go explore the road ahead', 'from_location_id' => 34, 'to_location_id' => '15/2']);
+        DB::table('choices')->insert(['name' => 'Go to the station', 'from_location_id' => 34, 'to_location_id' => 49]);
+
+        DB::table('locations')->insert(['id' => 50, 'name' => 'Money time', 'area_id' => 2, 'title' => 'Spare time he', 'story' => 'Well a bank... I forgot if i had any spare money left <br>
+        Its seems the bank is locked from here<br>
+        But one is there someone? or its abandoned like the rest of the city<br>
+        Is it worth to go or do we go back<br>
+        Think twice about the gold lying in the bank', 'foto_url' => '/img/bank.png']);
+        DB::table('choices')->insert(['name' => 'Go towards the bank', 'from_location_id' => 50, 'to_location_id' => 51]);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 50, 'to_location_id' => '15/2']);
+
+        DB::table('locations')->insert(['id' => 51, 'name' => 'Money time', 'area_id' => 2, 'title' => 'Near the bank', 'story' => '<b> Knock Knock</b> HELLO IS THERE SOMEONE! <br>
+        and again <b> Knock Knock </b>..... Well no one is inside<br>
+        What now... Waiting? Try to look for the key?<br>
+        Wel if there is a key somewhere in this city<br>
+        So do we look for the key or keep knocking?', 'foto_url' => '/img/bankdoor.png']);
+        DB::table('choices')->insert(['name' => 'Enter the bank', 'from_location_id' => 51, 'to_location_id' => 52]);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 51, 'to_location_id' => 50]);
+
+        DB::table('locations')->insert(['id' => 23, 'name' => 'Lurking', 'area_id' => 1, 'title' => 'Lurking time', 'story' => 'Okay its look empty around here<br>
+        Eheeee i only can see a staircase back there<br>
+        What now is it safe to go up or ..........<br>
+        Maby there is something useful on the roof of this store<br>
+        But going up there is a risk', 'foto_url' => '/img/elebackroom.png']);
+        DB::table('choices')->insert(['name' => 'Go to the roof of the store', 'from_location_id' => 23, 'to_location_id' => 53]);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 23, 'to_location_id' => 14]);
+        DB::table('choices')->insert(['name' => 'A card?', 'from_location_id' => 23, 'to_location_id' => '22/34']);
+
+        DB::table('locations')->insert(['id' => 53, 'name' => 'What a wind', 'area_id' => 1, 'title' => 'The city', 'story' => 'Well there is at least a view over the whole city<br>
+        And quite a wind here. a little too strong<br>
+        I see a antenna and is that a key?<br>
+        Maby the key for the graveyard or police station, bank?<br>
+        Well one way to find out', 'foto_url' => '/img/eroof.png']);
+        DB::table('choices')->insert(['name' => 'Go back inside', 'from_location_id' => 53, 'to_location_id' => 23]);
+        DB::table('choices')->insert(['name' => 'Repair the antenna', 'from_location_id' => 53, 'to_location_id' => 54]);
+        DB::table('choices')->insert(['name' => 'A key?', 'from_location_id' => 53, 'to_location_id' => '22/35']);
+
+        DB::table('locations')->insert(['id' => 49, 'name' => 'Do you member', 'area_id' => 2, 'title' => 'The law', 'story' => 'Well there is no one inside it seems<br>
+        <b> KNOCK ... .KNOCK </b> <big> HELLO IS THERE SOMEONE </big><br>
+        Well how do i get inside then?<br>
+        I think its better to stay outside<br>
+        Because you never know whats is inside', 'foto_url' => '/img/pdoor.png']);
+        DB::table('choices')->insert(['name' => 'Go back on the streets', 'from_location_id' => 49, 'to_location_id' => 34]);
+        DB::table('choices')->insert(['name' => 'Go inside the station', 'from_location_id' => 49, 'to_location_id' => 55]);
+
+        DB::table('locations')->insert(['id' => 55, 'name' => 'Well...', 'area_id' => 2, 'title' => 'Abandoned', 'story' => 'That is quite sad so empty station <br>
+        i see a door but its seemed locked with a card<br>
+        Well you know what you cloud find in so weapon room<br>
+        Ow perhaps the danger that could lie in the room<br>
+        Because you never know whats is inside, but a staircase?', 'foto_url' => '/img/PoliceStation.png']);
+        DB::table('choices')->insert(['name' => 'Go outside', 'from_location_id' => 55, 'to_location_id' => 49]);
+        DB::table('choices')->insert(['name' => 'Go inside the weapon cache', 'from_location_id' => 55, 'to_location_id' => 56]);
+        DB::table('choices')->insert(['name' => 'Go to the roof of the station', 'from_location_id' => 55, 'to_location_id' => 57]);
+
+
         DB::table('locations')->insert(['id' => 15, 'name' => 'You encounter something', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 21, 'name' => 'Npc time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 22, 'name' => 'Item time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);

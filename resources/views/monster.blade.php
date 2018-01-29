@@ -17,7 +17,7 @@
                         <li> Current hp: {{$monster[0]['curhp']}}</li>
                     </ul>
                     <ul class="stats">
-                        <h1> You`re stats</h1>
+                        <h1> Your stats</h1>
                         <li> attack: {{$user['attack'] + $user['magical_attack']}}</li>
                         <li> defense: {{$user['defense']}}</li>
                         <li> curhp: {{$user['curhp']}}/{{$user['maxhp']}} </li>
@@ -26,7 +26,8 @@
                           $won     = Session::get('won');
                           $lose    = Session::get('lose');
                           $combat  = Session::get('combat');
-                          $monstername = Session::get('monster');?>
+                          $monstername = Session::get('monster');
+                          $area_id =  Session::get('area_id');?>
                     @if (isset($combat))
                         @foreach ($combat as $info)
                             <li><strong>{{$info['attacker']}} attacks {{$info['defender']}} for the amount of {{$info['damage']}}</strong></li>
@@ -34,9 +35,18 @@
                     @endif
                     @if (isset($won) || isset($lose))
                         @if ($won == 1)
-                            <p>You defeated {{$monstername}}</p>
-                            <button><a href="/location/10">Go on with the sand</a></button> <br>
-                            <button><a href="/location/29">Go towards the docks</a></button> <br>
+                        <p>You defeated {{$monstername}}</p>
+                            @if (isset($area_id))
+                                @if ($area_id == 1)
+                                    <button><a href="/location/10">Go on with the sand</a></button> <br>
+                                    <button><a href="/location/29">Go towards the docks</a></button> <br>
+                                @elseif ($area_id == 2)
+                                    <button><a href="/location/34">Go to the station</a></button>
+                                    <button><a href="/location/50">Go to the bank</a></button>
+                                @else
+                                    <p> No locations available for this time</p>
+                                @endif
+                            @endif
                         @elseif ($lose == 1)
                             <p>You have been killed by {{$monstername}}</p>
                             <li><a href="/location/1">Game over</a></li>

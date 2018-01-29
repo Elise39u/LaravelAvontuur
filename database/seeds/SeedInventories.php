@@ -17,6 +17,7 @@ class SeedInventories extends Seeder
         DB::table('inventories')->insert(['id' => 2, 'capacity' => '30']);
         DB::table('inventories')->insert(['id' => 3, 'capacity' => '30']);
         DB::table('inventories')->insert(['id' => 4, 'capacity' => '30']);
+        DB::table('inventories')->insert(['id' => 5, 'capacity' => '30']);
 
     }
 }

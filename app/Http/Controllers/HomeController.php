@@ -321,7 +321,8 @@ class HomeController extends Controller
             if ($chance < 16) {
                 $won = 1;
                 $user_curhp = User::find(Auth::user()->id);
-                $user_curhp->current_exp = $player['current_exp'] + $monster[0]['xp'];
+                $exp =  $monster[0]['xp'] * 2;
+                $user_curhp->current_exp = $player['current_exp'] + $exp;
                 $user_curhp->gold = $player['gold'] + $monster[0]['gold'];
                 $user_curhp->save();
                 return redirect()->to('/location/15/' . $area_id)->with('won', $won);
@@ -428,9 +429,12 @@ class HomeController extends Controller
         }
 
         if (isset($_POST['healit'])) {
-            if ($_POST['heal'] == '' OR $_POST['heal'] == NULL OR $_POST['heal'] <= 0) {
-                $healing = 1;
-            } else {
+            $user_stat = Auth::user();
+            $needed = $user_stat['maxhp'] - $user_stat['curhp'];
+            if ($_POST['heal'] > $needed OR $_POST['heal'] == '' OR $_POST['heal'] == NULL) {
+                $healing = $needed;
+            }
+            else {
                 $healing = $_POST['heal'];
             }
             $cost = $healing;
@@ -682,6 +686,7 @@ class HomeController extends Controller
                     break;
             }
         }
+        return $stat;
     }
 
     public function useItem($quantity) {
