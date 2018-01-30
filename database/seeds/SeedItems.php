@@ -53,5 +53,18 @@ class SeedItems extends Seeder
         DB::table('items')->insert(['item_type_id' => 38]);
         DB::table('items')->insert(['item_type_id' => 39]);
         DB::table('items')->insert(['item_type_id' => 40]);
+        DB::table('items')->insert(['item_type_id' => 41]);
+        DB::table('items')->insert(['item_type_id' => 42]);
+        DB::table('items')->insert(['item_type_id' => 43]);
+        DB::table('items')->insert(['item_type_id' => 44]);
+        DB::table('items')->insert(['item_type_id' => 45]);
+        DB::table('items')->insert(['item_type_id' => 46]);
+        DB::table('items')->insert(['item_type_id' => 47]);
+        DB::table('items')->insert(['item_type_id' => 48]);
+        DB::table('items')->insert(['item_type_id' => 49]);
+        DB::table('items')->insert(['item_type_id' => 50]);
+        DB::table('items')->insert(['item_type_id' => 51]);
+        DB::table('items')->insert(['item_type_id' => 52]);
+        DB::table('items')->insert(['item_type_id' => 53]);
     }
 }

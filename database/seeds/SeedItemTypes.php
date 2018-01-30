@@ -13,14 +13,7 @@ class SeedItemTypes extends Seeder
     {
         DB::table('item_types')->truncate(); // maak leeg
 
-        DB::table('item_types')->insert(['id' => 1, 'name' => 'Axe', 'price' => '120', 'shop_category' => 'weapon',
-            'attack' => 25, 'defense' => 0, 'location_id' => 13]);
-        DB::table('item_types')->insert(['id' => 2, 'name' => 'Baseballbat', 'price' => '50', 'shop_category' => 'weapon',
-            'attack' => 5, 'defense' => 0, 'location_id' => 13]);
-        DB::table('item_types')->insert(['id' => 3, 'name' => 'NailGun', 'price' => '280', 'shop_category' => 'weapon',
-            'attack' => 50, 'defense' => -10, 'location_id' => 13]);
-        DB::table('item_types')->insert(['id' => 4, 'name' => 'Wooden sword', 'price' => '110', 'shop_category' => 'weapon',
-            'attack' => 15, 'defense' => 5, 'location_id' => 13]);
+        // Normal Items
         DB::table('item_types')->insert(['id' => 5, 'name' => 'Jerry can', 'price' => '1200', 'shop_category' => 'items',
             'attack' => 0, 'defense' => 0, 'location_id' => 26]);
         DB::table('item_types')->insert(['id' => 6, 'name' => 'The boat', 'price' => '100000', 'shop_category' => 'items',
@@ -41,6 +34,8 @@ class SeedItemTypes extends Seeder
             'attack' => 0, 'defense' => 0, 'location_id' => 38]);
         DB::table('item_types')->insert(['id' => 40, 'name' => 'receiver', 'price' => '1600', 'shop_category' => 'items',
             'attack' => 0, 'defense' => 0, 'location_id' => 38]);
+        DB::table('item_types')->insert(['id' => 54, 'name' => 'ladder', 'price' => '1000', 'shop_category' => 'items',
+            'attack' => 0, 'defense' => 0, 'location_id' => '']);
 
         // End items
         DB::table('item_types')->insert(['id' => 8, 'name' => 'Paddle', 'price' => '1000000000', 'shop_category' => 'End',
@@ -97,5 +92,41 @@ class SeedItemTypes extends Seeder
             'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
         DB::table('item_types')->insert(['id' => 33,'name' => 'Secret Potion', 'price' => '1600', 'shop_category' => 'potion',
             'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
+
+        //Weapon items
+        DB::table('item_types')->insert(['id' => 1, 'name' => 'Axe', 'price' => '120', 'shop_category' => 'weapon',
+                                         'attack' => 25, 'defense' => 0, 'location_id' => 13]);
+        DB::table('item_types')->insert(['id' => 2, 'name' => 'Baseballbat', 'price' => '50', 'shop_category' => 'weapon',
+                                         'attack' => 5, 'defense' => 0, 'location_id' => 13]);
+        DB::table('item_types')->insert(['id' => 3, 'name' => 'NailGun', 'price' => '280', 'shop_category' => 'weapon',
+                                         'attack' => 50, 'defense' => -10, 'location_id' => 13]);
+        DB::table('item_types')->insert(['id' => 4, 'name' => 'Wooden sword', 'price' => '110', 'shop_category' => 'weapon',
+                                         'attack' => 15, 'defense' => 5, 'location_id' => 13]);
+        DB::table('item_types')->insert(['id' => 41, 'name' => 'Rpg', 'price' => '7600', 'shop_category' => 'weapon',
+                                         'attack' => 1500, 'defense' => -100, 'location_id' => '']);
+        DB::table('item_types')->insert(['id' => 42, 'name' => 'Javelin', 'price' => '10000', 'shop_category' => 'weapon',
+                                         'attack' => 800, 'defense' => -250, 'location_id' => '']);
+        DB::table('item_types')->insert(['id' => 43, 'name' => 'AK-47', 'price' => '7600', 'shop_category' => 'weapon',
+                                         'attack' => 160, 'defense' => 40, 'location_id' => '']);
+        DB::table('item_types')->insert(['id' => 44, 'name' => 'ASO-50', 'price' => '4500', 'shop_category' => 'weapon',
+                                         'attack' => 450, 'defense' => 0, 'location_id' => '']);
+        DB::table('item_types')->insert(['id' => 45, 'name' => 'MSR', 'price' => '8800', 'shop_category' => 'weapon',
+                                         'attack' => 600, 'defense' => 100, 'location_id' => '']);
+        DB::table('item_types')->insert(['id' => 46, 'name' => 'M4A4', 'price' => '6600', 'shop_category' => 'weapon',
+                                         'attack' => 200, 'defense' => 50, 'location_id' => '']);
+        DB::table('item_types')->insert(['id' => 47, 'name' => 'Ice Staff', 'price' => '1000000', 'shop_category' => 'weapon',
+                                         'attack' => 45000, 'defense' => 2000, 'location_id' => '']);
+        DB::table('item_types')->insert(['id' => 48, 'name' => 'FaceMelter', 'price' => '900000', 'shop_category' => 'weapon',
+                                         'attack' => 20000, 'defense' => 1500, 'location_id' => '']);
+        DB::table('item_types')->insert(['id' => 49, 'name' => 'M911', 'price' => '2000', 'shop_category' => 'weapon',
+                                         'attack' => 100, 'defense' => 0, 'location_id' => '']);
+        DB::table('item_types')->insert(['id' => 50, 'name' => 'CZ-57', 'price' => '1800', 'shop_category' => 'weapon',
+                                         'attack' => 80, 'defense' => 0, 'location_id' => '']);
+        DB::table('item_types')->insert(['id' => 51, 'name' => 'Barret-50.cal', 'price' => '9000', 'shop_category' => 'weapon',
+                                         'attack' => 950, 'defense' => 100, 'location_id' => '']);
+        DB::table('item_types')->insert(['id' => 52, 'name' => 'Scar-20', 'price' => '5600', 'shop_category' => 'weapon',
+                                         'attack' => 190, 'defense' => 30, 'location_id' => '']);
+        DB::table('item_types')->insert(['id' => 53, 'name' => 'Spear', 'price' => '100', 'shop_category' => 'weapon',
+                                         'attack' => 50, 'defense' => -10, 'location_id' => '']);
     }
 }

@@ -356,6 +356,8 @@ class HomeController extends Controller
 
     public function shops($id)
     {
+        $inventory_id = Auth::user()->inventory_id;
+        $inventory = json_decode($this->getInventory($inventory_id)[0]);
         $info = shops::findOrFail($id);
         Session::put('shop_id', $info->id);
         if (!$info->exists()) {
@@ -363,7 +365,7 @@ class HomeController extends Controller
         } elseif ($info->id == '' or $info->id === NULL or !$info->id) {
             return abort(404);
         } else {
-            return view('shop')->with('shopinfo', $info);
+            return view('shop')->with('shopinfo', $info)->with('inventory', $inventory);
         }
     }
 
@@ -432,6 +434,44 @@ class HomeController extends Controller
             }
         }
 
+        if(isset($_POST['sell'])) {
+            if ($_POST['Quantity'] == '' || empty($_POST['Quantity']) || $_POST['Quantity'] <= 0) {
+                $item_id = $_POST['id'];
+                $quantity = 1;
+                $price = $_POST['price'];
+            } else {
+                $price = $_POST['price'];
+                $item_id = $_POST['id'];
+                $quantity = $_POST['Quantity'];
+            }
+            $cost = $price * $quantity;
+            if ($cost <= 0) {
+                return redirect('/location/27/' . $shopid)->with('cost', 'Dont fill in a negative number');
+            }
+            $totalprice = $gold['gold'] + $cost;
+            if ($totalprice < 0) {
+                return redirect('/location/27/' . $shopid)->with('toomuch', 'You can not spend more gold than you have');
+            } else {
+                $inventory_id = NULL;
+                $result = $this->checkInventory($item_id, $inventory_id);
+                if ($result == 'success') {
+                        $user_gold->gold = $totalprice;
+                        $user_gold->save();
+                        $inventroy_id = Auth::user()->inventory_id;
+                        $rows = inventory_item::whereitem_id($item_id)->where('inventory_id', $inventroy_id)->get();
+                        if ($rows[0]->quantity == '1' || $rows[0]->quantity <= 0 || $rows[0]->quantity == $quantity) {
+                            $rows[0]->delete();
+                        } elseif ($quantity > $rows[0]->quantity) {
+                            return redirect('/location/27/' . $shopid)->with('toomuch', 'You cant use more items than you have');
+                        } else {
+                            $rows[0]->quantity = $rows[0]->quantity - $quantity;
+                            $rows[0]->save();
+                        }
+                    }
+                }
+            return redirect('/location/27/' . $shopid);
+        }
+
         if (isset($_POST['healit'])) {
             $user_stat = Auth::user();
             $needed = $user_stat['maxhp'] - $user_stat['curhp'];
@@ -457,6 +497,82 @@ class HomeController extends Controller
                 }
             }
         }
+    }
+
+    public function weaponBuy() {
+        $user_gold = User::find(Auth::user()->id);
+        $gold = json_decode(json_encode($user_gold), true);
+        $shopid = Session::get('shop_id');
+        if (isset($_POST['buy'])) {
+            $cost = $_POST['price'];
+            $totalprice = $gold['gold'] - $cost;
+            if ($totalprice < 0) {
+                return redirect('/location/27/' . $shopid)->with('toomuch', 'You can not spend more gold than you have');
+            }
+            if($user_gold->primary_hand == ''){
+                $user_gold->gold =  $totalprice;
+                $user_gold->primary_hand = $_POST['id'];
+                $user_gold->save();
+            }
+            elseif($user_gold->secondary_hand == '') {
+                $user_gold->gold = $totalprice;
+                $user_gold->secondary_hand = $_POST['id'];
+                $user_gold->save();
+            } else {
+                return redirect('/location/27/' . $shopid)->with('Error', 'You have weapons in both hands sell one before buying');
+            }
+        } elseif (isset($_POST['sell'])) {
+            $id = $_POST['id'];
+            $item_info = item_type::where('id', $id)->get();
+            $price = $item_info[0]->price;
+            if(isset($_POST['phand'])) {
+                $user_gold->gold = $user_gold->gold + $price;
+                $user_gold->primary_hand = '';
+                $user_gold->save();
+            } elseif (isset($_POST['shand'])) {
+                $user_gold->gold = $user_gold->gold + $price;
+                $user_gold->secondary_hand = '';
+                $user_gold->save();
+            }
+        } elseif(isset($_POST['weapon'])) {
+            $temp = $user_gold->primary_hand;
+            $user_gold->primary_hand = $user_gold->secondary_hand;
+            $user_gold->secondary_hand = $temp;
+            $user_gold->save();
+        } elseif(isset($_POST['amount'])) {
+            $amount = $_POST['amount'];
+            $gold = $user_gold->gold;
+            if($_POST['action'] == 'deposit') {
+                if($amount > $user_gold->gold) {
+                    return redirect('/location/27/' . $shopid)->with('toomuch', $amount. ' Is a bit more then ' . $user_gold->gold);
+                }
+                if($amount > $gold || $amount == '' || $amount == $gold) {
+                    $amount = $gold;
+                } else {
+                    if($amount < 0) {
+                        return redirect('/location/27/' . $shopid)->with('toomuch', 'Don`t fill in a negative number');
+                    }
+                }
+                $user_gold->gold = $user_gold->gold - $amount;
+                $user_gold->inbank = $user_gold->inbank + $amount;
+                $user_gold->save();
+            } else {
+                if($amount > $user_gold->inbank) {
+                    return redirect('/location/27/' . $shopid)->with('toomuch', $amount. ' Is a bit more then ' . $user_gold->inbank);
+                }
+                if($amount > $gold || $amount == '' || $amount == $gold) {
+                    $amount = $gold;
+                } else {
+                    if($amount < 0) {
+                        return redirect('/location/27/' . $shopid)->with('toomuch', 'Don`t fill in a negative number');
+                    }
+                }
+                $user_gold->gold = $user_gold->gold + $amount;
+                $user_gold->inbank = $user_gold->inbank - $amount;
+                $user_gold->save();
+            }
+        }
+        return redirect('/location/27/' . $shopid);
     }
 
     public function checkQuest()

@@ -36,6 +36,8 @@ class CreateUsersTable extends Migration
             $table->string('current_exp')->default(0);
             $table->string('exp_needed_to_next_level')->default(250);
             $table->string('level')->default(1);
+            $table->string('primary_hand')->default('');
+            $table->string('secondary_hand')->default('');
 
             $table->rememberToken();
             $table->timestamps();
