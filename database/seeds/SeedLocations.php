@@ -346,6 +346,57 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['name' => 'Go inside the weapon cache', 'from_location_id' => 55, 'to_location_id' => 56]);
         DB::table('choices')->insert(['name' => 'Go to the roof of the station', 'from_location_id' => 55, 'to_location_id' => 57]);
 
+        DB::table('locations')->insert(['id' => 57, 'name' => 'A view', 'area_id' => 2, 'title' => 'Well... this a view', 'story' => 'So there are you standing<br>
+        there is quite a breeze here but what is that<br>
+        A key?.... ow perhaps it is nothing<br>
+        So the is how life is going to be he searching for a way out<br>
+        But only how is the way remains as a question', 'foto_url' => '/img/proof.png']);
+        DB::table('choices')->insert(['name' => 'Go back downstairs', 'from_location_id' => 57, 'to_location_id' => 49]);
+        DB::table('choices')->insert(['name' => 'Pick up the key', 'from_location_id' => 57, 'to_location_id' => '22/36']);
+
+        DB::table('locations')->insert(['id' => 52, 'name' => 'The bank', 'area_id' => 2, 'title' => '$.$ Money', 'story' => 'So a empty bank....<br>
+        I had a bank account here i wonder if its still accessible.<br>
+        There is a atm next to the counter and its seems to work<br>
+        Maby i can check the vault and see if there is gold inside<br>
+        But why do i need to have gold?', 'foto_url' => '/img/insidebank.png']);
+        DB::table('choices')->insert(['name' => 'Go back outside', 'from_location_id' => 52, 'to_location_id' => 51]);
+        DB::table('choices')->insert(['name' => 'Go to the vault', 'from_location_id' => 52, 'to_location_id' => 58]);
+        DB::table('choices')->insert(['name' => 'Go to the atm', 'from_location_id' => 52, 'to_location_id' => '27/4']);
+
+        DB::table('locations')->insert(['id' => 58, 'name' => 'The bank', 'area_id' => 2, 'title' => 'A empty vault', 'story' => 'Well this is quite sad<br>
+        No gold or money lying around here. That is sad<br>
+        But is that a key lying there or..... Well i don`t wanna know <br>
+        So........ Nothing to do here he perhaps take that key with you<br>
+        Or do you gonna stand here all day', 'foto_url' => '/img/vault.png']);
+        DB::table('choices')->insert(['name' => 'Go back ', 'from_location_id' => 58, 'to_location_id' => 52]);
+        DB::table('choices')->insert(['name' => 'Mine the bank wall', 'from_location_id' => 58, 'to_location_id' => 59]);
+        DB::table('choices')->insert(['name' => 'A Key?', 'from_location_id' => 58, 'to_location_id' => '22/37']);
+
+        DB::table('locations')->insert(['id' => 28, 'name' => 'dead time', 'area_id' => 1, 'title' => 'A lost soul', 'story' => 'So the door to the undead<br>
+        Is it safe to enter because you never know in this town<br>
+        Maby the virus infected te undead here so....<br>
+        Well what could lie in there that is the risk worth?<br>
+        Only one way to find out i think', 'foto_url' => '/img/gydoor.png']);
+        DB::table('choices')->insert(['name' => 'Go back ', 'from_location_id' => 28, 'to_location_id' => 20]);
+        DB::table('choices')->insert(['name' => 'Enter the graveyard', 'from_location_id' => 28, 'to_location_id' => 60]);
+
+        DB::table('locations')->insert(['id' => 60, 'name' => 'dead time', 'area_id' => 1, 'title' => 'Creepy times', 'story' => 'So the place where people are put to rest<br>
+        Quite sad that the graveyard is real big <br>
+        Perhaps a lot of people are buried here because of the outbreak<br>
+        One thing is sure no one is around here at least.<br>
+        But what is here to do', 'foto_url' => '/img/graveyard.png']);
+        DB::table('choices')->insert(['name' => 'Go back ', 'from_location_id' => 60, 'to_location_id' => 28]);
+        DB::table('choices')->insert(['name' => 'Pick up the antenna', 'from_location_id' => 60, 'to_location_id' => '22/38']);
+
+        DB::table('locations')->insert(['id' => 38, 'name' => 'Empty space', 'area_id' => 2, 'title' => 'Well a empty road ahead', 'story' => 'So what a surprise totally nothing<br>
+        On the items lying around here there is totally nothing <br>
+        Is that a person in the distance?<br>
+        <big>HELLO HELLO THERE </big> no response<br>
+        Perhaps you want to take a look', 'foto_url' => '/img/road.png']);
+        DB::table('choices')->insert(['name' => 'Go back ', 'from_location_id' => 38, 'to_location_id' => 33]);
+        DB::table('choices')->insert(['name' => 'Pick up the signal device', 'from_location_id' => 38, 'to_location_id' => '22/39']);
+        DB::table('choices')->insert(['name' => 'Pick up the receiver ', 'from_location_id' => 38, 'to_location_id' => '22/40']);
+        DB::table('choices')->insert(['name' => 'Go talk to farmer dave', 'from_location_id' => 38, 'to_location_id' => '21/3']);
 
         DB::table('locations')->insert(['id' => 15, 'name' => 'You encounter something', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 21, 'name' => 'Npc time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);

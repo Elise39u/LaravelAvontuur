@@ -27,6 +27,8 @@
                           $lose    = Session::get('lose');
                           $combat  = Session::get('combat');
                           $monstername = Session::get('monster');
+                          $monsterexp = Session::get('monster_xp');
+                          $monstergold = Session::get('monster_gold');
                           $area_id =  Session::get('area_id');?>
                     @if (isset($combat))
                         @foreach ($combat as $info)
@@ -35,7 +37,8 @@
                     @endif
                     @if (isset($won) || isset($lose))
                         @if ($won == 1)
-                        <p>You defeated {{$monstername}}</p>
+                            <p>You defeated <strong>{{$monstername}}</strong>! You gained <strong>{{$monstergold}}</strong> gold,
+                            and <strong>{{$monsterexp}}</strong> experience.</p>
                             @if (isset($area_id))
                                 @if ($area_id == 1)
                                     <button><a href="/location/10">Go on with the sand</a></button> <br>

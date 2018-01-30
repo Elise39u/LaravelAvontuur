@@ -231,6 +231,8 @@ class HomeController extends Controller
         $player = json_decode(json_encode($playerinfo), true);
         $monsterinfo = Session::get('monsterinfo');
         $monster = json_decode(json_encode($monsterinfo[0]->getmonster), true);
+        Session::put('monster_gold', $monster[0]['gold']);
+        Session::put('monster_xp', $monster[0]['xp']);
         if (isset($_POST['attack'])) {
             $combat = array();
             $turns = 0;

@@ -31,6 +31,16 @@ class SeedItemTypes extends Seeder
             'attack' => 0, 'defense' => 0, 'location_id' => 23]);
         DB::table('item_types')->insert(['id' => 35, 'name' => 'Police Key', 'price' => '1000', 'shop_category' => 'items',
             'attack' => 0, 'defense' => 0, 'location_id' => 53]);
+        DB::table('item_types')->insert(['id' => 36, 'name' => 'Bank Key', 'price' => '1000', 'shop_category' => 'items',
+            'attack' => 0, 'defense' => 0, 'location_id' => 57]);
+        DB::table('item_types')->insert(['id' => 37, 'name' => 'Graveyard Key', 'price' => '1000', 'shop_category' => 'items',
+            'attack' => 0, 'defense' => 0, 'location_id' => 58]);
+        DB::table('item_types')->insert(['id' => 38, 'name' => 'Antenna', 'price' => '3000', 'shop_category' => 'items',
+            'attack' => 0, 'defense' => 0, 'location_id' => 60]);
+        DB::table('item_types')->insert(['id' => 39, 'name' => 'signal device', 'price' => '2000', 'shop_category' => 'items',
+            'attack' => 0, 'defense' => 0, 'location_id' => 38]);
+        DB::table('item_types')->insert(['id' => 40, 'name' => 'receiver', 'price' => '1600', 'shop_category' => 'items',
+            'attack' => 0, 'defense' => 0, 'location_id' => 38]);
 
         // End items
         DB::table('item_types')->insert(['id' => 8, 'name' => 'Paddle', 'price' => '1000000000', 'shop_category' => 'End',
