@@ -268,7 +268,7 @@ class HomeController extends Controller
                 $won = 1;
                 $random = rand(0, 100);
                 $chance = $monster[0]['chance'];
-                if ($chance > $random) {
+                if ($chance <= $random) {
                     $user_curhp = User::find(Auth::user()->id);
                     $user_curhp->curhp = $player['curhp'];
                     $user_curhp->current_exp = $player['current_exp'] + $monster[0]['xp'];
@@ -286,11 +286,13 @@ class HomeController extends Controller
                         }
                     }
                     if (isset($monster_inventory)) {
-                        $result = $this->checkInventory($item_id, $monster_inventory);
+                        $inventory_id = NULL;
+                        $result = $this->checkInventory($item_id, $inventory_id);
                         if ($result == 'success') {
-                            $rows = inventory_item::whereitem_id($item_id)->get();
-                            $rows[0]->quantity = $rows[0]->quantity + 1;
-                            $rows[0]->save();
+                            $inv_id = Auth::user()->inventory_id;
+                            $itemInventory = inventory_item::where('inventory_id', $inv_id)->where('item_id', $item_id)->get();
+                            $itemInventory[0]->quantity = $itemInventory[0]->quantity + 1;
+                            $itemInventory[0]->save();
                         } else {
                             $inv_id = Auth::user()->inventory_id;
                             $itemInventory = new inventory_item;
