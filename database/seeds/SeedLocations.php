@@ -103,7 +103,7 @@ class SeedLocations extends Seeder
     But only there is no way to go on the river else you want to swim <br>
     Choice is on you but which is the correct one', 'foto_url' => '/img/edge.png']);
         DB::table('choices')->insert(['name' => 'Go on the river', 'from_location_id' => 11, 'to_location_id' => 16]);
-        DB::table('choices')->insert(['name' => 'Go swimming', 'from_location_id' => 11, 'to_location_id' => 17]);
+        DB::table('choices')->insert(['id' => 27, 'name' => 'Go swimming', 'from_location_id' => 11, 'to_location_id' => 17]);
         DB::table('choices')->insert(['name' => 'Go back towards the hotel', 'from_location_id' => 11, 'to_location_id' => 5]);
 
         DB::table('locations')->insert(['id' => 12, 'name' => 'Futher down the street', 'area_id' => 1, 'title' => 'A new part of the city', 'story' => 'As you walk futher down the street you see the next things<br>
@@ -182,7 +182,7 @@ class SeedLocations extends Seeder
     But where was that damm boat?', 'foto_url' => '/img/garage.png']);
         DB::table('choices')->insert(['name' => 'Take the jerry can', 'from_location_id' => 26, 'to_location_id' => '22/5']);
         DB::table('choices')->insert(['name' => 'Leave the garage', 'from_location_id' => 26, 'to_location_id' => 20]);
-        DB::table('choices')->insert(['name' => 'Take the car', 'from_location_id' => 26, 'to_location_id' => '22/7']);
+        DB::table('choices')->insert(['id' => 55, 'name' => 'Take the car', 'from_location_id' => 26, 'to_location_id' => '22/7']);
 
         DB::table('locations')->insert(['id' => 29, 'name' => 'The docks', 'area_id' => 1, 'title' => 'Docks with a boat time', 'story' => 'Well that was though battling that monster<br>
     Unless you came with the car than you are fine i guesses<br>
@@ -191,8 +191,8 @@ class SeedLocations extends Seeder
     Never mind. At least if you with the car you can take the boat with you<br>
     But are you with the car?', 'foto_url' => '/img/docks.png']);
         DB::table('choices')->insert(['name' => 'Go back on the sandy road', 'from_location_id' => 29, 'to_location_id' => '15/1']);
-        DB::table('choices')->insert(['name' => 'Take the boat', 'from_location_id' => 29, 'to_location_id' => '22/6']);
-        DB::table('choices')->insert(['name' => 'Escape the city', 'from_location_id' => 29, 'to_location_id' => 30]);
+        DB::table('choices')->insert(['id' => 57, 'name' => 'Take the boat', 'from_location_id' => 29, 'to_location_id' => '22/6']);
+        DB::table('choices')->insert(['id' => 58, 'name' => 'Escape the city', 'from_location_id' => 29, 'to_location_id' => 30]);
 
         DB::table('locations')->insert(['id' => 30, 'name' => 'The end1', 'area_id' => 1, 'title' => 'You have escaped 1', 'story' => 'Well that was a though road<br>
     But you know there are more endings <br>
@@ -221,7 +221,7 @@ class SeedLocations extends Seeder
         Is it the light of the bridge? or is it so poisoned<br>
         Well its see i cant find a way to that bridge<br>
         Maby if i go through tha mall?', 'foto_url' => '/img/Brooklyn.jpg']);
-        DB::table('choices')->insert(['name' => 'Go towards the bridge', 'from_location_id' => 35, 'to_location_id' => 36]);
+        DB::table('choices')->insert(['id' => 66, 'name' => 'Go towards the bridge', 'from_location_id' => 35, 'to_location_id' => 36]);
         DB::table('choices')->insert(['name' => 'Go walking futher near the shore', 'from_location_id' => 35, 'to_location_id' => 37]);
         DB::table('choices')->insert(['name' => 'go back', 'from_location_id' => 35, 'to_location_id' => 18]);
 
@@ -264,7 +264,7 @@ class SeedLocations extends Seeder
         Perhaps we can use the train to ride this tracks<br>
         The question is does it still works?', 'foto_url' => '/img/traintracks.png']);
         DB::table('choices')->insert(['name' => 'Go on if you want?', 'from_location_id' => 41, 'to_location_id' => 43]);
-        DB::table('choices')->insert(['name' => 'Go inside the train', 'from_location_id' => 41, 'to_location_id' => 44]);
+        DB::table('choices')->insert(['id' => 80, 'name' => 'Go inside the train', 'from_location_id' => 41, 'to_location_id' => 44]);
         DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 41, 'to_location_id' => 40]);
 
         DB::table('locations')->insert(['id' => 43, 'name' => 'rails', 'area_id' => 0, 'title' => 'Rails, rails, rails', 'story' => 'Well i can see a end<br>
@@ -284,6 +284,7 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['name' => 'Go to the item shop', 'from_location_id' => 24, 'to_location_id' => '27/3']);
         DB::table('choices')->insert(['name' => 'Go to the grocery store', 'from_location_id' => 24, 'to_location_id' => 47]);
         DB::table('choices')->insert(['name' => 'Go to the Liquor shop', 'from_location_id' => 24, 'to_location_id' => 48]);
+        DB::table('choices')->insert(['name' => 'Check outside the mall', 'from_location_id' => 24, 'to_location_id' => 61]);
         DB::table('choices')->insert(['name' => 'Go outside', 'from_location_id' => 24, 'to_location_id' => 18]);
 
         DB::table('locations')->insert(['id' => 34, 'name' => 'Time for the cops', 'area_id' => 2, 'title' => 'Cop time', 'story' => 'Well that is terrifying a abandoned police station <br>
@@ -308,7 +309,7 @@ class SeedLocations extends Seeder
         What now... Waiting? Try to look for the key?<br>
         Wel if there is a key somewhere in this city<br>
         So do we look for the key or keep knocking?', 'foto_url' => '/img/bankdoor.png']);
-        DB::table('choices')->insert(['name' => 'Enter the bank', 'from_location_id' => 51, 'to_location_id' => 52]);
+        DB::table('choices')->insert(['id' => 94, 'name' => 'Enter the bank', 'from_location_id' => 51, 'to_location_id' => 52]);
         DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 51, 'to_location_id' => 50]);
 
         DB::table('locations')->insert(['id' => 23, 'name' => 'Lurking', 'area_id' => 1, 'title' => 'Lurking time', 'story' => 'Okay its look empty around here<br>
@@ -326,7 +327,7 @@ class SeedLocations extends Seeder
         Maby the key for the graveyard or police station, bank?<br>
         Well one way to find out', 'foto_url' => '/img/eroof.png']);
         DB::table('choices')->insert(['name' => 'Go back inside', 'from_location_id' => 53, 'to_location_id' => 23]);
-        DB::table('choices')->insert(['name' => 'Repair the antenna', 'from_location_id' => 53, 'to_location_id' => 54]);
+        DB::table('choices')->insert(['id' => 100, 'name' => 'Repair the antenna', 'from_location_id' => 53, 'to_location_id' => 54]);
         DB::table('choices')->insert(['name' => 'A key?', 'from_location_id' => 53, 'to_location_id' => '22/35']);
 
         DB::table('locations')->insert(['id' => 49, 'name' => 'Do you member', 'area_id' => 2, 'title' => 'The law', 'story' => 'Well there is no one inside it seems<br>
@@ -335,7 +336,7 @@ class SeedLocations extends Seeder
         I think its better to stay outside<br>
         Because you never know whats is inside', 'foto_url' => '/img/pdoor.png']);
         DB::table('choices')->insert(['name' => 'Go back on the streets', 'from_location_id' => 49, 'to_location_id' => 34]);
-        DB::table('choices')->insert(['name' => 'Go inside the station', 'from_location_id' => 49, 'to_location_id' => 55]);
+        DB::table('choices')->insert(['id' => 103, 'name' => 'Go inside the station', 'from_location_id' => 49, 'to_location_id' => 55]);
 
         DB::table('locations')->insert(['id' => 55, 'name' => 'Well...', 'area_id' => 2, 'title' => 'Abandoned', 'story' => 'That is quite sad so empty station <br>
         i see a door but its seemed locked with a card<br>
@@ -343,7 +344,7 @@ class SeedLocations extends Seeder
         Ow perhaps the danger that could lie in the room<br>
         Because you never know whats is inside, but a staircase?', 'foto_url' => '/img/PoliceStation.png']);
         DB::table('choices')->insert(['name' => 'Go outside', 'from_location_id' => 55, 'to_location_id' => 49]);
-        DB::table('choices')->insert(['name' => 'Go inside the weapon cache', 'from_location_id' => 55, 'to_location_id' => 56]);
+        DB::table('choices')->insert(['id' => 105, 'name' => 'Go inside the weapon cache', 'from_location_id' => 55, 'to_location_id' => 56]);
         DB::table('choices')->insert(['name' => 'Go to the roof of the station', 'from_location_id' => 55, 'to_location_id' => 57]);
 
         DB::table('locations')->insert(['id' => 57, 'name' => 'A view', 'area_id' => 2, 'title' => 'Well... this a view', 'story' => 'So there are you standing<br>
@@ -369,7 +370,7 @@ class SeedLocations extends Seeder
         So........ Nothing to do here he perhaps take that key with you<br>
         Or do you gonna stand here all day', 'foto_url' => '/img/vault.png']);
         DB::table('choices')->insert(['name' => 'Go back ', 'from_location_id' => 58, 'to_location_id' => 52]);
-        DB::table('choices')->insert(['name' => 'Mine the bank wall', 'from_location_id' => 58, 'to_location_id' => 59]);
+        DB::table('choices')->insert(['id' => 113, 'name' => 'Mine the bank wall', 'from_location_id' => 58, 'to_location_id' => 59]);
         DB::table('choices')->insert(['name' => 'A Key?', 'from_location_id' => 58, 'to_location_id' => '22/37']);
 
         DB::table('locations')->insert(['id' => 28, 'name' => 'dead time', 'area_id' => 1, 'title' => 'A lost soul', 'story' => 'So the door to the undead<br>
@@ -378,7 +379,7 @@ class SeedLocations extends Seeder
         Well what could lie in there that is the risk worth?<br>
         Only one way to find out i think', 'foto_url' => '/img/gydoor.png']);
         DB::table('choices')->insert(['name' => 'Go back ', 'from_location_id' => 28, 'to_location_id' => 20]);
-        DB::table('choices')->insert(['name' => 'Enter the graveyard', 'from_location_id' => 28, 'to_location_id' => 60]);
+        DB::table('choices')->insert(['id' => 116, 'name' => 'Enter the graveyard', 'from_location_id' => 28, 'to_location_id' => 60]);
 
         DB::table('locations')->insert(['id' => 60, 'name' => 'dead time', 'area_id' => 1, 'title' => 'Creepy times', 'story' => 'So the place where people are put to rest<br>
         Quite sad that the graveyard is real big <br>
