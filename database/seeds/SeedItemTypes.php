@@ -36,6 +36,14 @@ class SeedItemTypes extends Seeder
             'attack' => 0, 'defense' => 0, 'location_id' => 38]);
         DB::table('item_types')->insert(['id' => 54, 'name' => 'ladder', 'price' => '1000', 'shop_category' => 'items',
             'attack' => 0, 'defense' => 0, 'location_id' => '']);
+        DB::table('item_types')->insert(['id' => 55, 'name' => 'Milk', 'price' => '600', 'shop_category' => 'items',
+            'attack' => 0, 'defense' => 0, 'location_id' => 62]);
+        DB::table('item_types')->insert(['id' => 56, 'name' => 'Meat', 'price' => '200', 'shop_category' => 'items',
+            'attack' => 0, 'defense' => 0, 'location_id' => 63]);
+        DB::table('item_types')->insert(['id' => 57, 'name' => 'booze', 'price' => '1400', 'shop_category' => 'items',
+            'attack' => 0, 'defense' => 0, 'location_id' => 48]);
+        DB::table('item_types')->insert(['id' => 58, 'name' => 'Wine', 'price' => '2200', 'shop_category' => 'items',
+            'attack' => 0, 'defense' => 0, 'location_id' => 48]);
 
         // End items
         DB::table('item_types')->insert(['id' => 8, 'name' => 'Paddle', 'price' => '1000000000', 'shop_category' => 'End',

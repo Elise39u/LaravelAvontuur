@@ -102,8 +102,8 @@ class SeedLocations extends Seeder
     Is the crew dead? Is it abonded? or perhaps just out of fuel<br>
     But only there is no way to go on the river else you want to swim <br>
     Choice is on you but which is the correct one', 'foto_url' => '/img/edge.png']);
-        DB::table('choices')->insert(['name' => 'Go on the river', 'from_location_id' => 11, 'to_location_id' => 16]);
-        DB::table('choices')->insert(['id' => 27, 'name' => 'Go swimming', 'from_location_id' => 11, 'to_location_id' => 17]);
+        DB::table('choices')->insert(['id' => 27, 'name' => 'Go on the river', 'from_location_id' => 11, 'to_location_id' => 16]);
+        DB::table('choices')->insert(['name' => 'Go swimming', 'from_location_id' => 11, 'to_location_id' => 17]);
         DB::table('choices')->insert(['name' => 'Go back towards the hotel', 'from_location_id' => 11, 'to_location_id' => 5]);
 
         DB::table('locations')->insert(['id' => 12, 'name' => 'Futher down the street', 'area_id' => 1, 'title' => 'A new part of the city', 'story' => 'As you walk futher down the street you see the next things<br>
@@ -296,14 +296,6 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['name' => 'Go explore the road ahead', 'from_location_id' => 34, 'to_location_id' => '15/2']);
         DB::table('choices')->insert(['name' => 'Go to the station', 'from_location_id' => 34, 'to_location_id' => 49]);
 
-        DB::table('locations')->insert(['id' => 50, 'name' => 'Money time', 'area_id' => 2, 'title' => 'Spare time he', 'story' => 'Well a bank... I forgot if i had any spare money left <br>
-        Its seems the bank is locked from here<br>
-        But one is there someone? or its abandoned like the rest of the city<br>
-        Is it worth to go or do we go back<br>
-        Think twice about the gold lying in the bank', 'foto_url' => '/img/bank.png']);
-        DB::table('choices')->insert(['name' => 'Go towards the bank', 'from_location_id' => 50, 'to_location_id' => 51]);
-        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 50, 'to_location_id' => '15/2']);
-
         DB::table('locations')->insert(['id' => 51, 'name' => 'Money time', 'area_id' => 2, 'title' => 'Near the bank', 'story' => '<b> Knock Knock</b> HELLO IS THERE SOMEONE! <br>
         and again <b> Knock Knock </b>..... Well no one is inside<br>
         What now... Waiting? Try to look for the key?<br>
@@ -312,14 +304,13 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['id' => 94, 'name' => 'Enter the bank', 'from_location_id' => 51, 'to_location_id' => 52]);
         DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 51, 'to_location_id' => 50]);
 
-        DB::table('locations')->insert(['id' => 23, 'name' => 'Lurking', 'area_id' => 1, 'title' => 'Lurking time', 'story' => 'Okay its look empty around here<br>
-        Eheeee i only can see a staircase back there<br>
-        What now is it safe to go up or ..........<br>
-        Maby there is something useful on the roof of this store<br>
-        But going up there is a risk', 'foto_url' => '/img/elebackroom.png']);
-        DB::table('choices')->insert(['name' => 'Go to the roof of the store', 'from_location_id' => 23, 'to_location_id' => 53]);
-        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 23, 'to_location_id' => 14]);
-        DB::table('choices')->insert(['name' => 'A card?', 'from_location_id' => 23, 'to_location_id' => '22/34']);
+        DB::table('locations')->insert(['id' => 50, 'name' => 'Money time', 'area_id' => 2, 'title' => 'Spare time he', 'story' => 'Well a bank... I forgot if i had any spare money left <br>
+        Its seems the bank is locked from here<br>
+        But one is there someone? or its abandoned like the rest of the city<br>
+        Is it worth to go or do we go back<br>
+        Think twice about the gold lying in the bank', 'foto_url' => '/img/bank.png']);
+        DB::table('choices')->insert(['name' => 'Go towards the bank', 'from_location_id' => 50, 'to_location_id' => 51]);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 50, 'to_location_id' => '15/2']);
 
         DB::table('locations')->insert(['id' => 53, 'name' => 'What a wind', 'area_id' => 1, 'title' => 'The city', 'story' => 'Well there is at least a view over the whole city<br>
         And quite a wind here. a little too strong<br>
@@ -389,6 +380,15 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['name' => 'Go back ', 'from_location_id' => 60, 'to_location_id' => 28]);
         DB::table('choices')->insert(['name' => 'Pick up the antenna', 'from_location_id' => 60, 'to_location_id' => '22/38']);
 
+        DB::table('locations')->insert(['id' => 23, 'name' => 'Lurking', 'area_id' => 1, 'title' => 'Lurking time', 'story' => 'Okay its look empty around here<br>
+        Eheeee i only can see a staircase back there<br>
+        What now is it safe to go up or ..........<br>
+        Maby there is something useful on the roof of this store<br>
+        But going up there is a risk', 'foto_url' => '/img/elebackroom.png']);
+        DB::table('choices')->insert(['name' => 'Go to the roof of the store', 'from_location_id' => 23, 'to_location_id' => 53]);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 23, 'to_location_id' => 14]);
+        DB::table('choices')->insert(['name' => 'A card?', 'from_location_id' => 23, 'to_location_id' => '22/34']);
+
         DB::table('locations')->insert(['id' => 38, 'name' => 'Empty space', 'area_id' => 2, 'title' => 'Well a empty road ahead', 'story' => 'So what a surprise totally nothing<br>
         On the items lying around here there is totally nothing <br>
         Is that a person in the distance?<br>
@@ -398,6 +398,34 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['name' => 'Pick up the signal device', 'from_location_id' => 38, 'to_location_id' => '22/39']);
         DB::table('choices')->insert(['name' => 'Pick up the receiver ', 'from_location_id' => 38, 'to_location_id' => '22/40']);
         DB::table('choices')->insert(['name' => 'Go talk to farmer dave', 'from_location_id' => 38, 'to_location_id' => '21/3']);
+
+        DB::table('locations')->insert(['id' => 47, 'name' => 'Shopping time', 'area_id' => 0, 'title' => 'time to shop :)', 'story' => 'Well as expected no one inside<br>
+        But there is nothing to see<br>
+        Maby time to look deeper in the store', 'foto_url' => '/img/gstore.png']);
+        DB::table('choices')->insert(['name' => 'Go look for something to drink', 'from_location_id' => 47, 'to_location_id' => 62]);
+        DB::table('choices')->insert(['name' => 'Go look for something to eat', 'from_location_id' => 47, 'to_location_id' => 63]);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 47, 'to_location_id' => 24]);
+
+        DB::table('locations')->insert(['id' => 62, 'name' => 'Shopping time', 'area_id' => 0, 'title' => 'Thirsthhy', 'story' => 'Well Mother Lieke told me she want something to drink<br>
+        But i don`t think this is still fresh<br>
+        ahh at least we could ask', 'foto_url' => '/img/SuperMarkDrink.png']);
+        DB::table('choices')->insert(['name' => 'Grab the milk', 'from_location_id' => 62, 'to_location_id' => '22/55']);
+        DB::table('choices')->insert(['name' => 'Go look for something to eat', 'from_location_id' => 62, 'to_location_id' => 63]);
+        DB::table('choices')->insert(['name' => 'Go back in the store', 'from_location_id' => 62, 'to_location_id' => 47]);
+
+        DB::table('locations')->insert(['id' => 63, 'name' => 'Shopping time', 'area_id' => 0, 'title' => 'Meat time', 'story' => 'Well well well..... this is quite sad<br>
+        There is only meat left and is that still good?<br>
+        well too bad for the vegans', 'foto_url' => '/img/SuperMarkFood.png']);
+        DB::table('choices')->insert(['name' => 'Grab the meat', 'from_location_id' => 63, 'to_location_id' => '22/56']);
+        DB::table('choices')->insert(['name' => 'Go look for something to drink', 'from_location_id' => 63, 'to_location_id' => 62]);
+        DB::table('choices')->insert(['name' => 'Go back in the store', 'from_location_id' => 63, 'to_location_id' => 47]);
+
+        DB::table('locations')->insert(['id' => 48, 'name' => 'Shopping time', 'area_id' => 0, 'title' => 'Liquor time', 'story' => 'Well well well..... awkward no one here<br>
+        Is see that there is plenty of booze and wine<br>
+        So which do we take for lauren en paul', 'foto_url' => '/img/LiquorStore.png']);
+        DB::table('choices')->insert(['name' => 'Pick up the booze', 'from_location_id' => 48, 'to_location_id' => '22/57']);
+        DB::table('choices')->insert(['name' => 'Pick up the wine', 'from_location_id' => 48, 'to_location_id' => '22/58']);
+        DB::table('choices')->insert(['name' => 'Go back in the mall', 'from_location_id' => 48, 'to_location_id' => 24]);
 
         DB::table('locations')->insert(['id' => 15, 'name' => 'You encounter something', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 21, 'name' => 'Npc time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);

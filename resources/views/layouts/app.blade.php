@@ -90,6 +90,7 @@
                             data-target="#myModal">Open Journey</li>
                         @endif
                     </ul>
+                    <a href="{{ route('patchnotes') }}">Patch notes Current: v1.03(BETA)</a>
                 </div>
             </div>
         </nav>

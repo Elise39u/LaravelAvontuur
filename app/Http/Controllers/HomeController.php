@@ -52,6 +52,10 @@ class HomeController extends Controller
         return view('home')->with('location', $location);
     }
 
+    public function patchnotes() {
+        return view('patchnotes');
+    }
+
     public function getInventory($inventory_id)
     {
         $inventory = inventories::with('inventoryCheck')->where('id', $inventory_id)->get();
