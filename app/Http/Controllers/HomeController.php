@@ -84,7 +84,7 @@ class HomeController extends Controller
             $inventorySpace = $this->getInventory($inventory_id);
         }
         if (is_int($item_id)) {
-            $item_check = $item_id->id;
+            $item_check = $item_id;
         } else {
             $item_check = $item_id;
         }
@@ -582,23 +582,70 @@ class HomeController extends Controller
     public function checkQuest()
     {
         $npc_id = $_GET['npc_id'];
+        if (isset($_GET['Token'])) {
+            $token = $_GET['Token'];
+        } else {
+            $token = NULL;
+        }
         $user_id = Auth::user()->id;
         $status = json_encode(UserQuest::with('checkQuest')->where('quest_id', $npc_id)->where('player_id', $user_id)->get());
         $test = json_decode($status);
-        if ($test[0]->status == 'unknown') {
-            $user_status = UserQuest::wherequest_id($npc_id)->whereplayer_id($user_id)->get();
+        if ($test[0]->status == 'unknown' && $token == 'Start Quest') {
+            $user_status = UserQuest::wherenpc_id($npc_id)->whereplayer_id($user_id)->get();
             $quest_state = json_decode($user_status);
             $user_status[0]->status = 'Active';
             $user_status[0]->save();
-            echo json_encode(array("trick" => 'Quest ' . $test[0]->check_quest[0]->name . ' Activated', 'Answer' => 'Unknown'));
-        } else {
-            echo json_encode(array("trick" => 'Quest is already active', 'Answer' => 'Active'));
+            echo json_encode(array("trick" => 'Quest ' . $test[0]->check_quest[0]->name . ' Activated', "Status" => "Activated"));
+        } elseif ($test[0]->status == 'unknown') {
+           echo json_encode(array("trick" => 'Quest discovered ' . $test[0]->check_quest[0]->name, 'Status' => 'Unknown'));
+        } elseif ($test[0]->status == 'Active') {
+            $quest_id = UserQuest::wherenpc_id($npc_id)->get();
+            $quest_check = $this->updateQuest($npc_id, $quest_id[0]->id);
+            if($quest_check == true) {
+                $user_status = UserQuest::wherenpc_id($npc_id)->whereplayer_id($user_id)->get();
+                $user_status[0]->status = 'Completed';
+                $user_status[0]->save();
+                echo json_encode(array("trick" => "You completed it", "Status" => "Completed"));
+            } else {
+                echo json_encode(array("trick" => "Still need to complete it", "Status" => "Active"));
+            }
+        } elseif($test[0]->status == 'Completed') {
+            echo json_encode(array("trick" => "You already completed " . $test[0]->check_quest[0]->name, "Status" => "Completed"));
+        }
+        else {
+            echo json_encode(array("trick" => 'Quest is already active', "Status" => "Active"));
         }
     }
 
     public function updateQuest($npc_id, $quest_id)
     {
-
+        //echo json_encode(array("Npc" => $npc_id, 'Quest' => $quest_id));
+        switch ($quest_id) {
+            case $quest_id == 1;
+                $inventory_id = NULL;
+                $item_id = 11;
+                $result = $this->checkInventory($item_id, $inventory_id);
+                if ($result == 'success') {
+                    $rows = inventory_item::whereitem_id($item_id)->get();
+                    if ($rows[0]->quantity == '1' || $rows[0]->quantity <= 1) {
+                        $rows[0]->delete();
+                        $rows[0]->save();
+                    } else {
+                        $rows[0]->quantity = $rows[0]->quantity - 1;
+                        $rows[0]->save();
+                    }
+                    return true;
+                } else {
+                   return false;
+                }
+                echo json_encode('You need a green potion');
+                break;
+            case $quest_id == 2;
+                echo json_encode('Bring me to the docks');
+                break;
+            default;
+                echo json_encode('Error encountered');
+        }
     }
 
     public function warehouses($warehouse_id)

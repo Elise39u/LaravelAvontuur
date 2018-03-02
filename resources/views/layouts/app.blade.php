@@ -90,7 +90,7 @@
                             data-target="#myModal">Open Journey</li>
                         @endif
                     </ul>
-                    <a href="{{ route('patchnotes') }}">Patch notes Current: v1.03(BETA)</a>
+                    <a href="{{ route('patchnotes') }}">Patch notes Current: v1.1</a>
                 </div>
             </div>
         </nav>
@@ -141,6 +141,7 @@
                         foreach ($quests as $quest) {
                             $data[] = [
                                 'quest_id' => $quest->id,
+                                'npc_id' => $quest->npc_id,
                                 'player_id'  => $user_id,
                                 'status' => 'unknown',
                                 'tasks' => 'static for now'

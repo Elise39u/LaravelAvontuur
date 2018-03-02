@@ -33,6 +33,30 @@
                     <p>Going outside the mall on the other side will come in 1.2 or 1.3</p>
 
                     <label>v1.1</label>
+                    <p> The next bugs has been solved
+                        <a href="https://github.com/justinvandelaar/LaravelAvontuur/issues?q=is%3Aissue+is%3Aclosed">Click here for more info</a></p>
+                    <p>Bugs can be reported on the link or Mail to: JNLHelper@outlook.com with the subject: Bug report</p>
+                    <ul>
+                        <li>Issue #6</li>
+                        <li>Issue #7</li>
+                        <li>Issue #5</li>
+                        <li>Issue #8</li>
+                        <li>Issue #9: The user talk to a npc</li>
+                    </ul>
+                    <p> Known Issue`s</p>
+                    <ul>
+                        <li> None issue`s </li>
+                    </ul> <br>
+                    <p> Added the next items </p>
+                    <ul>
+                       <li>Current Nothing</li>
+                    </ul> <br>
+                    <p>Npc New Yorker James has now a completed dialog</p>
+                    <p>When a quest Activated the user won`t be able to talk to the Npc from the quest </p>
+                    <p>A quest can now be Completed and showed as Completed in the quest Journey</p>
+                    <br><br>
+
+                    <p>Planned features for 1.1</p>
                     <p> This patch wil see the next things</p>
                     <p>Complete dialoug for Npc 1-3</p>
                     <p>Be able to get a item from a quest</p>

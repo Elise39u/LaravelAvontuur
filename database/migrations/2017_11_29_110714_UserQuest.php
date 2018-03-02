@@ -17,6 +17,7 @@ class UserQuest extends Migration
         Schema::create('user_quests', function (Blueprint $table) {
             $table->increments('id');
             $table->string('quest_id');
+            $table->string('npc_id');
             $table->string('player_id');
             $table->string('status')->default('unknown');
             $table->string('effect')->nullable();

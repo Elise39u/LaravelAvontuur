@@ -13,6 +13,7 @@
 Route::get('/', function () {return view('Auth/login');});
 
 Route::get('login', function (){return view('Auth/login');});
+Route::any('patchnotes', 'HomeController@patchnotes')->name('patchnotes');
 
 Auth::routes();
 Route::get('error', function() { return view('locationError'); } );
@@ -29,4 +30,3 @@ Route::get('location/27/{id}', 'Homecontroller@shops')->name('shops');
 Route::get('location/46/{id}', 'Homecontroller@warehouses')->name('warehouses');
 Route::get('location', 'HomeController@index')->name('home');
 Route::get('home', 'HomeController@index')->name('home2');
-Route::any('patchnotes', 'HomeController@patchnotes')->name('patchnotes');

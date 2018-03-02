@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
     <div class="row">
-        <div id = "dialog-2" title = "dialoge">
+        <div id="dialog-2" title="dialoge">
             <p id="Story"></p>
         </div>
         <div class="col-md-10 col-md-offset-1">

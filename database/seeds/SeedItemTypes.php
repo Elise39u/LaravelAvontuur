@@ -136,5 +136,9 @@ class SeedItemTypes extends Seeder
                                          'attack' => 190, 'defense' => 30, 'location_id' => '']);
         DB::table('item_types')->insert(['id' => 53, 'name' => 'Spear', 'price' => '100', 'shop_category' => 'weapon',
                                          'attack' => 50, 'defense' => -10, 'location_id' => '']);
+
+        //Quest Items
+        DB::table('item_types')->insert(['id' => 59, 'name' => 'Carrier Switch', 'price' => '999999', 'shop_category' => '',
+                                         'attack' => 0, 'defense' => 0, 'location_id' => '']);
     }
 }
