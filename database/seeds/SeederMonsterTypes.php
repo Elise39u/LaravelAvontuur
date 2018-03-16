@@ -40,5 +40,21 @@ class SeederMonsterTypes extends Seeder
             'attack' => '6500', 'defense' => '1500', 'curhp' => '5000', 'xp' => '3800', 'gold' => '4500', 'chance' => NULL]);
         DB::table('monster_types')->insert(['name' => 'Prisoner', 'image_url' => '/img/Monsters/prisoner.png',
             'attack' => '100', 'defense' => '250', 'curhp' => '1000', 'xp' => '500', 'gold' => '1000', 'chance' => NULL]);
+
+        //Area 15/3
+        DB::table('monster_types')->insert(['name' => 'Vulcan', 'image_url' => '/img/Monsters/vulcan.png',
+           'attack' => '55000', 'defense' => '40000', 'curhp' => '10000', 'xp' => '35000', 'gold' => '25500', 'chance' => 100]);
+        DB::table('monster_types')->insert(['name' => 'Octopus', 'image_url' => '/img/Monsters/Octopus.png',
+           'attack' => '250', 'defense' => '1000', 'curhp' => '500', 'xp' => '1000', 'gold' => '1500', 'chance' => NULL]);
+        DB::table('monster_types')->insert(['name' => 'MutatedFish', 'image_url' => '/img/Monsters/MutatedFish.png',
+           'attack' => '2500', 'defense' => '1000', 'curhp' => '8500', 'xp' => '5000', 'gold' => '3500', 'chance' => NULL]);
+        DB::table('monster_types')->insert(['name' => 'Storm', 'image_url' => '/img/Monsters/Storm.png',
+           'attack' => '4500', 'defense' => '100', 'curhp' => '1500', 'xp' => '1200', 'gold' => '1700', 'chance' => NULL]);
+        DB::table('monster_types')->insert(['name' => 'SeaGuard', 'image_url' => '/img/Monsters/seaguard.png',
+           'attack' => '3000', 'defense' => '8000', 'curhp' => '6500', 'xp' => '9000', 'gold' => '4000', 'chance' => NULL]);
+        DB::table('monster_types')->insert(['name' => 'Kraken', 'image_url' => '/img/Monsters/Kraken.png',
+           'attack' => '9000', 'defense' => '18000', 'curhp' => '12500', 'xp' => '12000', 'gold' => '12000', 'chance' => NULL]);
+        DB::table('monster_types')->insert(['name' => 'Hurricane', 'image_url' => '/img/Monsters/Hurricane.png',
+           'attack' => '1000', 'defense' => '1000', 'curhp' => '1500', 'xp' => '1200', 'gold' => '1200', 'chance' => NULL]);
     }
 }

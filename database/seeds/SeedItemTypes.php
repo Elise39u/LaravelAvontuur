@@ -44,12 +44,10 @@ class SeedItemTypes extends Seeder
             'attack' => 0, 'defense' => 0, 'location_id' => 48]);
         DB::table('item_types')->insert(['id' => 58, 'name' => 'Wine', 'price' => '2200', 'shop_category' => 'items',
             'attack' => 0, 'defense' => 0, 'location_id' => 48]);
-
-        // End items
-        DB::table('item_types')->insert(['id' => 8, 'name' => 'Paddle', 'price' => '1000000000', 'shop_category' => 'End',
-            'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
-        DB::table('item_types')->insert(['id' => 9, 'name' => 'Gold bar', 'price' => '1000000000', 'shop_category' => 'End',
-            'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
+        DB::table('item_types')->insert(['id' => 63, 'name' => 'Pick axe', 'price' => '8000', 'shop_category' => 'items',
+            'attack' => 0, 'defense' => 0, 'location_id' => 70]);
+        DB::table('item_types')->insert(['id' => 64, 'name' => 'A steer wheel', 'price' => '6000', 'shop_category' => '',
+            'attack' => 0, 'defense' => 0, 'location_id' => 68]);
 
         // Potion Shop items
         DB::table('item_types')->insert(['id' => 10, 'name' => 'Black Potion', 'price' => '150', 'shop_category' => 'potion',
@@ -81,7 +79,7 @@ class SeedItemTypes extends Seeder
         DB::table('item_types')->insert(['id' => 23, 'name' => 'Yellow Potion', 'price' => '500', 'shop_category' => 'potion',
             'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
         DB::table('item_types')->insert(['id' => 24, 'name' => 'Rainbow potion', 'price' => '125000', 'shop_category' => 'potion',
-            'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
+            'attack' => 0, 'defense' => 0, 'location_id' => 70]);
         DB::table('item_types')->insert(['id' => 25, 'name' => 'Purple potion', 'price' => '1750', 'shop_category' => 'potion',
             'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
         DB::table('item_types')->insert(['id' => 26, 'name' => 'Light Purple potion', 'price' => '1000', 'shop_category' => 'potion',
@@ -140,5 +138,18 @@ class SeedItemTypes extends Seeder
         //Quest Items
         DB::table('item_types')->insert(['id' => 59, 'name' => 'Carrier Switch', 'price' => '999999', 'shop_category' => '',
                                          'attack' => 0, 'defense' => 0, 'location_id' => '']);
+        DB::table('item_types')->insert(['id' => 61, 'name' => 'Ship key', 'price' => '999999', 'shop_category' => '',
+                                         'attack' => 0, 'defense' => 0, 'location_id' => '']);
+
+        // End items
+        DB::table('item_types')->insert(['id' => 8, 'name' => 'Paddle', 'price' => '1000000000', 'shop_category' => 'End',
+                                         'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
+        DB::table('item_types')->insert(['id' => 9, 'name' => 'Gold bar', 'price' => '1000000000', 'shop_category' => 'End',
+                                         'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
+        DB::table('item_types')->insert(['id' => 60, 'name' => 'Steer Cabin Key', 'price' => '1000000000', 'shop_category' => 'End',
+                                         'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
+        DB::table('item_types')->insert(['id' => 62, 'name' => 'Flare', 'price' => '3600', 'shop_category' => 'items',
+                                         'attack' => 0, 'defense' => 0, 'location_id' => 70]);
+
     }
 }

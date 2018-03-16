@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AreaMonsters;
 use App\Areas;
+use App\Dialog;
 use App\inventories;
 use App\inventory_item;
 use App\item_type;
@@ -42,6 +43,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $inventory_id = Auth::user()->inventory_id;
+        $inventory = json_decode($this->getInventory($inventory_id)[0]);
         $location_id = Auth::user()->current_location_id;
         if ($location_id == Null || $location_id == 0 || $location_id == '0') {
             $location_id = 1;
@@ -49,7 +52,7 @@ class HomeController extends Controller
         } else {
             $location = Location::find($location_id);
         }
-        return view('home')->with('location', $location);
+        return view('home')->with('location', $location)->with('inventory', $inventory);
     }
 
     public function patchnotes() {
@@ -324,6 +327,7 @@ class HomeController extends Controller
                 return redirect()->to('/location/15/' . $area_id)->with('lose', $lose)->with('combat', $combat)->with('monster', $monsters);
             }
         } elseif (isset($_POST['taunt'])) {
+            $monsters = $_POST['monster'];
             $area_id = Session::get('area_id');
             $chance = rand(0, 100);
             if ($chance < 16) {
@@ -333,12 +337,13 @@ class HomeController extends Controller
                 $user_curhp->current_exp = $player['current_exp'] + $exp;
                 $user_curhp->gold = $player['gold'] + $monster[0]['gold'];
                 $user_curhp->save();
-                return redirect()->to('/location/15/' . $area_id)->with('won', $won);
+                return redirect()->to('/location/15/' . $area_id)->with('won', $won)->with('monster', $monsters);
             } else {
                 $backing = Session::get('location_id');
                 redirect()->to('location/' . $backing)->send();
             }
         } elseif (isset($_POST['cry'])) {
+            $monsters = $_POST['monster'];
             $area_id = Session::get('area_id');
             $chance = rand(0, 100);
             if ($chance < 6) {
@@ -348,7 +353,7 @@ class HomeController extends Controller
                 $gold = $monster[0]['gold'] * 2;
                 $user_curhp->gold = $player['gold'] + $gold;
                 $user_curhp->save();
-                return redirect()->to('/location/15/' . $area_id)->with('won', $won);
+                return redirect()->to('/location/15/' . $area_id)->with('won', $won)->with('monster', $monsters);
             } else {
                 return redirect('/location/15/' . $area_id)->with('cry', 'cry action failed and lol that you did that');
             }
@@ -589,31 +594,48 @@ class HomeController extends Controller
         }
         $user_id = Auth::user()->id;
         $status = json_encode(UserQuest::with('checkQuest')->where('quest_id', $npc_id)->where('player_id', $user_id)->get());
-        $test = json_decode($status);
-        if ($test[0]->status == 'unknown' && $token == 'Start Quest') {
-            $user_status = UserQuest::wherenpc_id($npc_id)->whereplayer_id($user_id)->get();
-            $quest_state = json_decode($user_status);
-            $user_status[0]->status = 'Active';
-            $user_status[0]->save();
-            echo json_encode(array("trick" => 'Quest ' . $test[0]->check_quest[0]->name . ' Activated', "Status" => "Activated"));
-        } elseif ($test[0]->status == 'unknown') {
-           echo json_encode(array("trick" => 'Quest discovered ' . $test[0]->check_quest[0]->name, 'Status' => 'Unknown'));
-        } elseif ($test[0]->status == 'Active') {
-            $quest_id = UserQuest::wherenpc_id($npc_id)->get();
-            $quest_check = $this->updateQuest($npc_id, $quest_id[0]->id);
-            if($quest_check == true) {
+        if($status == '[]') {
+            echo json_encode(array("trick" => 'No quest detected', "Status" => "Unknown"));
+        } else {
+            $test = json_decode($status);
+            if ($test[0]->status == 'unknown' && $token == 'Start Quest') {
                 $user_status = UserQuest::wherenpc_id($npc_id)->whereplayer_id($user_id)->get();
-                $user_status[0]->status = 'Completed';
+                $quest_state = json_decode($user_status);
+                $user_status[0]->status = 'Active';
                 $user_status[0]->save();
-                echo json_encode(array("trick" => "You completed it", "Status" => "Completed"));
+                echo json_encode(array("trick" => 'Quest ' . $test[0]->check_quest[0]->name . ' Activated', "Status" => "Activated"));
+            } elseif ($test[0]->status == 'unknown') {
+                echo json_encode(array("trick" => 'Quest discovered ' . $test[0]->check_quest[0]->name, 'Status' => 'Unknown'));
+            } elseif ($test[0]->status == 'Active') {
+                $quest_id = UserQuest::wherenpc_id($npc_id)->where('player_id', $user_id)->get();
+                $quest_check = $this->updateQuest($npc_id, $quest_id[0]->id);
+                if ($quest_check == true) {
+                    $user_status = UserQuest::wherenpc_id($npc_id)->whereplayer_id($user_id)->get();
+                    $quest_item = Quest::where("id", $quest_id[0]->id)->get();
+                    if ($quest_item[0]->item_reward == null) {
+                    } else {
+                        $item_id = $quest_item[0]->item_reward;
+                        $inventory_id = Auth::user()->inventory_id;
+                        $itemInventory = new inventory_item;
+                        $itemInventory->inventory_id = $inventory_id;
+                        $itemInventory->item_id = $item_id;
+                        $itemInventory->save();
+                    }
+                    $user_status[0]->status = 'Completed';
+                    $user_stat = User::find(Auth::user()->id);
+                    $user_stat->gold = $user_stat->gold + $quest_item[0]->gold;
+                    $user_stat->current_exp = $user_stat->current_exp + $quest_item[0]->experience;
+                    $user_status[0]->save();
+                    $user_stat->save();
+                    echo json_encode(array("trick" => "You completed it", "Status" => "Completed"));
+                } else {
+                    echo json_encode(array("trick" => "Still need to complete it", "Status" => "Active"));
+                }
+            } elseif ($test[0]->status == 'Completed') {
+                echo json_encode(array("trick" => "You already completed " . $test[0]->check_quest[0]->name, "Status" => "Completed"));
             } else {
-                echo json_encode(array("trick" => "Still need to complete it", "Status" => "Active"));
+                echo json_encode(array("trick" => 'Quest is already active', "Status" => "Active"));
             }
-        } elseif($test[0]->status == 'Completed') {
-            echo json_encode(array("trick" => "You already completed " . $test[0]->check_quest[0]->name, "Status" => "Completed"));
-        }
-        else {
-            echo json_encode(array("trick" => 'Quest is already active', "Status" => "Active"));
         }
     }
 
@@ -629,7 +651,6 @@ class HomeController extends Controller
                     $rows = inventory_item::whereitem_id($item_id)->get();
                     if ($rows[0]->quantity == '1' || $rows[0]->quantity <= 1) {
                         $rows[0]->delete();
-                        $rows[0]->save();
                     } else {
                         $rows[0]->quantity = $rows[0]->quantity - 1;
                         $rows[0]->save();
@@ -638,7 +659,6 @@ class HomeController extends Controller
                 } else {
                    return false;
                 }
-                echo json_encode('You need a green potion');
                 break;
             case $quest_id == 2;
                 echo json_encode('Bring me to the docks');
@@ -757,10 +777,10 @@ class HomeController extends Controller
             $user_stat->$stat = $user_stat->$stat / $update;
             $user_stat->save();
         } elseif(strpos($effect, '*') !== false) {
-            $multi_effect = $effect * $quantity;
-            $new_effect = str_replace('*' , '', $multi_effect);
+            $new_effect = str_replace('*' , '', $effect);
+            $multi_effect = $new_effect * $quantity;
             $user_stat = User::find(Auth::user()->id);
-            $user_stat->$stat = $user_stat->$stat * $new_effect;
+            $user_stat->$stat = $user_stat->$stat * $multi_effect;
             $user_stat->save();
         } else {
             switch ($check) {

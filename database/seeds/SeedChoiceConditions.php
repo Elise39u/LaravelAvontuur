@@ -23,7 +23,12 @@ class SeedChoiceConditions extends Seeder
         DB::table('choice_conditions')->insert(['choice_id' => 100, 'action' => 'NEED ITEM', 'action_value' => '']);
         DB::table('choice_conditions')->insert(['choice_id' => 103, 'action' => 'NEED ITEM', 'action_value' => 35]);
         DB::table('choice_conditions')->insert(['choice_id' => 105, 'action' => 'NEED ITEM', 'action_value' => 34]);
-        DB::table('choice_conditions')->insert(['choice_id' => 113, 'action' => 'NEED ITEM', 'action_value' => '']);
+        DB::table('choice_conditions')->insert(['choice_id' => 113, 'action' => 'NEED ITEM', 'action_value' => 63]);
         DB::table('choice_conditions')->insert(['choice_id' => 116, 'action' => 'NEED ITEM', 'action_value' => 37]);
+        DB::table('choice_conditions')->insert(['choice_id' => 145, 'action' => 'NEED ITEM', 'action_value' => 59]);
+        DB::table('choice_conditions')->insert(['choice_id' => 147, 'action' => 'NEED ITEM', 'action_value' => 61]);
+        DB::table('choice_conditions')->insert(['choice_id' => 149, 'action' => 'NEED ITEM', 'action_value' => 60]);
+        DB::table('choice_conditions')->insert(['choice_id' => 154, 'action' => 'NEED ITEM', 'action_value' => 64]);
+        DB::table('choice_conditions')->insert(['choice_id' => 162, 'action' => 'NPC MOVED', 'action_value' => '']);
     }
 }

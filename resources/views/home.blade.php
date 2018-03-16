@@ -10,7 +10,7 @@
                         $lengtharea = count($areainfo);
                         for ($i = 0; $i < $lengtharea; $i++) {
                             if ($areainfo[$i]['id'] == $location->area_id) {?>
-                                <p> You`re in area {{$areainfo[$i]['name']}} and the time is {{$time->hour}}:
+                                <p> Your in area {{$areainfo[$i]['name']}} and the time is {{$time->hour}}:
                                     {{$time->minute}}: {{$time->second}} </p>
                             <?php } elseif($location->area_id == 0 || $location->area_id == '0') { ?>
                                <p> You`re in A unkown Area and the time is {{$time->hour}}:

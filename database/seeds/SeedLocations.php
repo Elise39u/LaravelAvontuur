@@ -427,6 +427,133 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['name' => 'Pick up the wine', 'from_location_id' => 48, 'to_location_id' => '22/58']);
         DB::table('choices')->insert(['name' => 'Go back in the mall', 'from_location_id' => 48, 'to_location_id' => 24]);
 
+        DB::table('locations')->insert(['id' => 32, 'name' => 'A brief histroy', 'area_id' => 0, 'title' => 'History time', 'story' => 'So that is a piece of money lying there<br>
+        And think of what is been through. The war, driving across sea<br>
+        Look how it laying there so broken <br>
+        Perhaps its still works?', 'foto_url' => '/img/nearship.png']);
+        DB::table('choices')->insert(['name' => 'sail to the carrier', 'from_location_id' => 32, 'to_location_id' => '15/3']);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 32, 'to_location_id' => 16]);
+
+        DB::table('locations')->insert(['id' => 64, 'name' => 'A brief histroy', 'area_id' => 3, 'title' => 'Well the ship', 'story' => 'So here we are on the ship<br>
+        Quite a few big guns it has, i wonder if they still work<br>
+        And where they aim at all. The city perhaps<br>
+        No that is stupid and why do you want to blow up the city up', 'foto_url' => '/img/ondeck.png']);
+        DB::table('choices')->insert(['name' => 'Rope down to your boat', 'from_location_id' => 64, 'to_location_id' => '15/3']);
+        DB::table('choices')->insert(['name' => 'Go on', 'from_location_id' => 64, 'to_location_id' => 65]);
+
+        DB::table('locations')->insert(['id' => 65, 'name' => 'Inside the ship', 'area_id' => 3, 'title' => 'A labyrinth', 'story' => 'So this is the maintenance room?<br>
+        An i think its more a labyrinth to walk around here<br>
+        Put perhaps there is something to find here<br>
+        Or where is that stupid staring wheel so i can find the sub base', 'foto_url' => '/img/maintenance.png']);
+        DB::table('choices')->insert(['name' => 'Go back outside', 'from_location_id' => 65, 'to_location_id' => 64]);
+        DB::table('choices')->insert(['name' => 'Cafeteria', 'from_location_id' => 65, 'to_location_id' => 66]);
+        DB::table('choices')->insert(['name' => 'The Steer cabin', 'from_location_id' => 65, 'to_location_id' => 67]);
+        DB::table('choices')->insert(['id' => 145, 'name' => 'Put the switch in', 'from_location_id' => 65, 'to_location_id' => 68]);
+
+        DB::table('locations')->insert(['id' => 66, 'name' => 'Hungry?', 'area_id' => 3, 'title' => 'Hungry or thirsty?', 'story' => 'So here was where they eat and drink<br>
+        Its look pretty bad now but i could imagine it look better<br>
+        Well i guesses  there is nothing here<br>
+        But i am curious to see what is behind that locked door', 'foto_url' => '/img/cafeteria.png']);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 66, 'to_location_id' => 65]);
+        DB::table('choices')->insert(['id' => 147, 'name' => 'Explore the rest of the ship', 'from_location_id' => 66, 'to_location_id' => 69]);
+
+        DB::table('locations')->insert(['id' => 67, 'name' => 'A forbidden area', 'area_id' => 3, 'title' => 'Access needed', 'story' => 'Well there we are standing in front of the steer cabin<br>
+        Who known what is in there <br>
+        Perhaps there is a fortune there or dead<br>
+        But if i want to go to the sub bade i have to go inside', 'foto_url' => '/img/ShipDoor.png']);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 67, 'to_location_id' => 65]);
+        DB::table('choices')->insert(['id' => 149, 'name' => 'Go inside the cabin', 'from_location_id' => 67, 'to_location_id' => 70]);
+
+        DB::table('locations')->insert(['id' => 70, 'name' => 'Vrmmmmm', 'area_id' => 3, 'title' => 'A way to go', 'story' => 'So there we are<br>
+        I see a potion, pickaxe, and a flare? <br>
+        So can this ship sail? or is it broken<br>
+        I still have the switch but is that enough?', 'foto_url' => '/img/shipbridge.png']);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 70, 'to_location_id' => 67]);
+        DB::table('choices')->insert(['name' => 'Grab the flare', 'from_location_id' => 70, 'to_location_id' => '22/62']);
+        DB::table('choices')->insert(['name' => 'Grab the rainbow jar', 'from_location_id' => 70, 'to_location_id' => '22/24']);
+        DB::table('choices')->insert(['name' => 'Grab the pick axe', 'from_location_id' => 70, 'to_location_id' => '22/63']);
+        DB::table('choices')->insert(['id' => 154, 'name' => 'Go to the sub base', 'from_location_id' => 70, 'to_location_id' => 71]);
+
+        DB::table('locations')->insert(['id' => 68, 'name' => 'Machines', 'area_id' => 3, 'title' => 'Time please', 'story' => 'So........<br>
+        This the carrier can ride now?<br>
+        lets find the sub base then<br>
+        At least if the carrier can ride', 'foto_url' => '/img/Machine.png']);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 68, 'to_location_id' => 65]);
+        DB::table('choices')->insert(['name' => 'Use the switch', 'from_location_id' => 68, 'to_location_id' => '22/64']);
+
+        DB::table('locations')->insert(['id' => 71, 'name' => 'Survivors', 'area_id' => 4, 'title' => 'I`m not alone?', 'story' => 'Wel James was right there is a subbase<br>
+        And i see people walking around here and even soldiers?<br>
+        Did the virus get here or is it just to protect the survivors<br>
+        Well one is pointing where i can park <br>
+        <b>Soldier:</b> How do you get that carrier. Anyways <br>
+        If you`re not infected than you can sail to the docks. <br>
+        <b>Me:</b> Okay i sail to the docks <br>
+        Or do we sail away?', 'foto_url' => '/img/subbase.png']);
+        DB::table('choices')->insert(['name' => 'Sail back to the city', 'from_location_id' => 71, 'to_location_id' => 64]);
+        DB::table('choices')->insert(['name' => 'Sail to the docks', 'from_location_id' => 71, 'to_location_id' => 72]);
+
+        DB::table('locations')->insert(['id' => 72, 'name' => 'A new time', 'area_id' => 4, 'title' => 'A new time has come', 'story' => 'As you leave the carrier a soldier walks up and ask the following<br>
+        <b>Soldier:</b> Go stand over there we need to do a few checks <br>
+        <b>Me:</b> For what? <br>
+        <b>Soldier:</b> To see if you are not infected <br>
+        <b>Me:</b> i guess that was not necessary but okay <br>
+        <b>Soldier:</b>Your not infected so you can go on<br>
+        Perhaps you help people around here beacuse your the only one who is able to get back to the city<br>
+        And lots of people can use you`re help? <br>
+        <b>Me:</b> I take a look around', 'foto_url' => '/img/SubDocks.png']);
+        DB::table('choices')->insert(['name' => 'Go back on the carrier', 'from_location_id' => 72, 'to_location_id' => 71]);
+        DB::table('choices')->insert(['name' => 'Go on in the sub base', 'from_location_id' => 72, 'to_location_id' => 73]);
+        DB::table('choices')->insert(['name' => 'Talk to soldier kane', 'from_location_id' => 72, 'to_location_id' => '21/4']);
+        // Different emma version
+        DB::table('choices')->insert(['id' => 162, 'name' => 'Talk to the pregnant emma', 'from_location_id' => 72, 'to_location_id' => '21/2']);
+
+        DB::table('locations')->insert(['id' => 73, 'name' => 'The dark side', 'area_id' => 4, 'title' => 'Tales ahead', 'story' => 'Wondering while walking through the sub base<br>
+        Its seems quite big here and there were people around here, right? <br>
+        Or are they further down the base<br>
+        You listen carefully and hear voices. <br>
+        So they are indeed further in the base', 'foto_url' => '/img/exploreSub.png']);
+        DB::table('choices')->insert(['name' => 'Go back to the docks', 'from_location_id' => 73, 'to_location_id' => 72]);
+        DB::table('choices')->insert(['name' => 'Travel deeper inside the sub base', 'from_location_id' => 73, 'to_location_id' => 74]);
+
+        DB::table('locations')->insert(['id' => 74, 'name' => 'Well...', 'area_id' => 4, 'title' => 'Still no yard', 'story' => 'So..... How big is this sub base<br>
+        But there is a woman standing there<br>
+        She looks sad and lonely but should i ask if she is okay.<br>
+        But the noises are louder so. <br>
+        I don`t know what to do', 'foto_url' => '/img/Subhall.png']);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 74, 'to_location_id' => 73]);
+        DB::table('choices')->insert(['name' => 'Travel deeper inside the sub base', 'from_location_id' => 74, 'to_location_id' => 75]);
+        DB::table('choices')->insert(['name' => 'Talk to the widow Esmee', 'from_location_id' => 74, 'to_location_id' => '21/5']);
+
+        DB::table('locations')->insert(['id' => 75, 'name' => 'So', 'area_id' => 4, 'title' => 'Almost there', 'story' => 'Well at least we have found the yard<br>
+        But how many people are in there acutely<br>
+        Because there are 3 people already standing out here<br>
+        I hope they dint hear me at least<br>
+        So say hai or go on', 'foto_url' => '/img/NearSubYard.png']);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 75, 'to_location_id' => 74]);
+        DB::table('choices')->insert(['name' => 'Go to the yard', 'from_location_id' => 75, 'to_location_id' => 76]);
+        DB::table('choices')->insert(['name' => 'Talk to IT Teacher Peter', 'from_location_id' => 75, 'to_location_id' => '21/6']);
+        DB::table('choices')->insert(['name' => 'Talk to Student Arya', 'from_location_id' => 75, 'to_location_id' => '21/7']);
+        DB::table('choices')->insert(['name' => 'Talk to Domain leader Nina', 'from_location_id' => 75, 'to_location_id' => '21/8']);
+
+        DB::table('locations')->insert(['id' => 76, 'name' => 'Final Time', 'area_id' => 4, 'title' => 'Time to get social', 'story' => 'So here it is the yard<br>
+        There are too many people here<br>
+        I guess its time to be a bit more social than before<br>
+        Or do we go through that door at the end<br>
+        And how big is this base look how big this yard is', 'foto_url' => '/img/SubYard.png']);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 76, 'to_location_id' => 75]);
+        DB::table('choices')->insert(['name' => 'Go through the yard', 'from_location_id' => 76, 'to_location_id' => 77]);
+        DB::table('choices')->insert(['name' => 'Talk to Beauty king Lauren', 'from_location_id' => 76, 'to_location_id' => '21/9']);
+        DB::table('choices')->insert(['name' => 'Talk to Photographer Mike', 'from_location_id' => 76, 'to_location_id' => '21/10']);
+        DB::table('choices')->insert(['name' => 'Talk to Coach Marieke', 'from_location_id' => 76, 'to_location_id' => '21/11']);
+        DB::table('choices')->insert(['name' => 'Talk to Coach Jeroen', 'from_location_id' => 76, 'to_location_id' => '21/12']);
+        DB::table('choices')->insert(['name' => 'Talk to Mother Lieke', 'from_location_id' => 76, 'to_location_id' => '21/13']);
+        DB::table('choices')->insert(['name' => 'Talk to Student Ariëlle', 'from_location_id' => 76, 'to_location_id' => '21/14']);
+        DB::table('choices')->insert(['name' => 'Talk to Owner Iris', 'from_location_id' => 76, 'to_location_id' => '21/15']);
+        DB::table('choices')->insert(['name' => 'Talk to Support teacher Judith ', 'from_location_id' => 76, 'to_location_id' => '21/16']);
+        DB::table('choices')->insert(['name' => 'Talk to Scout dylan', 'from_location_id' => 76, 'to_location_id' => '21/17']);
+        DB::table('choices')->insert(['name' => 'Talk to Designer Tim', 'from_location_id' => 76, 'to_location_id' => '21/18']);
+        DB::table('choices')->insert(['name' => 'Talk to Programmer Deona', 'from_location_id' => 76, 'to_location_id' => '21/19']);
+
         DB::table('locations')->insert(['id' => 15, 'name' => 'You encounter something', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 21, 'name' => 'Npc time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 22, 'name' => 'Item time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);

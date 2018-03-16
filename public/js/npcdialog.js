@@ -68,6 +68,15 @@ $(function () {
                 var checkAnswerArray = $.grep(dialoganswers, function (e) {
                     return e.dialog_id == answerid;
                 });
+                checkAnswerArray.forEach(function (index) {
+                    var checkSide = index['condition_value'] != null
+                    if(checkSide == true) {
+                        //Need some change for future npc`s and Make a Condition check because of the party system
+                       checkAnswerArray.splice(1, 1);
+                    } else {
+                        return;
+                    }
+                })
                 if (checkDialogArray) {
                     buttoninfo = [];
                     $.each(checkAnswerArray, function (i, l) {

@@ -46,6 +46,9 @@
                                 @elseif ($area_id == 2)
                                     <button><a href="/location/34">Go to the station</a></button>
                                     <button><a href="/location/50">Go to the bank</a></button>
+                                @elseif ($area_id == 3)
+                                    <button><a href="/location/32">Go back on the sea</a></button>
+                                    <button><a href="/location/64">Go on the ship</a></button>
                                 @else
                                     <p> No locations available for this time</p>
                                 @endif

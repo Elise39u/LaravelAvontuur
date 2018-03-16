@@ -116,6 +116,7 @@
         }
     </script>
     <script type="text/javascript" src="{{asset('js/npcdialog.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/keys.js')}}"></script>
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">

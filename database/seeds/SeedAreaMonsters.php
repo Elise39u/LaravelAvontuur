@@ -28,5 +28,14 @@ class SeedAreaMonsters extends Seeder
         DB::table('area_monsters')->insert(['area_id' => 2, 'monster_id' => 10]);
         DB::table('area_monsters')->insert(['area_id' => 2, 'monster_id' => 11]);
         DB::table('area_monsters')->insert(['area_id' => 2, 'monster_id' => 12]);
+
+        // Area 15/3
+        DB::table('area_monsters')->insert(['area_id' => 3, 'monster_id' => 13]);
+        DB::table('area_monsters')->insert(['area_id' => 3, 'monster_id' => 14]);
+        DB::table('area_monsters')->insert(['area_id' => 3, 'monster_id' => 15]);
+        DB::table('area_monsters')->insert(['area_id' => 3, 'monster_id' => 16]);
+        DB::table('area_monsters')->insert(['area_id' => 3, 'monster_id' => 17]);
+        DB::table('area_monsters')->insert(['area_id' => 3, 'monster_id' => 18]);
+        DB::table('area_monsters')->insert(['area_id' => 3, 'monster_id' => 19]);
     }
 }
