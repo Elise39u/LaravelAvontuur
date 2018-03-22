@@ -57,6 +57,6 @@ class SeedNpcs extends Seeder
         I need a camera for my youtube career<br>
         Maby you can get someone perhaps or some wine i`m thirsty <br>
         Or is that too much asked? you know what the reward could be<br>
-        Perhaps i shouldn`t doo that too my husband', 'Talk' => 'Well also hi Lauren', 'location_id' => 75]);
+        Perhaps i shouldn`t doo that too my husband', 'Talk' => 'Well also hi Lauren', 'location_id' => 76]);
     }
 }
