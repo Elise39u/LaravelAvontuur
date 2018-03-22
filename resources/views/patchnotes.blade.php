@@ -77,11 +77,11 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;So what ever you do do not visit them by clicking the link <br></i></p>
                     <ul>
                         <li>Soldier Kane (Sub base docks)</li>
-                        <li>Widow Esmee (Sub base Hallway)(Does not exist yet in the database)</li>
-                        <li>IT Teacher Peter (Sub base Outside the yard)(Does not exist yet in the database)</li>
-                        <li>Student Arya (Sub base Outside the yard)(Does not exist yet in the database)</li>
-                        <li>Domain leader Nina (Sub base Outside the yard)(Does not exist yet in the database)</li>
-                        <li>Beauty King Lauren (Sub base yard)(Does not exist yet in the database)</li>
+                        <li>Widow Esmee (Sub base Hallway)</li>
+                        <li>IT Teacher Peter (Sub base Outside the yard)</li>
+                        <li>Student Arya (Sub base Outside the yard)</li>
+                        <li>Domain leader Nina (Sub base Outside the yard)</li>
+                        <li>Beauty King Lauren (Sub base yard)</li>
                         <li>Photographer Mike  (Sub base yard)(Does not exist yet in the database)</li>
                         <li>Coach Marieke      (Sub base yard)(Does not exist yet in the database)</li>
                         <li>Coach Jeroen       (Sub base yard)(Does not exist yet in the database)</li>
