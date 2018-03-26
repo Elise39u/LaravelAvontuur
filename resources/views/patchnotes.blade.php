@@ -82,9 +82,9 @@
                         <li>Student Arya (Sub base Outside the yard)</li>
                         <li>Domain leader Nina (Sub base Outside the yard)</li>
                         <li>Beauty King Lauren (Sub base yard)</li>
-                        <li>Photographer Mike  (Sub base yard)(Does not exist yet in the database)</li>
-                        <li>Coach Marieke      (Sub base yard)(Does not exist yet in the database)</li>
-                        <li>Coach Jeroen       (Sub base yard)(Does not exist yet in the database)</li>
+                        <li>Photographer Mike  (Sub base yard)</li>
+                        <li>Coach Marieke      (Sub base yard)</li>
+                        <li>Coach Jeroen       (Sub base yard)</li>
                         <li>Mother Lieke       (Sub base yard)(Does not exist yet in the database)</li>
                         <li>Student Ariëlle    (Sub base yard)(Does not exist yet in the database)</li>
                         <li>Owner Iris         (Sub base yard)(Does not exist yet in the database)</li>
@@ -118,6 +118,7 @@
                         <li>A reward for leveling up</li>
                         <li>Npc`s dialog trees</li>
                         <li>A look in the magical_attack stat for potion`s or a separate stat attack</li>
+                        <li>A look to the condition quest system or double quest system</li>
                     </ul>
                 </div>
             </div>
