@@ -58,5 +58,24 @@ class SeedNpcs extends Seeder
         Maby you can get someone perhaps or some wine i`m thirsty <br>
         Or is that too much asked? you know what the reward could be<br>
         Perhaps i shouldn`t doo that too my husband', 'Talk' => 'Well also hi Lauren', 'location_id' => 76]);
+        DB::table('npcs')->insert(['id' => 10, 'name' => 'Photographer Mike', 'foto_url' => '/img/npc/Mike.png', 'story' => 'Hello there stranger<br>
+        How is it going in your life at this sad moment<br>
+        I ended up here after i was looking for a creature in this outbreak<br>
+        The last place i saw him was on the river near the city<br>
+        Perhaps you could help me spot it once again', 'Talk' => 'Now Mike', 'location_id' => 76]);
+        DB::table('npcs')->insert(['id' => 11, 'name' => 'Coach Marieke', 'foto_url' => '/img/npc/CoachMarieke.png', 'story' => 'Well hello there<br>
+        I ended up here after a 6 month vacation with Mark, Esther, Corine, Jeroen, Justin<br>
+        Well only Jeroen Because we lost the others in run to the army, I hope they are okay<br>
+        Perhaps we could look for them if i make it with my state<br>
+        Its justin`s child but i never told some one about the story <br>
+        The still believe it`s a one night stand <br>
+        Perhaps i should tell them or not and its rough already 28 weeks', 'Talk' => 'Also hai Marieke', 'location_id' => 76]);
+        DB::table('npcs')->insert(['id' => 12, 'name' => 'Coach Jeroen', 'foto_url' => '/img/npc/Jeroen.png', 'story' => 'Well hello there stranger<br>
+        I ended up here after a 6 month vacation with Mark, Esther, Corine, Marieke, Justin<br>
+        The stupid part is the Marieke got pregnant by justin<br>
+        She is a bit forgetful sins 20 weeks into her pregnancy <br>
+        But its sad that the child won`t have a dad so we disgust and if we won`t find the rest i wil take the roll <br>
+        Yeah its sad but better one dad than no dad <br>
+        Perhaps you can find justin or the rest', 'Talk' => 'Who write that around you Jeroen?', 'location_id' => 76]);
     }
 }
