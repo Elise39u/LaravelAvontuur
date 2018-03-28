@@ -85,11 +85,11 @@
                         <li>Photographer Mike  (Sub base yard)</li>
                         <li>Coach Marieke      (Sub base yard)</li>
                         <li>Coach Jeroen       (Sub base yard)</li>
-                        <li>Mother Lieke       (Sub base yard)(Does not exist yet in the database)</li>
-                        <li>Student Ariëlle    (Sub base yard)(Does not exist yet in the database)</li>
-                        <li>Owner Iris         (Sub base yard)(Does not exist yet in the database)</li>
-                        <li>Support Teacher Judith (Sub base yard)(Does not exist yet in the database)</li>
-                        <li>Scout Dylan        (Sub base yard)(Does not exist yet in the database)</li>
+                        <li>Mother Lieke       (Sub base yard)</li>
+                        <li>Student Ariëlle    (Sub base yard)</li>
+                        <li>Owner Iris         (Sub base yard)</li>
+                        <li>Support Teacher Judith (Sub base yard)</li>
+                        <li>Scout Dylan        (Sub base yard)</li>
                         <li>Designer Tim       (Sub base yard)(Does not exist yet in the database)</li>
                         <li>Programmer Deona   (Sub base yard)(Does not exist yet in the database)</li>
                     </ul><br>
@@ -100,7 +100,8 @@
                     <p>Nerfs</p>
                     <ul>
                         <li>None</li>
-                    </ul>
+                    </ul><br>
+
                     <p>Npc New Yorker James has now a completed dialog</p>
                     <p>Npc Pregnant new emma has now a completed dialog (A feature later on should expend the tree)</p>
                     <p>Npc Farmer Dave has now a completed dialog </p>
@@ -112,7 +113,6 @@
                     <p>Planned Features for 1.2</p>
                     <ul>
                         <li>Party system for the player</li>
-                        <li>Npc`s that are not yet in the database <i> This is for issue solving </i></li>
                         <li>Location`s behind the mall and the bank</li>
                         <li>Quest`s for some npc`s</li>
                         <li>A reward for leveling up</li>

@@ -63,13 +63,8 @@ class SeedNpcs extends Seeder
         I ended up here after i was looking for a creature in this outbreak<br>
         The last place i saw him was on the river near the city<br>
         Perhaps you could help me spot it once again', 'Talk' => 'Now Mike', 'location_id' => 76]);
-        DB::table('npcs')->insert(['id' => 11, 'name' => 'Coach Marieke', 'foto_url' => '/img/npc/CoachMarieke.png', 'story' => 'Well hello there<br>
-        I ended up here after a 6 month vacation with Mark, Esther, Corine, Jeroen, Justin<br>
-        Well only Jeroen Because we lost the others in run to the army, I hope they are okay<br>
-        Perhaps we could look for them if i make it with my state<br>
-        Its justin`s child but i never told some one about the story <br>
-        The still believe it`s a one night stand <br>
-        Perhaps i should tell them or not and its rough already 28 weeks', 'Talk' => 'Also hai Marieke', 'location_id' => 76]);
+        #TODO: Rewrite Marieke story based on Judith one
+        DB::table('npcs')->insert(['id' => 11, 'name' => 'Coach Marieke', 'foto_url' => '/img/npc/CoachMarieke.png', 'story' => '', 'Talk' => 'Also hai Marieke', 'location_id' => 76]);
         DB::table('npcs')->insert(['id' => 12, 'name' => 'Coach Jeroen', 'foto_url' => '/img/npc/Jeroen.png', 'story' => 'Well hello there stranger<br>
         I ended up here after a 6 month vacation with Mark, Esther, Corine, Marieke, Justin<br>
         The stupid part is the Marieke got pregnant by justin<br>
@@ -77,5 +72,48 @@ class SeedNpcs extends Seeder
         But its sad that the child won`t have a dad so we disgust and if we won`t find the rest i wil take the roll <br>
         Yeah its sad but better one dad than no dad <br>
         Perhaps you can find justin or the rest', 'Talk' => 'Who write that around you Jeroen?', 'location_id' => 76]);
+        DB::table('npcs')->insert(['id' => 13, 'name' => 'Mother Lieke', 'foto_url' => '/img/npc/Lieke.png', 'story' => 'Well hi there player<br>
+        Yeah i called you player because you are right?<br>
+        Your somewhere behind a screen in the world. But that is not the problem now<br>
+        Sorry about that but i have 2 kids to keep busy<br>
+        And i think its start taking it toll on me<br>
+        i`m exhausted i can use some sleep<br>
+        Perhaps you can get them a drink or play with them', 'Talk' => 'working with kids is great', 'location_id' => 76]);
+        DB::table('npcs')->insert(['id' => 14, 'name' => 'Student Ariëlle', 'foto_url' => '/img/npc/Ariëlle.png', 'story' => 'Great and there is someone again<br>
+        Its like school was already worse but than you go on vacation and get this <br>
+        I think you live under a rock because its already 14 weeks busy <br>
+        And if you look around i wont think its over anytime soon<br>
+        At least if they come inside its over <br>
+        I think there wont come any rescue soon so<br>
+        And its look like the soldiers are even done with it', 'Talk' => 'Well Ariëlle...', 'location_id' => 76]);
+        DB::table('npcs')->insert(['id' => 15, 'name' => 'Owner Iris', 'foto_url' => '/img/npc/Iris.png', 'story' => 'So hit there i hope your have a question<br>
+        I don\'t have much time so make it quick <br>
+        Well perhaps sins i am here i well can make some time free <br>
+        Its like i can`t run a store here because no one has money around here<br>
+        So sorry to say but my name is Iris i lived here in new york for like 35 years now<br>
+        Well perhaps you have some money', 'Talk' => 'You have a store here?', 'location_id' => 76]);
+        DB::table('npcs')->insert(['id' => 16, 'name' => 'Support teacher Judith', 'foto_url' => '/img/npc/Judith.png', 'story' => 'Well hi there player<br>
+        this went quite wrong he and ignore him in the background<br>
+        Take a break james i wil be back in 5 minutes<br>
+        <b>James:</b> Okay judith see you soon <br>
+        <b>Judith:</b>Well were we again ow yeah life here right now. <br>
+        Its was quite weird when i met people here from my workplace in the Netherlands<br>
+        <b>You:</b> Like who?<br>
+        <b>Judith:</b> Well Marieke, Jeroen those folks. forgot they to tell you about me<br>
+        <b>You:</b> I think so perhaps i should ask it again <br>
+        <b>Judith:</b> The only weird thing was to see Marieke with a belly she said she was 14 weeks already <br>
+        She was allowed to sill fly. I still wonder who the dad is<br>
+        Because they were only just 2 weeks on vacation so.<br>
+        <b>You:</b> They told me its Justin but if she already came here pregnant <br>
+        <b>Judith:</b> She slept with him but wait came here pregnant? <br>
+        <b>You:</b> She told me she thought it was him because they had a one night stand <br>
+        But she also told me that they met him on the vacation that`s why <br>
+        <b>Judith:</b> I can`t believe she slept with him', 'Talk' => 'Is he that bad?', 'location_id' => 76]);
+        DB::table('npcs')->insert(['id' => 17, 'name' => 'Scout Dylan', 'foto_url' => '/img/npc/Dylan.png', 'story' => 'Well hi there stranger or player<br>
+        I am dylan and i am 16 years old <br>
+        It is sad that this happened right in the week before camp<br>
+        At least i am safe here. I could not think of beaning right out there now<br>
+        I hope the rest of my scout group is okay<br>
+        Because no one is answering there phone', 'Talk' => 'Hi Dylan. Should i look for them?', 'location_id' => 76]);
     }
 }
