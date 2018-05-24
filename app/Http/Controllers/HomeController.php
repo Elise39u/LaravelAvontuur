@@ -160,13 +160,15 @@ class HomeController extends Controller
     public function npc($id = null)
     {
         $npc_id = Npcs::findOrFail($id);
+        $User = Auth::user();
+        $Username = $User->name;
         if (!$npc_id->exists()) {
             return view('error');
         } elseif ($npc_id->id == '' or $npc_id->id === NULL or !$npc_id->id) {
             $npc_id = Npcs::find(1);
-            return view('npc')->with('npcinfo', $npc_id);
+            return view('npc')->with('npcinfo', $npc_id)->with('Username', $Username);
         } else {
-            return view('npc')->with('npcinfo', $npc_id);
+            return view('npc')->with('npcinfo', $npc_id)->with('Username', $Username);
         }
     }
 

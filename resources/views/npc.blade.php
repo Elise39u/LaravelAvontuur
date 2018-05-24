@@ -1,5 +1,12 @@
 @extends('layouts.app')
 @section('content')
+<?php
+    $changeStory = false;
+    if (strpos($npcinfo->story, "username")) {
+        $newStory = str_replace("username", $Username, $npcinfo->story);
+        $changeStory = true;
+    }
+?>
     <div class="container">
     <div class="row">
         <div id="dialog-2" title="dialoge">
@@ -11,7 +18,11 @@
 
                 <div class="panel-body">
                     <img class="npcimg" src="{{URL::asset($npcinfo->foto_url)}}">
+                    @if ($changeStory == true)
+                    <p>{!! $newStory !!}</p>
+                    @else
                     <p>{!! $npcinfo->story !!}</p>
+                    @endif
                     <li class="menuchoice"><a class="link" href="/location/{{ $npcinfo->location_id }}">Go back</a></li>
                     <button id="opener-2" class="npcbutton">{{$npcinfo->Talk}}</button>
                     <?php $npcActions = App\DialogAnswer::with('Actions')->get(); ?>
