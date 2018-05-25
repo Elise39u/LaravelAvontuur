@@ -108,6 +108,12 @@
                     <p>When a quest Activated the user won`t be able to talk to the Npc from the quest </p>
                     <p>A quest can now be Completed and showed as Completed in the quest Journey</p>
                     <p>A completed quest can now reward a item</p>
+                    <p>Made some changes to the NPC system</p>
+                        <ul>
+                            <li>Rewrote Coach Marieke And Coach Jeroen to a new story</li>
+                            <li>And added a new thing to the NPC system for Marieke,Jeroen,Judith so far</li>
+                            <li>This change will Players notice to wich npc are relevant to the story</li>
+                        </ul>
                     <br><br>
 
                     <p>Planned Features for 1.2</p>
