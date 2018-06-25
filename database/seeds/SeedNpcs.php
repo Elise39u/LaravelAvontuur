@@ -207,7 +207,7 @@ class SeedNpcs extends Seeder
         But one thing bothered me during our conversation he seemed quite a bit uncomfortable<br>
         I noticed that Justin looked quite a bit at my belly i think he liked my belly<br> 
         i think he got a bit uncomfortable because of my pregnant state<br>
-        username do you think Justin has a pregnant fetish?', 'Talk' => 'Ehhhee I need more evidence', 'location_id' => 76]);
+        username do you think Justin has maiesiophilia', 'Talk' => 'Ehhhee I need more evidence', 'location_id' => 76]);
         DB::table('npcs')->insert(['id' => 17, 'name' => 'Scout Dylan', 'foto_url' => '/img/npc/Dylan.png', 'story' => 'Well hi there stranger or username<br>
         I am dylan and i am 16 years old <br>
         It is sad that this happened right in the week before camp<br>

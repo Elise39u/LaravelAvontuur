@@ -279,11 +279,22 @@ class HomeController extends Controller
                 $won = 1;
                 $random = rand(0, 100);
                 $chance = $monster[0]['chance'];
-                $level_up = 0;
+                $exp = $player['current_exp'] + $monster[0]['xp'];
+                if($exp > $player['exp_needed_to_next_level']) {
+                    $user_curhp = User::find(Auth::user()->id);
+                    $user_curhp->curhp = $player['curhp'];
+                    $user_curhp->current_exp = $exp;
+                    $user_curhp->gold = $player['gold'] + $monster[0]['gold'];
+                    $user_curhp->level = $user_curhp->level + 1;
+                    $user_curhp->save();
+                    $level_up = 1;
+                    Session::flash('level', $level_up);
+                    return redirect()->to('/location/15/' . $area_id)->with('won', $won)->with('combat', $combat)->with('monster', $monsters);
+                }
                 if ($chance <= $random) {
                     $user_curhp = User::find(Auth::user()->id);
                     $user_curhp->curhp = $player['curhp'];
-                    $user_curhp->current_exp = $player['current_exp'] + $monster[0]['xp'];
+                    $user_curhp->current_exp = $exp;
                     $user_curhp->gold = $player['gold'] + $monster[0]['gold'];
                     $user_curhp->save();
                     return redirect()->to('/location/15/' . $area_id)->with('won', $won)->with('combat', $combat)->with('monster', $monsters);
@@ -912,5 +923,66 @@ class HomeController extends Controller
         $user_stat->gold = $user_stat->gold + $gold;
         $user_stat->save();
         return $gold;
+    }
+
+    public function upgradeStat() {
+        $area_id = Session::get('area_id');
+        $user_stat = User::find(Auth::user()->id);
+        if(isset($_POST['submit']))
+        {
+            if(isset($_POST['magic_attack'])) {
+                if($user_stat->level > 1 || $user_stat->level <= 14) {
+                    $user_stat->magical_attack = $user_stat->magical_attack + 15;
+                } elseif($user_stat->level >= 15 || $user_stat->level <= 25) {
+                    $user_stat->magical_attack = $user_stat->magical_attack + 60;
+                } elseif ($user_stat->level >= 26 || $user_stat->level <= 44) {
+                    $user_stat->magical_attack = $user_stat->magical_attack + 175;
+                } else {
+                    $user_stat->magical_attack = $user_stat->magical_attack + 350;
+                }
+            } elseif(isset($_POST['attack'])) {
+                if($user_stat->level > 1 || $user_stat->level <= 14) {
+                    $user_stat->attack = $user_stat->attack + 50;
+                } elseif($user_stat->level >= 15 || $user_stat->level <= 25) {
+                    $user_stat->attack = $user_stat->attack + 250;
+                } elseif ($user_stat->level >= 26 || $user_stat->level <= 44) {
+                    $user_stat->attack = $user_stat->attack + 750;
+                }  else {
+                    $user_stat->attack = $user_stat->attack + 2000;
+                }
+            } elseif(isset($_POST['defense'])) {
+                if($user_stat->level > 1 || $user_stat->level <= 14) {
+                    $user_stat->defense = $user_stat->defense + 50;
+                } elseif($user_stat->level >= 15 || $user_stat->level <= 25) {
+                    $user_stat->defense = $user_stat->defense + 250;
+                } elseif ($user_stat->level >= 26 || $user_stat->level <= 44) {
+                    $user_stat->defense = $user_stat->defense + 750;
+                } else {
+                    $user_stat->defense = $user_stat->defense + 2000;
+                }
+            } elseif(isset($_POST['curhp'])) {
+                if($user_stat->level > 1 || $user_stat->level <= 14) {
+                    $user_stat->curhp = $user_stat->curhp + 100;
+                } elseif($user_stat->level >= 15 || $user_stat->level <= 25) {
+                    $user_stat->curhp = $user_stat->curhp + 200;
+                } elseif ($user_stat->level >= 26 || $user_stat->level <= 44) {
+                    $user_stat->curhp = $user_stat->curhp + 800;
+                } else {
+                    $user_stat->curhp = $user_stat->curhp + 2500;
+                }
+            } else {
+                if($user_stat->level > 1 || $user_stat->level <= 14) {
+                    $user_stat->maxhp = $user_stat->maxhp + 150;
+                } elseif($user_stat->level >= 15 || $user_stat->level <= 25) {
+                    $user_stat->maxhp = $user_stat->maxhp + 250;
+                } elseif ($user_stat->level >= 26 || $user_stat->level <= 44) {
+                    $user_stat->maxhp = $user_stat->maxhp + 900;
+                } else {
+                    $user_stat->maxhp = $user_stat->maxhp + 2800;
+                }
+            }
+            $user_stat->save();
+            return redirect()->to('/location/15/' . $area_id);
+        }
     }
 }

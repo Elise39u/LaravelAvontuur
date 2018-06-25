@@ -83,6 +83,7 @@
                     <p>Party System is done</p>
                     <p>  <i> This can be obtained by help of certain npcs ;)</i> <br>
                         Secret system is done with info about my story</p>
+                    <p> A level reward system is done for the player (Currently only supports monster fights --> Attack Monster)</p>
 
                     <p>Planned Features for 1.2</p>
                     <ul>
