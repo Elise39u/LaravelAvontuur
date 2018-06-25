@@ -33,5 +33,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SeedUsers::class);
         $this->call(SeedWarehouses::class);
         $this->call(SeedTokens::class);
+        $this->call(SeederLocationConditions::class);
     }
 }

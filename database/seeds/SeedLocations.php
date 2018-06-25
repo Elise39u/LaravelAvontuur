@@ -554,6 +554,73 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['name' => 'Talk to Designer Tim', 'from_location_id' => 76, 'to_location_id' => '21/18']);
         DB::table('choices')->insert(['name' => 'Talk to Programmer Deona', 'from_location_id' => 76, 'to_location_id' => '21/19']);
 
+        DB::table('locations')->insert(['id' => 61, 'name' => 'A tale a head?', 'area_id' => 1, 'title' => 'A new time ahead', 'story' => 'As you leave the mall you look around<br>
+        The road is going in a L shape to the right<br>
+        I can see what seems to be a school and a hotel?<br>
+        Well its time to check them out<br>
+        It could be that there are people in those places', 'foto_url' => '/img/Tales.png']);
+        DB::table('choices')->insert(['name' => 'Go back in the Mall', 'from_location_id' => 61, 'to_location_id' => 24]);
+        DB::table('choices')->insert(['name' => 'Go towards the school', 'from_location_id' => 61, 'to_location_id' => 79]);
+        DB::table('choices')->insert(['name' => 'Go towards the hotel', 'from_location_id' => 61, 'to_location_id' => 80]);
+
+        DB::table('locations')->insert(['id' => 79, 'name' => 'Study time', 'area_id' => 1, 'title' => 'A new Lesson to learn', 'story' => 'You are approaching the school<br>
+        You look inside the class rooms and see some people standing around<br>
+        The question still remains if its safe to go inside the school<br>
+        No one except they know how its inside that building<br>
+        And if its even safe to go inside', 'foto_url' => '/img/School.png']);
+        DB::table('choices')->insert(['name' => 'Go back towards the mall', 'from_location_id' => 79, 'to_location_id' => 61]);
+        DB::table('choices')->insert(['name' => 'Go inside the school', 'from_location_id' => 79, 'to_location_id' => 81]);
+
+        DB::table('locations')->insert(['id' => 81, 'name' => 'Time for a lesson', 'area_id' => 5, 'title' => 'A new Lesson to learn', 'story' => 'Now well this school started too fall apart<br>
+        I see some class rooms and a stair way <br>
+        I think its time to check the class rooms<br>
+        And perhaps ask if someone wants coffee :)<br>
+        Now time to get social', 'foto_url' => '/img/schoolhall.png']);
+        DB::table('choices')->insert(['name' => 'Go back outside', 'from_location_id' => 81, 'to_location_id' => 79]);
+        DB::table('choices')->insert(['name' => 'Go to classroom 1', 'from_location_id' => 81, 'to_location_id' => 82]);
+        DB::table('choices')->insert(['name' => 'Go to classroom 2', 'from_location_id' => 81, 'to_location_id' => 83]);
+        DB::table('choices')->insert(['name' => 'Go to classroom 3', 'from_location_id' => 81, 'to_location_id' => 84]);
+        DB::table('choices')->insert(['name' => 'Go to the stairway', 'from_location_id' => 81, 'to_location_id' => 85]);
+        DB::table('choices')->insert(['name' => 'Go to aula', 'from_location_id' => 81, 'to_location_id' => 86]);
+
+        DB::table('locations')->insert(['id' => 82, 'name' => 'Eco Time', 'area_id' => 5, 'title' => 'Well what do we learn', 'story' => 'Well there are some people around here<br>
+        It could be they need help<br>
+        <b>Corine:</b> Hey you can you help us?<br>
+        that is depending on your situation <br>
+        <b>Corine:</b> Well at least give it a try', 'foto_url' => '/img/classroom1.png']);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 82, 'to_location_id' => 81]);
+        DB::table('choices')->insert(['name' => 'Go talk to Coach Corine', 'from_location_id' => 82, 'to_location_id' => '21/20']);
+        DB::table('choices')->insert(['name' => 'Go talk to Coach Esther', 'from_location_id' => 82, 'to_location_id' => '21/21']);
+        DB::table('choices')->insert(['name' => 'Go talk to RT teacher Dorine', 'from_location_id' => 82, 'to_location_id' => '21/22']);
+        DB::table('choices')->insert(['name' => 'Go talk to Student Dylan', 'from_location_id' => 82, 'to_location_id' => '21/23']);
+
+        DB::table('locations')->insert(['id' => 83, 'name' => 'Math Time', 'area_id' => 5, 'title' => 'a learning lesson?', 'story' => 'This class rooms seem more empty<br>
+        And again there are people here<br>
+        Maby this school is a shelter against the virus <br>
+        Well perhaps they need help? <br>
+        Time to make a talk', 'foto_url' => '/img/classroom2.png']);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 83, 'to_location_id' => 81]);
+        DB::table('choices')->insert(['name' => 'Go talk to Teacher Edwin', 'from_location_id' => 83, 'to_location_id' => '21/24']);
+        DB::table('choices')->insert(['name' => 'Go talk to zoco Willy', 'from_location_id' => 83, 'to_location_id' => '21/25']);
+        DB::table('choices')->insert(['name' => 'Go talk to student Robin', 'from_location_id' => 83, 'to_location_id' => '21/26']);
+        DB::table('choices')->insert(['name' => 'Go talk to Teacher Jurgen', 'from_location_id' => 83, 'to_location_id' => '21/27']);
+
+        DB::table('locations')->insert(['id' => 84, 'name' => 'Nothing', 'area_id' => 5, 'title' => 'Empty that is a surprise', 'story' => 'This class rooms is empty<br>
+        Or is it empty. Perhaps a classroom at all<br>
+        one thing is sure no people around here so<br>
+        I guesses nothing to do here<br>
+        Time to go back', 'foto_url' => '/img/classroom3.png']);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 84, 'to_location_id' => 81]);
+
+        DB::table('locations')->insert(['id' => 86, 'name' => 'Nothing', 'area_id' => 5, 'title' => 'Well this is quite big', 'story' => 'Damm this aula is quite big<br>
+        There is only one person so far i can see but this is too big<br>
+        Well is see a backdoor <br>
+        Perhaps its a time to look behind it<br>
+        Or should we ask that woman what she want', 'foto_url' => '/img/schoolaula.png']);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 86, 'to_location_id' => 81]);
+        DB::table('choices')->insert(['name' => 'Go to the school kitchen', 'from_location_id' => 86, 'to_location_id' => 87]);
+        DB::table('choices')->insert(['name' => 'Go talk to Art Teacher Christina', 'from_location_id' => 86, 'to_location_id' => '21/28']);
+
         DB::table('locations')->insert(['id' => 15, 'name' => 'You encounter something', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 21, 'name' => 'Npc time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 22, 'name' => 'Item time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);

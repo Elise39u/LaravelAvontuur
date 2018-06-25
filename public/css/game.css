@@ -81,3 +81,35 @@
 i {
     color: #668b8f;
 }
+
+.modal-party .modal-header{
+    background: #002a43;
+    border: 1px solid #002a43;
+    color: #CFCFCF;
+}
+.modal-party .modal-body {
+    background-color: #919191;
+    color: white;
+}
+
+.modal-party .modal-footer{
+    background: #002a43;
+    border: 1px solid #002a43;
+    color: #CFCFCF;
+}
+
+.modal-quest .modal-header{
+    background: #002a43;
+    border: 1px solid #002a43;
+    color: #CFCFCF;
+}
+.modal-quest .modal-body {
+    background-color: #919191;
+    color: white;
+}
+
+.modal-quest .modal-footer{
+    background: #002a43;
+    border: 1px solid #002a43;
+    color: #CFCFCF;
+}

@@ -10,6 +10,7 @@ use App\inventory_item;
 use App\item_type;
 use App\Items;
 use App\monster_type;
+use App\player_parties;
 use App\Quest;
 use App\Monsters;
 use App\Token;
@@ -23,6 +24,7 @@ use App\Npcs;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Party;
 
 class HomeController extends Controller
 {
@@ -277,6 +279,7 @@ class HomeController extends Controller
                 $won = 1;
                 $random = rand(0, 100);
                 $chance = $monster[0]['chance'];
+                $level_up = 0;
                 if ($chance <= $random) {
                     $user_curhp = User::find(Auth::user()->id);
                     $user_curhp->curhp = $player['curhp'];
@@ -595,8 +598,8 @@ class HomeController extends Controller
             $token = NULL;
         }
         $user_id = Auth::user()->id;
-        $status = json_encode(UserQuest::with('checkQuest')->where('quest_id', $npc_id)->where('player_id', $user_id)->get());
-        if($status == '[]') {
+        $status = json_encode(UserQuest::with('checkQuest')->where('npc_id', $npc_id)->where('player_id', $user_id)->get());
+        if ($status == '[]') {
             echo json_encode(array("trick" => 'No quest detected', "Status" => "Unknown"));
         } else {
             $test = json_decode($status);
@@ -605,38 +608,59 @@ class HomeController extends Controller
                 $quest_state = json_decode($user_status);
                 $user_status[0]->status = 'Active';
                 $user_status[0]->save();
-                echo json_encode(array("trick" => 'Quest ' . $test[0]->check_quest[0]->name . ' Activated', "Status" => "Activated"));
-            } elseif ($test[0]->status == 'unknown') {
-                echo json_encode(array("trick" => 'Quest discovered ' . $test[0]->check_quest[0]->name, 'Status' => 'Unknown'));
-            } elseif ($test[0]->status == 'Active') {
-                $quest_id = UserQuest::wherenpc_id($npc_id)->where('player_id', $user_id)->get();
-                $quest_check = $this->updateQuest($npc_id, $quest_id[0]->id);
-                if ($quest_check == true) {
-                    $user_status = UserQuest::wherenpc_id($npc_id)->whereplayer_id($user_id)->get();
-                    $quest_item = Quest::where("id", $quest_id[0]->id)->get();
-                    if ($quest_item[0]->item_reward == null) {
+
+                if ($test[0]->check_quest[0]->condition == "INSERT NPC INTO PARTY") {
+                    $party_id = Party::where('player_id', Auth::user()->id)->get();
+                    $user_party = player_parties::with("partyCheck")->where("party_id", $party_id[0]->id)->get();
+                    $party_array = json_decode($user_party);
+                    if ($party_array == '[]' || $party_array == []) {
+                        $party = player_parties::whereparty_id($party_id)->get();
+                        $data = [
+                            "party_id" => $party_id[0]->id,
+                            "npc_id" => $test[0]->check_quest[0]->condition_value
+                        ];
+                        player_parties::insert($data);
                     } else {
-                        $item_id = $quest_item[0]->item_reward;
-                        $inventory_id = Auth::user()->inventory_id;
-                        $itemInventory = new inventory_item;
-                        $itemInventory->inventory_id = $inventory_id;
-                        $itemInventory->item_id = $item_id;
-                        $itemInventory->save();
+                        $party = player_parties::whereparty_id($party_id)->get();
+                        $data = [
+                            "npc_id" => $test[0]->check_quest[0]->condition_value
+                        ];
+                        player_parties::insert($data);
                     }
-                    $user_status[0]->status = 'Completed';
-                    $user_stat = User::find(Auth::user()->id);
-                    $user_stat->gold = $user_stat->gold + $quest_item[0]->gold;
-                    $user_stat->current_exp = $user_stat->current_exp + $quest_item[0]->experience;
-                    $user_status[0]->save();
-                    $user_stat->save();
-                    echo json_encode(array("trick" => "You completed it", "Status" => "Completed"));
+
+                    echo json_encode(array("trick" => 'Quest ' . $test[0]->check_quest[0]->name . ' Activated', "Status" => "Activated"));
+                } elseif ($test[0]->status == 'unknown') {
+                    echo json_encode(array("trick" => 'Quest discovered ' . $test[0]->check_quest[0]->name, 'Status' => 'Unknown'));
+                } elseif ($test[0]->status == 'Active') {
+                    $quest_id = UserQuest::wherenpc_id($npc_id)->where('player_id', $user_id)->get();
+                    $quest_check = $this->updateQuest($npc_id, $quest_id[0]->id);
+                    if ($quest_check == true) {
+                        $user_status = UserQuest::wherenpc_id($npc_id)->whereplayer_id($user_id)->get();
+                        $quest_item = Quest::where("id", $quest_id[0]->id)->get();
+                        if ($quest_item[0]->item_reward == null) {
+                        } else {
+                            $item_id = $quest_item[0]->item_reward;
+                            $inventory_id = Auth::user()->inventory_id;
+                            $itemInventory = new inventory_item;
+                            $itemInventory->inventory_id = $inventory_id;
+                            $itemInventory->item_id = $item_id;
+                            $itemInventory->save();
+                        }
+                        $user_status[0]->status = 'Completed';
+                        $user_stat = User::find(Auth::user()->id);
+                        $user_stat->gold = $user_stat->gold + $quest_item[0]->gold;
+                        $user_stat->current_exp = $user_stat->current_exp + $quest_item[0]->experience;
+                        $user_status[0]->save();
+                        $user_stat->save();
+                        echo json_encode(array("trick" => "You completed it", "Status" => "Completed"));
+                    } else {
+                        echo json_encode(array("trick" => "Still need to complete it", "Status" => "Active"));
+                    }
+                } elseif ($test[0]->status == 'Completed') {
+                    echo json_encode(array("trick" => "You already completed " . $test[0]->check_quest[0]->name, "Status" => "Completed"));
                 } else {
-                    echo json_encode(array("trick" => "Still need to complete it", "Status" => "Active"));
+                    echo json_encode(array("trick" => 'Quest is already active', "Status" => "Active"));
                 }
-            } elseif ($test[0]->status == 'Completed') {
-                echo json_encode(array("trick" => "You already completed " . $test[0]->check_quest[0]->name, "Status" => "Completed"));
-            } else {
-                echo json_encode(array("trick" => 'Quest is already active', "Status" => "Active"));
             }
         }
     }

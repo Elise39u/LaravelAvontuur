@@ -55,9 +55,11 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
+                        <?php $logged_in = false; ?>
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+                        <?php $logged_in = true; ?>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }}
@@ -86,11 +88,15 @@
                         $time = json_encode(json_decode($status), true);
                         ?>
                         <!-- Trigger the modal with a button -->
-                        <li type="button" class="btn btn-info" data-toggle="modal"
-                            data-target="#myModal">Open Journey</li>
+                        <li type="button" class="btn btn-success" data-toggle="modal"
+                            data-target="#quest" style="margin-top: 5px">Open Journey</li>
+
+                        <!-- Trigger the modal with a button -->
+                        <li type="button" class="btn btn-success" data-toggle="modal"
+                            data-target="#party" style="margin: 5px 0px 0 5px ">Open Player Party</li>
                         @endif
                     </ul>
-                    <a href="{{ route('patchnotes') }}">Patch notes Current: v1.1</a>
+                    <a href="{{ route('patchnotes') }}">Patch notes Current: v1.2</a>
                 </div>
             </div>
         </nav>
@@ -117,8 +123,8 @@
     </script>
     <script type="text/javascript" src="{{asset('js/npcdialog.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/keys.js')}}"></script>
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
+    <!-- Quest Modal -->
+    <div id="quest" class="modal modal-quest" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -157,6 +163,51 @@
                         <?php }
                     }
                 }?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Party Modal -->
+    <div id="party" class="modal modal-party" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Player Party</h4>
+                </div>
+                <div class="modal-body">
+                    <?php
+                        if($logged_in == true) {
+                            $party_id = App\Party::where('player_id', Auth::user()->id)->get();
+                            if ($party_id == '[]') { ?>
+                                <?php $data = [
+                                        'player_id' => Auth::user()->id
+                                ];
+                                App\Party::insert($data);
+                                ?>
+                                <p> Refresh The Page </p>
+                            <?php } else {
+                                $user_party = App\player_parties::with("partyCheck")->where("party_id", $party_id[0]->id)->get();
+                                $party_array = json_decode($user_party);
+                                if($party_array == "[]" || $party_array == []) {?>
+                                    <p>No one has joined your page</p>
+                                <?php }  else {
+                                    $i = 0;
+                                    foreach ($party_array as $party_member) {
+                                        $npc_names = App\Npcs::with("getNpcNames")->where("id", $party_member->npc_id)->get();?>
+                                        <p><b>Npc:</b> <?= $npc_names[$i]->name ?></p>
+                                    <?php }
+                                }
+                            }
+                        }
+                    ?>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -1,5 +1,16 @@
 @extends('layouts.app')
 @section('content')
+<?php
+$User = Auth::user()->name;
+$changeStory = false;
+$locationConditions = \App\LocationConditions::with('conditions')->where('location_id', $location->id)->get();
+if($locationConditions == [] || $locationConditions == '[]') {} else {
+    if (strpos($locationConditions[0]->reward, "username")) {
+        $newStory = str_replace("username", $User, $locationConditions[0]->reward);
+        $changeStory = true;
+    }
+}
+?>
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -29,6 +40,44 @@
                     <img class='storyimg' src="{{URL::asset($location->foto_url)}}"/>
                     @endif
                     <p>{!!$location->story!!} </p>
+                    <?php
+                    if ($locationConditions == [] || $locationConditions == '[]') {} else {
+                        if ($locationConditions[0]->action == [] || $locationConditions[0]->action == "[]") { ?>
+                            <p Class="NpcStory"></p>
+                        <?php } else {
+                            $party = \App\Party::where('player_id', \Illuminate\Support\Facades\Auth::user()->id)->get();
+                            if ($party == [] || $party == '[]') {
+                            } else {
+                                $party_id = $party[0]->id;
+                                $player_party = \App\player_parties::where('party_id', $party_id)->get();
+                                $npc_count = count($player_party);
+                                $npc_found = false;
+                                if ($npc_count == 1) {
+                                    if ($player_party[0]->npc_id == $locationConditions[0]->action_value) {
+                                        $npc_found = true;
+                                    }
+                                } else {
+                                    foreach ($player_party as $npc) {
+                                        if ($npc->npc_id == $locationConditions[0]->action_value) {
+                                            $npc_found = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if ($npc_found == true) {
+                                    if ($changeStory == true) {
+                                        ?>
+                                        <p Class="NpcStory">{!! $newStory !!}</p>
+                                    <?php } else { ?>
+                                        <p Class="NpcStory">{!! $locationConditions[0]->reward !!}</p>
+                                    <?php }
+                                } else { ?>
+                                    <p Class="NpcStory"></p>
+                                    <?php
+                                }
+                            }
+                        }
+                    }?>
                     <nav class="choice">
                         <?php
                         foreach ($location->choices as $choice) {

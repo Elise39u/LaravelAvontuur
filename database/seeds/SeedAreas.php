@@ -16,5 +16,6 @@ class SeedAreas extends Seeder
         DB::table('areas')->insert(['id' => 2, 'name' => 'Staten Island']);
         DB::table('areas')->insert(['id' => 3, 'name' => 'On the carrier']);
         DB::table('areas')->insert(['id' => 4, 'name' => 'Unknown sub base']);
+        DB::table('areas')->insert(['id' => 5, 'name' => 'School time']);
     }
 }

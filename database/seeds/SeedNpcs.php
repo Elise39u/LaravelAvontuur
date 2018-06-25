@@ -98,7 +98,7 @@ class SeedNpcs extends Seeder
         <b>Marieke:</b> We Coaches have indeed the confidentiality But we need to talk at least with the teachers and support teachers<br>
         How else could we help as study coaches<br>
         <b>username:</b> Yeah you got a point but one thing he? <br>
-        <b>Marieke:</b> And that is username?
+        <b>Marieke:</b> And that is username?<br>
         <b>username:</b> You said you came here already with a little pregnant belly right? <br>
         <b>Marieke:</b> That is correct why? <br>
         <b>username: </b> Well you said you not have seen Justin for 4 a 5 years <br>
@@ -148,8 +148,8 @@ class SeedNpcs extends Seeder
         <b>Jeroen:</b> Well both are shocked when they wake up of course <br>
          And after that they remember the night before and realized they had a few more drinks than they want <br>
          And of course don\'t forget the head ache ', 'Talk' => 'I have some questions about him', 'location_id' => 76]);
-        DB::table('npcs')->insert(['id' => 13, 'name' => 'Mother Lieke', 'foto_url' => '/img/npc/Lieke.png', 'story' => 'Well hi there player<br>
-        Yeah i called you player because you are right?<br>
+        DB::table('npcs')->insert(['id' => 13, 'name' => 'Mother Lieke', 'foto_url' => '/img/npc/Lieke.png', 'story' => 'Well hi there username<br>
+        Yeah i called you username because you are right?<br>
         Your somewhere behind a screen in the world. But that is not the problem now<br>
         Sorry about that but i have 2 kids to keep busy<br>
         And i think its start taking it toll on me<br>
@@ -168,28 +168,82 @@ class SeedNpcs extends Seeder
         Its like i can`t run a store here because no one has money around here<br>
         So sorry to say but my name is Iris i lived here in new york for like 35 years now<br>
         Well perhaps you have some money', 'Talk' => 'You have a store here?', 'location_id' => 76]);
+        // TODO:: Rewrite Judith Story to fit Marieke, Jeroen
         DB::table('npcs')->insert(['id' => 16, 'name' => 'Support teacher Judith', 'foto_url' => '/img/npc/Judith.png', 'story' => 'Well hi there username<br>
         this went quite wrong he and ignore him in the background<br>
         Take a break james i wil be back in 5 minutes<br>
         <b>James:</b> Okay judith see you soon <br>
-        <b>Judith:</b>Well were we again ow yeah life here right now. <br>
-        Its was quite weird when i met people here from my workplace in the Netherlands<br>
-        <b>username:</b> Like who?<br>
-        <b>Judith:</b> Well Marieke, Jeroen those folks. forgot they to tell you about me<br>
-        <b>username:</b> I think so perhaps i should ask it again <br>
-        <b>Judith:</b> The only weird thing was to see Marieke with a belly she said she was 14 weeks already <br>
-        She was allowed to sill fly. I still wonder who the dad is<br>
-        Because they were only just 2 weeks on vacation so.<br>
-        <b>username:</b> They told me its Justin but if she already came here pregnant <br>
-        <b>Judith:</b> She slept with him but wait came here pregnant? <br>
-        <b>username:</b> She told me she thought it was him because they had a one night stand <br>
-        But she also told me that they met him on the vacation that`s why <br>
-        <b>Judith:</b> I can`t believe she slept with him', 'Talk' => 'Is he that bad?', 'location_id' => 76]);
-        DB::table('npcs')->insert(['id' => 17, 'name' => 'Scout Dylan', 'foto_url' => '/img/npc/Dylan.png', 'story' => 'Well hi there stranger or player<br>
+        <b>Judith:</b> Did you know i came here and met my colleagues from the Netherlands <br>
+        I was on exchange trip with a school here and i saw them on the way to my home here <br>
+        <b>username:</b> Ow they told me about it <br>
+        <b>Judith:</b> oh haha, did they told you about Justin <br>
+        <b>username:</b> pffffff. Let me guess you have some things to say about him either <br>
+        <b>Judith:</b> Well you can read my mind <br>
+        I have two things to say about him and you can choose wich one<br>
+        A story in school year 2 or the story from year 1? <br>
+        <b>username:</b> Ehhhh lets start at the beginning? <br>
+        <b>Judith:</b> Well this is a short one <br>
+        After the first time i had a conversation with Marieke and Justin something weird happened<br>
+        They day after that he came to me and asked one question about our chat <br>
+        <b>username:</b> And that is a love question? <br>
+        <b>Judith:</b> that is a bit correct, i asked  about ever had a loved one <br>
+        So the next day he came to me and asked why i asked that question <br>
+        So i told him i used bridge building to get to the question <br>
+        but then i knew he was in love with Marieke <br>
+        <b>username:</b> Why not you Judith? <br>
+        <b>Judith:</b> I just started working  a few months so... <br>
+        <b>username:</b> Well okay.... and Year 2 <br>
+        <b>Judith:</b> I only helped him get a start on his love lost <br>
+        He confronted Marieke and ofc she refused<br>
+        I dind`t saw him for a few months because he was on internship i saw a few times when he was on school for RT <br>
+        Then months passed away and he was back on school. in the mean time i got finally pregnant for the first time <br>
+        At a day there was a special meeting for the Davinci service center i thought why not take a visit then <br>
+        In the mean time i was around 4 5 months pregnant <br>
+        The next day he came to me after a few moments i was done with a other student <br>
+        Justin came to congratulate with the pregnancy but he said he ask Lisette first just to be safe <br>
+        We had a little chat about my pregnancy after the next student came <br>
+        But i took the moment before to talk about Marieke and he was changed <br>
+        It was also a good moment to feel can just be the hormones then but who knows<br>
+        But one thing bothered me during our conversation he seemed quite a bit uncomfortable<br>
+        I noticed that Justin looked quite a bit at my belly i think he liked my belly<br> 
+        i think he got a bit uncomfortable because of my pregnant state<br>
+        username do you think Justin has a pregnant fetish?', 'Talk' => 'Ehhhee I need more evidence', 'location_id' => 76]);
+        DB::table('npcs')->insert(['id' => 17, 'name' => 'Scout Dylan', 'foto_url' => '/img/npc/Dylan.png', 'story' => 'Well hi there stranger or username<br>
         I am dylan and i am 16 years old <br>
         It is sad that this happened right in the week before camp<br>
         At least i am safe here. I could not think of beaning right out there now<br>
         I hope the rest of my scout group is okay<br>
         Because no one is answering there phone', 'Talk' => 'Hi Dylan. Should i look for them?', 'location_id' => 76]);
+        DB::table('npcs')->insert(['id' => 18, 'name' => 'Designer Tim', 'foto_url' => '/img/npc/Tim.png', 'story' => '<b>Tim:</b>Wait one second username<br>
+        <b>username:</b> Ehmmmmm..... <br>
+        <b>Tim:</b> Yeah now we can speak.  <br>
+        A bit rude from me but let me introduce myself<br>
+        I am Tim and the boyfriend of Deona. We went here together with Justin, And 2 more people <br>
+        I can`t remember their names <br>
+        <b>username:</b> Their? <br>
+        <b>Tim:</b> yeah a male and female<br>
+        That Justin was a nice person but he was on the other side of the city at the moment it started <br>
+        So we got separated. The others i don`t know. <br>
+        <b>username:</b> You start too talking about him <br>
+        <b>Tim:</b> Why username? <br>
+        <b>username:</b> Marieke, Judith, Jeroen also told some stories.<br>
+        More Jeroen and Marieke but Judith a bit <br>
+        <b>Tim:</b> Well i don`t know them', 'Talk' => 'At least can i ask how you met Justin?', 'location_id' => 76]);
+        DB::table('npcs')->insert(['id' => 19, 'name' => 'Programmer Deona', 'foto_url' => '/img/npc/Deona.png', 'story' => '<b>Deona:</b> well hello username: <br>
+        <b>username:</b> Hello there. What is your name? <br>
+        <b>Deona:</b> Well my name is Deona username:<br>
+        I`m the girlfriend of tim and was on vacation with a group of friends<br>
+        <b>username:</b> You ain`t gonna tell me one of them is justin hè<br>
+        <b>Deona:</b> Now than i wont say it username<br>
+        <b>username:</b> I KNEW IT Marieke,Jeroen,Judith Even tim tells about him <br>
+        <b>Deona:</b> I don`t know Marieke,Jeroen,Judith Tim i know <br>
+        Justin told me about his coaching progress but never who they were <br>
+        <b>username:</b> Not listed perhaps? <br>
+        <b>Deona:</b> ahh that well but its not impressed but its his personal side <br>
+         And he was quite a nice and funny kid<br>
+         Its sad we missed him <br>
+         <b>username:</b> Perhaps search with me <br>
+         Together we will find him <br>
+         <b>Deona:</b> perhaps but i don`t wanna leave this place', 'Talk' => 'You will be save with me Deona', 'location_id' => 76]);
     }
 }
