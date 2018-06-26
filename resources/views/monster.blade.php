@@ -6,6 +6,15 @@
             <div class="panel panel-default">
                 <?php $monster = json_decode(json_encode($monsterinfo[0]->getmonster), true);
                 $user = json_decode(json_encode($userinfo), true);
+                if($user['primary_hand'] == null) {}
+                else {
+                   $itemStats = \App\item_type::where('id', $user['primary_hand'])->get();
+                   if($itemStats[0]->attack == 0 or $itemStats == [] or $itemStats == '[]') {}
+                   else {
+                       $newAttack = $user['attack'] + $user['magical_attack'] + $itemStats[0]->attack;
+                       $newDefence = $user['defense'] + $itemStats[0]->defense;
+                   }
+                }
                 ?>
                 <div class="panel-heading">{{$monster[0]['name']}}</div>
 
@@ -19,8 +28,13 @@
                     </ul>
                     <ul class="stats">
                         <h1> Your stats</h1>
+                        @if(isset($newAttack) && isset($newDefence))
+                        <li> attack: {{$newAttack}}</li>
+                        <li> defense: {{$newDefence}}</li>
+                        @else
                         <li> attack: {{$user['attack'] + $user['magical_attack']}}</li>
                         <li> defense: {{$user['defense']}}</li>
+                        @endif
                         <li> curhp: {{$user['curhp']}}/{{$user['maxhp']}}</li>
                     </ul>
                     <br><br><br>
