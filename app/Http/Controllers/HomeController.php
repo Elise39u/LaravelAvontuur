@@ -247,7 +247,6 @@ class HomeController extends Controller
         if (isset($_POST['attack'])) {
             $combat = array();
             $turns = 0;
-            //TODO: Add the magcial attack and primary weapon stats to the user
             while ($player['curhp'] > 0 && $monster[0]['curhp'] > 0) {
                 if ($turns % 2 != 0) {
                     $attacker = &$monster[0];
