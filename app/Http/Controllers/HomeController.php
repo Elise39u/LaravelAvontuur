@@ -597,6 +597,9 @@ class HomeController extends Controller
                 if($amount > $user_gold->gold) {
                     return redirect('/location/27/' . $shopid)->with('toomuch', $amount. ' Is a bit more then ' . $user_gold->gold);
                 }
+                if(!is_numeric($amount)) {
+                    return redirect('/location/27/' . $shopid)->with('Error', 'No nummer found?');
+                }
                 if($amount > $gold || $amount == '' || $amount == $gold) {
                     $amount = $gold;
                 } else {
@@ -611,8 +614,11 @@ class HomeController extends Controller
                 if($amount > $user_gold->inbank) {
                     return redirect('/location/27/' . $shopid)->with('toomuch', $amount. ' Is a bit more then ' . $user_gold->inbank);
                 }
-                if($amount > $gold || $amount == '' || $amount == $gold) {
-                    $amount = $gold;
+                if(!is_numeric($amount)) {
+                    return redirect('/location/27/' . $shopid)->with('Error', 'No nummer found?');
+                }
+                if($amount > $gold || $amount == '' || $amount == $gold || $amount == "") {
+                    $gold = $amount;
                 } else {
                     if($amount < 0) {
                         return redirect('/location/27/' . $shopid)->with('toomuch', 'Don`t fill in a negative number');

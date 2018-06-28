@@ -123,7 +123,7 @@
                             </div>
                             @endif
                             @if (isset($error))
-                            <div class="alert alert-danger alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Swap problems</strong>
+                            <div class="alert alert-danger alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Errors</strong>
                                 <ul>
                                     <li>{{$error}}</li>
                                 </ul>

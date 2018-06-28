@@ -16,6 +16,7 @@
                     And on the link go to open and add a new issue button</i>
                     <ul>
                         <li>The Magical Attack and Primary Weapon Attack and defense are not correctly calculated</li>
+                        <li>The Withdraw system near the ATM is not working</li>
                     </ul>
                     <p> Known Issue`s</p>
                     <ul>

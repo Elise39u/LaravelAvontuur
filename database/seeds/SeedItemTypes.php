@@ -46,7 +46,7 @@ class SeedItemTypes extends Seeder
             'attack' => 0, 'defense' => 0, 'location_id' => 48]);
         DB::table('item_types')->insert(['id' => 63, 'name' => 'Pick axe', 'price' => '8000', 'shop_category' => 'items',
             'attack' => 0, 'defense' => 0, 'location_id' => 70]);
-        DB::table('item_types')->insert(['id' => 64, 'name' => 'A steer wheel', 'price' => '6000', 'shop_category' => '',
+        DB::table('item_types')->insert(['id' => 64, 'name' => 'A steer wheel', 'price' => '6000', 'shop_category' => 'Quest Item',
             'attack' => 0, 'defense' => 0, 'location_id' => 68]);
 
         // Potion Shop items
@@ -140,9 +140,9 @@ class SeedItemTypes extends Seeder
                                          'attack' => 50, 'defense' => -10, 'location_id' => '']);
 
         //Quest Items
-        DB::table('item_types')->insert(['id' => 59, 'name' => 'Carrier Switch', 'price' => '999999', 'shop_category' => '',
+        DB::table('item_types')->insert(['id' => 59, 'name' => 'Carrier Switch', 'price' => '999999', 'shop_category' => 'Quest Item',
                                          'attack' => 0, 'defense' => 0, 'location_id' => '']);
-        DB::table('item_types')->insert(['id' => 61, 'name' => 'Ship key', 'price' => '999999', 'shop_category' => '',
+        DB::table('item_types')->insert(['id' => 61, 'name' => 'Ship key', 'price' => '999999', 'shop_category' => 'Quest Item',
                                          'attack' => 0, 'defense' => 0, 'location_id' => '']);
 
         // End items
