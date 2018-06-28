@@ -15,7 +15,7 @@
                     <i>Note: Please explain the steps you have taken towards the bug <br>
                     And on the link go to open and add a new issue button</i>
                     <ul>
-                        <li>None</li>
+                        <li>The Magical Attack and Primary Weapon Attack and defense are not correctly calculated</li>
                     </ul>
                     <p> Known Issue`s</p>
                     <ul>

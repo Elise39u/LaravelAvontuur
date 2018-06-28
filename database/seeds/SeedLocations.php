@@ -43,7 +43,7 @@ class SeedLocations extends Seeder
 
         DB::table('locations')->insert(['id' => 4, 'name' => 'The garden ', 'area_id' => 1, 'title' => 'Time to relax', 'story' => 'well the garden look likes a jungle<br>
     Its it healty to be here   <br>
-    Or should i leave thus place as it is  <br>
+    Or should i leave this place as it is  <br>
     I wont think its healthy here <br>
     But yeah what is healthy this days', 'foto_url' => '/img/garden.png']);
         DB::table('choices')->insert(['name' => 'Go inside', 'from_location_id' => 4, 'to_location_id' => 1]);

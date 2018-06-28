@@ -247,6 +247,7 @@ class HomeController extends Controller
         if (isset($_POST['attack'])) {
             $combat = array();
             $turns = 0;
+            //TODO: Add the magcial attack and primary weapon stats to the user
             while ($player['curhp'] > 0 && $monster[0]['curhp'] > 0) {
                 if ($turns % 2 != 0) {
                     $attacker = &$monster[0];
@@ -256,11 +257,37 @@ class HomeController extends Controller
                     $defender = &$monster[0];
                 }
                 $damage = 0;
-                if ($attacker['attack'] > $defender['defense']) {
-                    $damage = $attacker['attack'] - $defender['defense'];
+                $UpgradeStats = false;
+                if(!$player['primary_hand'] == null) {
+                    $itemInfo = item_type::where('id', $player['primary_hand'])->get();
+                    if($itemInfo[0]->attack == 0 or $itemInfo == [] or $itemInfo == '[]') {}
+                    else {
+                        $UpgradeStats = true;
+                        $newAttack = $player['attack'] + $itemInfo[0]->attack + $player['magical_attack'];
+                        $newDefence = $player['defense'] + $itemInfo[0]->defense;
+                    }
                 }
-                if ($attacker['attack'] < $defender['defense']) {
-                    $damage = $attacker['attack'] = 15;
+                if($UpgradeStats == false) {
+                    if ($attacker['attack'] > $defender['defense']) {
+                        $damage = $attacker['attack'] - $defender['defense'];
+                    }
+                    if ($attacker['attack'] < $defender['defense']) {
+                        $damage = $attacker['attack'] = 15;
+                    }
+                } else {
+                    if($attacker == $player) {
+                        if($newAttack < $defender['defense']) {
+                            $damage = $attacker['attack'] = 15;
+                        } else {
+                            $damage = $newAttack - $defender['defense'];
+                        }
+                    } else {
+                        if ($attacker['attack'] < $newDefence) {
+                            $damage = $attacker['attack'] = 15;
+                        } else {
+                            $damage = $attacker['attack'] - $newDefence;
+                        }
+                    }
                 }
                 $defender['curhp'] -= $damage;
                 $combat[$turns] = array(
