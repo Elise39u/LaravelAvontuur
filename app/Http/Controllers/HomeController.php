@@ -672,7 +672,9 @@ class HomeController extends Controller
                     }
 
                     echo json_encode(array("trick" => 'Quest ' . $test[0]->check_quest[0]->name . ' Activated', "Status" => "Activated"));
-                } elseif ($test[0]->status == 'unknown') {
+                }
+            }
+            elseif ($test[0]->status == 'unknown') {
                     echo json_encode(array("trick" => 'Quest discovered ' . $test[0]->check_quest[0]->name, 'Status' => 'Unknown'));
                 } elseif ($test[0]->status == 'Active') {
                     $quest_id = UserQuest::wherenpc_id($npc_id)->where('player_id', $user_id)->get();
@@ -706,7 +708,6 @@ class HomeController extends Controller
                 }
             }
         }
-    }
 
     public function updateQuest($npc_id, $quest_id)
     {
@@ -992,7 +993,7 @@ class HomeController extends Controller
                 } else {
                     $user_stat->defense = $user_stat->defense + 2000;
                 }
-            } elseif(isset($_POST['curhp'])) {
+            } elseif(isset($_POST['current_hp'])) {
                 if($user_stat->level > 1 || $user_stat->level <= 14) {
                     $user_stat->curhp = $user_stat->curhp + 100;
                 } elseif($user_stat->level >= 15 || $user_stat->level <= 25) {

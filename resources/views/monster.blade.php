@@ -72,7 +72,7 @@
                                 <label> defense</label>
                                 <input type="radio" name="defense" value="defense"> <br>
                                 <label> current hp</label>
-                                <input type="radio" name="current hp" value="curhp"> <br>
+                                <input type="radio" name="current_hp" value="curhp"> <br>
                                 <label> max hp</label>
                                 <input type="radio" name="max hp" value="maxhp"> <br>
                                 <input type="submit" value="submit" name="submit">

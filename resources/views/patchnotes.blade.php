@@ -17,6 +17,7 @@
                     <ul>
                         <li>The Magical Attack and Primary Weapon Attack and defense are not correctly calculated</li>
                         <li>The Withdraw system near the ATM is not working</li>
+                        <li>The quest system is currently not working</li>
                     </ul>
                     <p> Known Issue`s</p>
                     <ul>
@@ -26,7 +27,7 @@
                                   This due to the app sees the player with less the 0 health </i></li>
                         <li>Npc`s that don`t exist in the database wil throw the player a error page <br>
                             <i>&nbsp; See Npc`s list below for which cause the error and they are marked with <br>
-                               &nbsp; (Does not exsit yet in the database)</i></li>
+                               &nbsp; (Does not exist yet in the database)</i></li>
                     </ul> <br>
                     <p> Added the next items </p>
                     <ul>
