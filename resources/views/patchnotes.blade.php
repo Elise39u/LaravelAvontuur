@@ -71,6 +71,9 @@
                         <li>student Robin (ClassRoom2) (Does Not exist in the database)</li>
                         <li>Teacher Jurgen (ClassRoom2) (Does Not exist in the database)</li>
                         <li>Art Teacher Christina(School aula) (Does Not exist in the database)</li>
+                        <li>school chef Anna (School kitchen)(Does Not exist in the database)</li>
+                        <li>trainee coach Marjolein (School kitchen)(Does Not exist in the database)</li>
+                        <li>gothic kids (School Staircase)(Does Not exist in the database)</li>
                     </ul><br>
                     <p>Buffs</p>
                     <ul>
@@ -88,6 +91,7 @@
                         Secret system is done with info about my story</p>
                     <p> A level reward system is done for the player (Currently only supports monster fights --> Attack Monster)</p>
                     <p> Weapon stats are now used in a monster fight</p>
+                    <p> The Axe is now not anymore obtainble this due to other plans regarding the second floor in the school</p>
 
                     <p>Planned Features for 1.2</p>
                     <ul>

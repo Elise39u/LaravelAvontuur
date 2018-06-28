@@ -123,7 +123,6 @@ class SeedLocations extends Seeder
     So what is the call pick up some tools or go out<br>
     The question is of course are they handy or not', 'foto_url' => '/img/insidewood.png']);
         DB::table('choices')->insert(['name' => 'Go out the store', 'from_location_id' => 13, 'to_location_id' => 8]);
-        DB::table('choices')->insert(['name' => 'pick up the axe', 'from_location_id' => 13, 'to_location_id' => '22/1']);
         DB::table('choices')->insert(['name' => 'pick up the baseball bat ', 'from_location_id' => 13, 'to_location_id' => '22/2']);
         DB::table('choices')->insert(['name' => 'pick up the nail gun', 'from_location_id' => 13, 'to_location_id' => '22/3']);
         DB::table('choices')->insert(['name' => 'pick up a wooden sword', 'from_location_id' => 13, 'to_location_id' => '22/4']);
@@ -343,7 +342,7 @@ class SeedLocations extends Seeder
         A key?.... ow perhaps it is nothing<br>
         So the is how life is going to be he searching for a way out<br>
         But only how is the way remains as a question', 'foto_url' => '/img/proof.png']);
-        DB::table('choices')->insert(['name' => 'Go back downstairs', 'from_location_id' => 57, 'to_location_id' => 49]);
+        DB::table('choices')->insert(['name' => 'Go back downstairs', 'from_location_id' => 57, 'to_location_id' => 55]);
         DB::table('choices')->insert(['name' => 'Pick up the key', 'from_location_id' => 57, 'to_location_id' => '22/36']);
 
         DB::table('locations')->insert(['id' => 52, 'name' => 'The bank', 'area_id' => 2, 'title' => '$.$ Money', 'story' => 'So a empty bank....<br>
@@ -621,6 +620,30 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['name' => 'Go to the school kitchen', 'from_location_id' => 86, 'to_location_id' => 87]);
         DB::table('choices')->insert(['name' => 'Go talk to Art Teacher Christina', 'from_location_id' => 86, 'to_location_id' => '21/28']);
 
+        DB::table('locations')->insert(['id' => 87, 'name' => 'Time to eat eat eat', 'area_id' => 5, 'title' => 'Eating time', 'story' => 'You enter the kitchen and think quite big <br>
+        You look around and see 2 women that are talking with each other <br>
+        you think is this kitchen well safe too cook food or make it <br>
+        We could ask if it is <br>
+        What if it isn`t what then and perhaps they are already zombies.', 'foto_url' => '/img/SchoolKitchen.png']);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 87, 'to_location_id' => 86]);
+        DB::table('choices')->insert(['name' => 'Go talk to school chef Anna', 'from_location_id' => 87, 'to_location_id' => '21/29']);
+        DB::table('choices')->insert(['name' => 'Go talk to trainee coach Marjolein', 'from_location_id' => 87, 'to_location_id' => '21/30']);
+
+        DB::table('locations')->insert(['id' => 85, 'name' => 'A deep dark end', 'area_id' => 5, 'title' => 'A deep dark end', 'story' => 'Well as you look down this staircase <br>
+        You wonder why are the no railing\'s here? <br>
+        And great its blocked off here with wooden plankes <br>
+        <b>Gothic kids:</b> You can`t enter the the second floor <br>
+        <b>You:</b> And why not <br>
+        <b>Gothic kids:</b> Its not safe there <br>
+        Rumors go any one that enter will become one of them <br>
+        <b>You:</b> one of them? <br>
+        <b>Gothic Kids:</b> If you want to enter but you need an axe <br>
+        And that can be found in the animation studio next here but be aware of the ink', 'foto_url' => '/img/staircaseschool.png']);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 85, 'to_location_id' => 81]);
+        DB::table('choices')->insert(['name' => 'Go talk to gothic kids', 'from_location_id' => 85, 'to_location_id' => '21/31']);
+        DB::table('choices')->insert(['name' => 'Go on the second floor', 'from_location_id' => 85, 'to_location_id' => 88]);
+
+        //staircaseschool.png
         DB::table('locations')->insert(['id' => 15, 'name' => 'You encounter something', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 21, 'name' => 'Npc time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 22, 'name' => 'Item time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);

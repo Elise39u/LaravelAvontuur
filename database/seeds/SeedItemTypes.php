@@ -104,8 +104,6 @@ class SeedItemTypes extends Seeder
                                          'attack' => 0, 'defense' => 0, 'location_id' => NULL]);
 
         //Weapon items
-        DB::table('item_types')->insert(['id' => 1, 'name' => 'Axe', 'price' => '120', 'shop_category' => 'weapon',
-                                         'attack' => 25, 'defense' => 0, 'location_id' => 13]);
         DB::table('item_types')->insert(['id' => 2, 'name' => 'Baseballbat', 'price' => '50', 'shop_category' => 'weapon',
                                          'attack' => 5, 'defense' => 0, 'location_id' => 13]);
         DB::table('item_types')->insert(['id' => 3, 'name' => 'NailGun', 'price' => '280', 'shop_category' => 'weapon',
@@ -144,6 +142,8 @@ class SeedItemTypes extends Seeder
                                          'attack' => 0, 'defense' => 0, 'location_id' => '']);
         DB::table('item_types')->insert(['id' => 61, 'name' => 'Ship key', 'price' => '999999', 'shop_category' => 'Quest Item',
                                          'attack' => 0, 'defense' => 0, 'location_id' => '']);
+        DB::table('item_types')->insert(['id' => 1, 'name' => 'Axe', 'price' => '120', 'shop_category' => 'Quest Item',
+                                         'attack' => 25, 'defense' => 0, 'location_id' => '']);
 
         // End items
         DB::table('item_types')->insert(['id' => 8, 'name' => 'Paddle', 'price' => '1000000000', 'shop_category' => 'End',
