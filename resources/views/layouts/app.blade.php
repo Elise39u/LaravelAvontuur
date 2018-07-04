@@ -96,7 +96,13 @@
                             data-target="#party" style="margin: 5px 0px 0 5px ">Open Player Party</li>
                         @endif
                     </ul>
+                    <ul>
                     <a href="{{ route('patchnotes') }}">Patch notes Current: v1.2</a>
+                    <p data-toggle="modal" data-target="#content"
+                       class="content-info"> Disclaimer to all people </p>
+                    <p data-toggle="modal" data-target="#music"
+                       class="content-info"> Music Claim </p>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -119,6 +125,9 @@
             } else {
                 audio.play();
             }
+        }
+
+        function showContentInfo() {
         }
     </script>
     <script type="text/javascript" src="{{asset('js/npcdialog.js')}}"></script>
@@ -208,6 +217,59 @@
                             }
                         }
                     ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Content info -->
+    <div id="content" class="modal modal-info" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Content Disclaimer</h4>
+                </div>
+                <div class="modal-body">
+                <h1 style="font-size: 14px;"> Pictures and ideas</h1>
+                    <p>Most of the pictures and some of the ideas are scattered from the internet <br>
+                    By this is say that i am only the owner of the website and the <b>TEXT</b> content <br>
+                    The rest of the content goes to the many internet sites i have visit <br>
+                    I give credit to the owners of them like an example: The ink animation studio is an idea of bendy and the inked machine <br>
+                    Credit goes to the: The Meatly Games and here is there link <br>
+                    The Meatly Games: <a style="color: white;" href="http://www.themeatly.com/"> Web link</a></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Content info -->
+    <div id="music" class="modal modal-music" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-music">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Music used in the website (Clicking on link wil leave the website) </h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                    <ul>
+                        <a style="color: white;" href="https://www.youtube.com/watch?v=dv13gl0a-FA">Deja vu (Inital D)</a> <br>
+                        <a style="color: white;"> Can`t be erased (JT Music) or Build our machine (DAgames) </a> (Comining) <br>
+                        <a style="color: white;"> gospel of dismay (DAgames) </a> (Comining) <br>
+                        <a style="color: white;"> After Hours (JT Music) </a>(Comining) <br>
+                    </ul>
+                    </p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

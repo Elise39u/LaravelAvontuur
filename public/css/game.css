@@ -82,33 +82,27 @@ i {
     color: #668b8f;
 }
 
-.modal-party .modal-header{
+.content-info {
+    color: #3097D1;
+    text-decoration: none;
+}
+
+.content-info:hover {
+    text-decoration: underline;
+    color: red;
+}
+
+.modal .modal-header{
     background: #002a43;
     border: 1px solid #002a43;
     color: #CFCFCF;
 }
-.modal-party .modal-body {
+.modal .modal-body {
     background-color: #919191;
     color: white;
 }
 
-.modal-party .modal-footer{
-    background: #002a43;
-    border: 1px solid #002a43;
-    color: #CFCFCF;
-}
-
-.modal-quest .modal-header{
-    background: #002a43;
-    border: 1px solid #002a43;
-    color: #CFCFCF;
-}
-.modal-quest .modal-body {
-    background-color: #919191;
-    color: white;
-}
-
-.modal-quest .modal-footer{
+.modal .modal-footer{
     background: #002a43;
     border: 1px solid #002a43;
     color: #CFCFCF;

@@ -47,6 +47,8 @@
                     $monstergold = Session::get('monster_gold');
                     $area_id = Session::get('area_id');
                     $level = Session::get('level');
+                    $gold = Session::get('doublegold');
+                    $exp = Session::get('doubleexp');
                     ?>
                     @if (isset($combat))
                     @foreach ($combat as $info)
@@ -56,9 +58,19 @@
                     @endif
                     @if (isset($won) || isset($lose))
                     @if ($won == 1)
-                    <p>You defeated <strong>{{$monstername}}</strong>! You gained <strong>{{$monstergold}}</strong>
-                        gold,
-                        and <strong>{{$monsterexp}}</strong> experience.</p>
+                        @if(isset($gold))
+                            <p>You defeated <strong>{{$monstername}}</strong>! You gained <strong>{{$gold}}</strong>
+                                gold,
+                                and <strong>{{$monsterexp}}</strong> experience.</p>
+                        @elseif(isset($exp))
+                            <p>You defeated <strong>{{$monstername}}</strong>! You gained <strong>{{$monstergold}}</strong>
+                            gold,
+                            and <strong>{{$exp}}</strong> experience.</p>
+                        @else
+                            <p>You defeated <strong>{{$monstername}}</strong>! You gained <strong>{{$monstergold}}</strong>
+                                gold,
+                                and <strong>{{$monsterexp}}</strong> experience.</p>
+                        @endif
                     @if(isset($level))
                         @if ($level == 1)
                             <p> You gained a level, current level: <strong>{{$user['level'] + 1}}</strong><br>

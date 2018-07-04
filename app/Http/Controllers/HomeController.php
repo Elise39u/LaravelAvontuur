@@ -259,13 +259,23 @@ class HomeController extends Controller
                 $UpgradeStats = false;
                 if(!$player['primary_hand'] == null) {
                     $itemInfo = item_type::where('id', $player['primary_hand'])->get();
-                    if($itemInfo[0]->attack == 0 or $itemInfo == [] or $itemInfo == '[]') {}
+                    if($itemInfo[0]->attack == 0 or $itemInfo == [] or $itemInfo == '[]') {
+                        if($player['magical_attack'] > 0) {
+                            $UpgradeStats = true;
+                            $newAttack = $player['attack'] + $player['magical_attack'];
+                            $newDefence = $player['defense'] + $player['magical_attack'];
+                        }
+                    }
                     else {
                         $UpgradeStats = true;
                         $newAttack = $player['attack'] + $itemInfo[0]->attack + $player['magical_attack'];
                         $newDefence = $player['defense'] + $itemInfo[0]->defense;
                     }
-                }
+                } elseif($player['magical_attack'] > 0) {
+                    $UpgradeStats = true;
+                    $newAttack = $player['attack'] + $player['magical_attack'];
+                    $newDefence = $player['defense'] + $player['magical_attack'];
+                };
                 if($UpgradeStats == false) {
                     if ($attacker['attack'] > $defender['defense']) {
                         $damage = $attacker['attack'] - $defender['defense'];
@@ -379,7 +389,7 @@ class HomeController extends Controller
                 $user_curhp->current_exp = $player['current_exp'] + $exp;
                 $user_curhp->gold = $player['gold'] + $monster[0]['gold'];
                 $user_curhp->save();
-                return redirect()->to('/location/15/' . $area_id)->with('won', $won)->with('monster', $monsters);
+                return redirect()->to('/location/15/' . $area_id)->with('won', $won)->with('monster', $monsters)->with('doubleexp', $exp);
             } else {
                 $backing = Session::get('location_id');
                 redirect()->to('location/' . $backing)->send();
@@ -395,7 +405,7 @@ class HomeController extends Controller
                 $gold = $monster[0]['gold'] * 2;
                 $user_curhp->gold = $player['gold'] + $gold;
                 $user_curhp->save();
-                return redirect()->to('/location/15/' . $area_id)->with('won', $won)->with('monster', $monsters);
+                return redirect()->to('/location/15/' . $area_id)->with('won', $won)->with('monster', $monsters)->with('doublegold', $gold);
             } else {
                 return redirect('/location/15/' . $area_id)->with('cry', 'cry action failed and lol that you did that');
             }

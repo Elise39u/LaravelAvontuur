@@ -569,6 +569,7 @@ class SeedLocations extends Seeder
         And if its even safe to go inside', 'foto_url' => '/img/School.png']);
         DB::table('choices')->insert(['name' => 'Go back towards the mall', 'from_location_id' => 79, 'to_location_id' => 61]);
         DB::table('choices')->insert(['name' => 'Go inside the school', 'from_location_id' => 79, 'to_location_id' => 81]);
+        DB::table('choices')->insert(['name' => 'Go to the animation studio ', 'from_location_id' => 79, 'to_location_id' => 90]);
 
         DB::table('locations')->insert(['id' => 81, 'name' => 'Time for a lesson', 'area_id' => 5, 'title' => 'A new Lesson to learn', 'story' => 'Now well this school started too fall apart<br>
         I see some class rooms and a stair way <br>
@@ -629,7 +630,7 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['name' => 'Go talk to school chef Anna', 'from_location_id' => 87, 'to_location_id' => '21/29']);
         DB::table('choices')->insert(['name' => 'Go talk to trainee coach Marjolein', 'from_location_id' => 87, 'to_location_id' => '21/30']);
 
-        DB::table('locations')->insert(['id' => 85, 'name' => 'A deep dark end', 'area_id' => 5, 'title' => 'A deep dark end', 'story' => 'Well as you look down this staircase <br>
+        DB::table('locations')->insert(['id' => 85, 'name' => 'A deep dark end', 'area_id' => 1, 'title' => 'A deep dark end', 'story' => 'Well as you look down this staircase <br>
         You wonder why are the no railing\'s here? <br>
         And great its blocked off here with wooden plankes <br>
         <b>Gothic kids:</b> You can`t enter the the second floor <br>
@@ -643,7 +644,16 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['name' => 'Go talk to gothic kids', 'from_location_id' => 85, 'to_location_id' => '21/31']);
         DB::table('choices')->insert(['name' => 'Go on the second floor', 'from_location_id' => 85, 'to_location_id' => 88]);
 
-        //staircaseschool.png
+        DB::table('locations')->insert(['id' => 80, 'name' => 'Time for a vacation', 'area_id' => 5, 'title' => 'Break time perhaps?', 'story' => 'Well as you approach the hotel you look around <br>
+         Nothing but a wide open grass field here <br>
+         Still the question remains is it safe in there <br>
+        You never know about new places in this world <br>
+        At least the trip is nice', 'foto_url' => '/img/NearHotel.png']);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 80, 'to_location_id' => 61]);
+        DB::table('choices')->insert(['name' => 'Go to the hotel', 'from_location_id' => 80, 'to_location_id' => 89]);
+        DB::table('choices')->insert(['name' => 'Go to the pizzeria ', 'from_location_id' => 80, 'to_location_id' => 91]); // Only when its 23:30 - 24:00 and have Coach Justin in their party
+
+        //90 is taken already
         DB::table('locations')->insert(['id' => 15, 'name' => 'You encounter something', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 21, 'name' => 'Npc time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 22, 'name' => 'Item time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
