@@ -265,7 +265,8 @@
                     <p>
                     <ul>
                         <a style="color: white;" href="https://www.youtube.com/watch?v=dv13gl0a-FA">Deja vu (Inital D)</a> <br>
-                        <a style="color: white;"> Can`t be erased (JT Music) or Build our machine (DAgames) </a> (Comining) <br>
+                        <a style="color: white;" href="https://www.youtube.com/watch?v=VNdIvPb196s"> Can`t be erased (JT Music) </a><br>
+                        <a style="color: white;" href="https://www.youtube.com/watch?v=ZstsPUKT5CI"> Build our machine (DAgames)  </a><br>
                         <a style="color: white;"> gospel of dismay (DAgames) </a> (Comining) <br>
                         <a style="color: white;"> After Hours (JT Music) </a>(Comining) <br>
                     </ul>

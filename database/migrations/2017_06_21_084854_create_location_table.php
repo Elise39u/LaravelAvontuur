@@ -18,7 +18,7 @@ class CreateLocationTable extends Migration
             $table->string('name');
             $table->integer('area_id')->nullable();;
             $table->string('title');
-            $table->string('foto_url');
+            $table->string('foto_url')->nullable();
             $table->string('story', 3578);
             $table->string('condition')->nullable();
             $table->string('condition_value')->nullable();

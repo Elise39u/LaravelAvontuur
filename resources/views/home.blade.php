@@ -10,6 +10,12 @@ if($locationConditions == [] || $locationConditions == '[]') {} else {
         $changeStory = true;
     }
 }
+$changeNames = false;
+if (strpos($location->story, "username") === 0) {
+} else {
+    $newStory = str_replace("username", $User, $location->story);
+    $changeNames = true;
+}
 ?>
 <div class="container">
     <div class="row">
@@ -36,10 +42,14 @@ if($locationConditions == [] || $locationConditions == '[]') {} else {
                     @else
                     <img class="storyimg" src="{{URL::asset('img/NewYorkEVE.png')}}">
                     @endif
-                    @else
+                    @elseif($location->foto_url != null)
                     <img class='storyimg' src="{{URL::asset($location->foto_url)}}"/>
                     @endif
+                    @if($changeNames = true)
+                    <p>{!!$newStory!!}</p>
+                    @else
                     <p>{!!$location->story!!} </p>
+                    @endif
                     <?php
                     if ($locationConditions == [] || $locationConditions == '[]') {} else {
                         if ($locationConditions[0]->action == [] || $locationConditions[0]->action == "[]") { ?>
@@ -84,7 +94,7 @@ if($locationConditions == [] || $locationConditions == '[]') {} else {
                             $choiceCondition = json_encode($choice->conditions);
                             if ($choiceCondition == '[]') { ?>
                                 <li class="menuchoice"><a class="link" href="/location/{{ $choice->to_location_id }}">{{$choice->name }}</a></li>
-                            <?php } else {
+                            <?php } elseif($choiceCondition == 'NEED ITEM') {
                                 $choiceCheck = json_decode($choiceCondition);
                                 $ItemCheck = json_decode(json_encode($inventory->get_inventory_items), true);
                                 $length = count($ItemCheck);
@@ -97,10 +107,25 @@ if($locationConditions == [] || $locationConditions == '[]') {} else {
                                         <?php }
                                     } ?>
                                 <?php }
-                            }
+                            } else { ?>
+                                <script type="text/javascript">
+                                function warnUser() {
+                                    var Link = document.getElementById("ChoiceBendy");
+                                    var choice;
+                                    if(confirm("Warining: There is no point back onces you enter the world of joey drew until you completed it " +
+                                        "DO you want to go on or not?")) {
+                                        Link.setAttribute("href", "/location/" + 92)
+                                    } else {
+                                        Link.setAttribute("href", "/location/" + 90)
+                                    }
+                                }
+                             </script>
+                                <li onclick="warnUser()" class="menuchoice"><a id="ChoiceBendy" class="link" >{{$choice->name }}</a></li>
+                            <?php }
                         } ?>
                     </nav>
                 </div>
+                <!--iframe width="0" height="0" src="https://www.youtube.com/embed/videoseries?list=PLNc-vlTat7vgD_irLluPc_oUlZBLnJRMw&autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>-->
             </div>
 
             @if (isset($inventory))

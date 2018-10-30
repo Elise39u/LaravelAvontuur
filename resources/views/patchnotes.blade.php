@@ -91,8 +91,9 @@
                         Secret system is done with info about my story</p>
                     <p> A level reward system is done for the player (Currently only supports monster fights --> Attack Monster)</p>
                     <p> Weapon stats are now used in a monster fight</p>
-                    <p> The Axe is now not anymore obtainble this due to other plans regarding the second floor in the school</p>
+                    <p> The Axe is now not anymore obtainable this due to other plans regarding the second floor in the school</p>
                     <p> Updated the monster page with the correct values when a user defeats a monster with either taunt or cry option</p>
+                    <p> Added Background music to the Inky animation studio (W.I.P) Needs some conditions </p>
 
                     <p>Planned Features for 1.2</p>
                     <ul>

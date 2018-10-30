@@ -653,7 +653,59 @@ class SeedLocations extends Seeder
         DB::table('choices')->insert(['name' => 'Go to the hotel', 'from_location_id' => 80, 'to_location_id' => 89]);
         DB::table('choices')->insert(['name' => 'Go to the pizzeria ', 'from_location_id' => 80, 'to_location_id' => 91]); // Only when its 23:30 - 24:00 and have Coach Justin in their party
 
-        //90 is taken already
+        DB::table('locations')->insert(['id' => 90, 'name' => 'Time to het bleach', 'area_id' => 1, 'title' => 'Are you sure?', 'story' => 'Well as you approach the studio Coach Justin looks to you <br>
+        <b>Coach Justin:</b> Well this place is dangerous enough at least to say<br>
+        Last time i got barely out <br>
+        <b>username:</b> Barely at least you can tell the tale <br>
+        And what makes it that dangerous than? <br>
+        <b>Coach Justin:</b> its the ink.... and welll...... <br>
+        The rest you need to explore it on your own with me <br>
+        <b>username:</b> ehhmmm okay. at least you know the way <br>
+        <b>Coach Justin:</b> yup', 'foto_url' => '/img/studio.png']);
+        DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 90, 'to_location_id' => 79]);
+        DB::table('choices')->insert(['id' => 222, 'name' => 'Go to the joey drew studio', 'from_location_id' => 90, 'to_location_id' => 92]);
+
+        DB::table('locations')->insert(['id' => 92, 'name' => 'Playtime', 'area_id' => 6, 'title' => 'Cartoon time', 'story' => '<b>Coach Justin:</b> this place doens`t look that bad <br>
+        <b>username:</b> Well perhaps you don`t know <br>
+        But everywhere its seems ink is leaking fron the sealing <br>
+        <b>Coach Justin:</b> well that ink we can wash away so come on <br>
+        We wont find your axe if we stand here <br>
+        <b>username:</b> Well at least you got a point', 'foto_url' => '/img/minigame/bendy_ch1/bendy_entrance_ch1.png']);
+        DB::table('choices')->insert(['name' => 'Go to the open area', 'from_location_id' => 92, 'to_location_id' => 93]);
+
+        DB::table('locations')->insert(['id' => 93, 'name' => 'Playtime', 'area_id' => 6, 'title' => 'Time to choose', 'story' => '<b>Coach Justin:</b> well found anything username? <br>
+        <b>username:</b> Nope only this <br>
+        Should we check if the projector it does <br>
+        <b>Coach Justin:</b> At least we could try that <br>
+        Else we need to go do some research around here<br>
+        <b>username:</b> Yup that is true but you never knew he <br>
+        And i need that axe to continue <br>
+        <b>Coach Justin:</b> We will see', 'foto_url' => '/img/minigame/bendy_ch1/bendy_openarea_ch1.png']);
+        DB::table('choices')->insert(['name' => 'Go to the exit', 'from_location_id' => 93, 'to_location_id' => 92]);
+        DB::table('choices')->insert(['name' => 'Go to the right', 'from_location_id' => 93, 'to_location_id' => 94]);
+        DB::table('choices')->insert(['name' => 'Go to the left', 'from_location_id' => 93, 'to_location_id' => 95]);
+        DB::table('choices')->insert(['name' => 'try the projector', 'from_location_id' => 93, 'to_location_id' => 96]);
+
+        DB::table('locations')->insert(['id' => 96, 'name' => 'Playtime', 'area_id' => 6, 'title' => 'Time for answers', 'story' => '<b>Coach Justin:</b> well want me to turn it on? <br>
+        <b>username:</b> Perhaps its has answers <br>
+        <b>Coach Justin:</b> That could be but we don`t know that <br>
+        So? what do we username<br>
+        <b>username:</b> Turn on the projector', 'foto_url' => '/img/minigame/bendy_ch1/bendy_projecteroff_ch1.png']);
+        DB::table('choices')->insert(['name' => 'Turn on the projector', 'from_location_id' => 96, 'to_location_id' => 97]);
+
+        DB::table('locations')->insert(['id' => 97, 'name' => 'Quest time', 'area_id' => 6, 'title' => 'You want your axe', 'story' => '<b>Projector</b> So you try to seek something here <br>
+        Am i right or perhaps not <br>
+        <b>username:</b> You and coach Justin look weird and say yes <br>
+        I heard that i can find a axe here is that true <br>
+        <b>Projector</b> Well it can but there is a twist <br>
+        Complete the task shown in the video and i give your the axe <br>
+        <b>Coach Justin:</b> And if we fail? <br>
+        <b>Projector</b> Ow there is no failing <br>
+        <b> Both of you </b> Wellll........ <br>
+        <iframe width="560" height="315" controls=0 src="https://www.youtube.com/embed/VNdIvPb196s?end=44" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>']);
+        DB::table('choices')->insert(['name' => 'Start your journey', 'from_location_id' => 97, 'to_location_id' => 93]);
+
+        // Minigame/bendy_ch1/bendy_entrance_ch1
         DB::table('locations')->insert(['id' => 15, 'name' => 'You encounter something', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 21, 'name' => 'Npc time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
         DB::table('locations')->insert(['id' => 22, 'name' => 'Item time', 'title' => 'Dummie page', 'story' => 'This is a test page', 'foto_url' => '/img/']);
