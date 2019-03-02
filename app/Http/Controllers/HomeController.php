@@ -257,6 +257,8 @@ class HomeController extends Controller
                 }
                 $damage = 0;
                 $UpgradeStats = false;
+                $newAttack = NULL;
+                $newDefence = NULL;
                 if(!$player['primary_hand'] == null) {
                     $itemInfo = item_type::where('id', $player['primary_hand'])->get();
                     if($itemInfo[0]->attack == 0 or $itemInfo == [] or $itemInfo == '[]') {
@@ -280,18 +282,18 @@ class HomeController extends Controller
                     if ($attacker['attack'] > $defender['defense']) {
                         $damage = $attacker['attack'] - $defender['defense'];
                     }
-                    if ($attacker['attack'] < $defender['defense']) {
+                    if ($attacker['attack'] <= $defender['defense']) {
                         $damage = $attacker['attack'] = 15;
                     }
                 } else {
                     if($attacker == $player) {
-                        if($newAttack < $defender['defense']) {
+                        if($newAttack <= $defender['defense']) {
                             $damage = $attacker['attack'] = 15;
                         } else {
                             $damage = $newAttack - $defender['defense'];
                         }
                     } else {
-                        if ($attacker['attack'] < $newDefence) {
+                        if ($attacker['attack'] <= $newDefence) {
                             $damage = $attacker['attack'] = 15;
                         } else {
                             $damage = $attacker['attack'] - $newDefence;

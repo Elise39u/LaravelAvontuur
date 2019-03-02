@@ -28,6 +28,18 @@
                         <li>Npc`s that don`t exist in the database wil throw the player a error page <br>
                             <i>&nbsp; See Npc`s list below for which cause the error and they are marked with <br>
                                &nbsp; (Does not exist yet in the database)</i></li>
+                        <li> The attack system currently holds a bug that crashes the website <br>
+                            <i> Due to conditions in the combat system can occur that the system wil crash<br>
+                            This wil happen on the next example -> Monster.Attack is the same as Player.Defense <br>
+                            And Player.Attack is the same as Monster.Defence <br>
+                            When this is shown in the stats please do not attack the monster <br>
+                            The result can be lost stats or a crashed system
+                            </i>
+                        </li>
+                        <li> Magical_attack increase on defence is not displayed <br>
+                            Due to this your defence can be bigger than you think <br>
+                            This can cause confusion in the combat system
+                        </li>
                     </ul> <br>
                     <p> Added the next items </p>
                     <ul>

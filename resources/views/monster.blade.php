@@ -12,7 +12,7 @@
                    if($itemStats[0]->attack == 0 or $itemStats == [] or $itemStats == '[]') {}
                    else {
                        $newAttack = $user['attack'] + $user['magical_attack'] + $itemStats[0]->attack;
-                       $newDefence = $user['defense'] + $itemStats[0]->defense;
+                       $newDefence = $user['defense'] + $user['magical_attack'] + $itemStats[0]->defense;
                    }
                 }
                 ?>
@@ -33,7 +33,7 @@
                         <li> defense: {{$newDefence}}</li>
                         @else
                         <li> attack: {{$user['attack'] + $user['magical_attack']}}</li>
-                        <li> defense: {{$user['defense']}}</li>
+                        <li> defense: {{$user['defense'] + $user['magical_attack']}}</li>
                         @endif
                         <li> curhp: {{$user['curhp']}}/{{$user['maxhp']}}</li>
                     </ul>

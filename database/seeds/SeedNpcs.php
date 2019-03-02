@@ -14,7 +14,7 @@ class SeedNpcs extends Seeder
     public function run()
     {
         //$this->command->line(User::find(Auth::user()->name)->email);
-        $Username = User::find(2)->name;
+        //$Username = User::find(2)->name;
         DB::table('npcs')->truncate(); // maak leeg
 
         DB::table('npcs')->insert(['id' => 1, 'name' => 'New Yorker James', 'foto_url' => '/img/npc/james.png', 'story' => 'Well hello there i am James <br>
