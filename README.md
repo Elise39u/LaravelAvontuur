@@ -18,6 +18,7 @@ First make sure that the following things are checked and are installed
 #### Composer installed -->  https://getcomposer.org/ 
 #### NPM --> https://phoenixnap.com/kb/install-node-js-npm-on-windows
 #### Current laravel version --> 9.2
+#### Python version 2 or higher --> https://www.python.org/
 
 ## Step 1 Installing How?
 To first determine which path to follow i ask you to look at the next statement.
