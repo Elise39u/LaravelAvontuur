@@ -55,14 +55,14 @@ In case not don't panic since were trying to make your project work
 I myself have run into an issue while running composer update.
 I'm going to divide them into 2 parts. 
 
-####Step 2.2.1 Running composer update through my editor
+#### Step 2.2.1 Running composer update through my editor
 So the first issues I ran into was that my text editor offered to run composer install.  
 This really didn`t work because there was an issue here.   
 The main issue was that my editor was looking for the composer file.  
 This won't work since the way composer work is by the terminal.
 So don't use this option. 
 
-####Step 2.2.2 Composer install lock file is outdated.
+#### Step 2.2.2 Composer install lock file is outdated.
 There is a chance that if you run composer install that you get that following error in the title.  
 In that case its recommend checking your [composer](composer.json)  
 There is the chance that your composer is outdated. 
@@ -76,7 +76,7 @@ Make sure to check the laravel documentation then --> [laravel version 9](https:
 The other thing that worked for me is to replace my [composer](composer.json) with the following composer file [from laravel](https://github.com/laravel/laravel/blob/9.x/composer.json)
 
 After this i could use composer update in the project.  
-##Step 3 Artisan not responding?
+## Step 3 Artisan not responding?
 After this you should be able to run the project with ```php artisan serve``` but it comes with an little small issue of 2  
 
 It can happen that artisan is not responding and not working.  
