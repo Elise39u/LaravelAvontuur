@@ -1,6 +1,7 @@
 <?php
-
+namespace Database\Seeders;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -176,14 +177,14 @@ class SeedNpcs extends Seeder
         <b>Judith:</b> Did you know i came here and met my colleagues from the Netherlands <br>
         I was on exchange trip with a school here and i saw them on the way to my home here <br>
         <b>username:</b> Ow they told me about it <br>
-        <b>Judith:</b> oh haha, did they told you about Justin <br>
+        <b>Judith:</b> oh haha, did they told you about Justin or Elise now <br>
         <b>username:</b> pffffff. Let me guess you have some things to say about him either <br>
         <b>Judith:</b> Well you can read my mind <br>
         I have two things to say about him and you can choose wich one<br>
         A story in school year 2 or the story from year 1? <br>
         <b>username:</b> Ehhhh lets start at the beginning? <br>
         <b>Judith:</b> Well this is a short one <br>
-        After the first time i had a conversation with Marieke and Justin something weird happened<br>
+        After the first time i had a conversation with Marieke and Elise something weird happened<br>
         They day after that he came to me and asked one question about our chat <br>
         <b>username:</b> And that is a love question? <br>
         <b>Judith:</b> that is a bit correct, i asked  about ever had a loved one <br>
@@ -194,20 +195,20 @@ class SeedNpcs extends Seeder
         <b>Judith:</b> I just started working  a few months so... <br>
         <b>username:</b> Well okay.... and Year 2 <br>
         <b>Judith:</b> I only helped him get a start on his love lost <br>
-        He confronted Marieke and ofc she refused<br>
+        He/She confronted Marieke and ofc she refused<br>
         I dind`t saw him for a few months because he was on internship i saw a few times when he was on school for RT <br>
-        Then months passed away and he was back on school. in the mean time i got finally pregnant for the first time <br>
+        Then months passed away, and She was back on school. in the mean time i got finally pregnant for the first time <br>
         At a day there was a special meeting for the Davinci service center i thought why not take a visit then <br>
         In the mean time i was around 4 5 months pregnant <br>
-        The next day he came to me after a few moments i was done with a other student <br>
-        Justin came to congratulate with the pregnancy but he said he ask Lisette first just to be safe <br>
+        The next day he came to me after a few moments i was done with an other student <br>
+        Elise/Justin came to congratulate with the pregnancy but She said She/he ask Lisette first just to be safe <br>
         We had a little chat about my pregnancy after the next student came <br>
-        But i took the moment before to talk about Marieke and he was changed <br>
+        But i took the moment before to talk about Marieke and She/he was changed <br>
         It was also a good moment to feel can just be the hormones then but who knows<br>
-        But one thing bothered me during our conversation he seemed quite a bit uncomfortable<br>
-        I noticed that Justin looked quite a bit at my belly i think he liked my belly<br> 
+        But one thing bothered me during our conversation She seemed quite a bit uncomfortable<br>
+        I noticed that Elise/Justin looked quite a bit at my belly i think She/he liked my belly<br> 
         i think he got a bit uncomfortable because of my pregnant state<br>
-        username do you think Justin has maiesiophilia', 'Talk' => 'Ehhhee I need more evidence', 'location_id' => 76]);
+        username do you think Elise/Justin has maiesiophilia', 'Talk' => 'Ehhhee I need more evidence and is it Elise or Justin?', 'location_id' => 76]);
         DB::table('npcs')->insert(['id' => 17, 'name' => 'Scout Dylan', 'foto_url' => '/img/npc/Dylan.png', 'story' => 'Well hi there stranger or username<br>
         I am dylan and i am 16 years old <br>
         It is sad that this happened right in the week before camp<br>
@@ -228,20 +229,22 @@ class SeedNpcs extends Seeder
         <b>Tim:</b> Why username? <br>
         <b>username:</b> Marieke, Judith, Jeroen also told some stories.<br>
         More Jeroen and Marieke but Judith a bit <br>
-        <b>Tim:</b> Well i don`t know them', 'Talk' => 'At least can i ask how you met Justin?', 'location_id' => 76]);
+        <b>Tim:</b> Well i don`t know them', 'Talk' => 'At least can i ask how you met Elise?', 'location_id' => 76]);
         DB::table('npcs')->insert(['id' => 19, 'name' => 'Programmer Deona', 'foto_url' => '/img/npc/Deona.png', 'story' => '<b>Deona:</b> well hello username: <br>
         <b>username:</b> Hello there. What is your name? <br>
         <b>Deona:</b> Well my name is Deona username:<br>
         I`m the girlfriend of tim and was on vacation with a group of friends<br>
-        <b>username:</b> You ain`t gonna tell me one of them is justin hè<br>
+        <b>username:</b> You ain`t gonna tell me one of them is Elise hè<br>
         <b>Deona:</b> Now than i wont say it username<br>
-        <b>username:</b> I KNEW IT Marieke,Jeroen,Judith Even tim tells about him <br>
+        <b>username:</b> I KNEW IT Marieke,Jeroen,Judith Even tim tells about her him idk. <br>
         <b>Deona:</b> I don`t know Marieke,Jeroen,Judith Tim i know <br>
-        Justin told me about his coaching progress but never who they were <br>
+        Elise told me about her coaching progress but never who they were <br>
+        She also confenced indeed to me that she is a transgender. So its Elise and she.
         <b>username:</b> Not listed perhaps? <br>
-        <b>Deona:</b> ahh that well but its not impressed but its his personal side <br>
-         And he was quite a nice and funny kid<br>
-         Its sad we missed him <br>
+        Ohhhhh so it elise with she got it. I think the others dont know. <br>
+        <b>Deona:</b> ahh that well but its not impressed but its her personal side <br>
+         And she was quite a nice and funny kid<br>
+         Its sad we missed her <br>
          <b>username:</b> Perhaps search with me <br>
          Together we will find him <br>
          <b>Deona:</b> perhaps but i don`t wanna leave this place', 'Talk' => 'You will be save with me Deona', 'location_id' => 76]);

@@ -46,7 +46,7 @@ In case you get the following output ![img.png](img.png)
 Then congrats your composer is correctly installed
 *Keep in mind that your composer version can different from mine*
 
-So not make sure to once again go to Step 0 and follow the composer link.
+If not make sure to once again go to Step 0 and follow the composer link.
 
 Now comes the second step.
 ###Step 2.2 running Composer update?
@@ -69,7 +69,7 @@ In that case its recommend checking your [composer](composer.json)
 There is the chance that your composer is outdated. 
 From here its gets a bit tougher to determine what to do. 
 An first point is to make sure to check if your composer is updated with the correct packages.  
-A choice is to update with hand.
+A choice is to update that manually.
 
 Make sure to check the laravel documentation then --> [laravel version 9](https://laravel.com/docs/9.x/releases)  
 *There is a chance that this version might be outdated*  
@@ -92,3 +92,23 @@ Now if you run ```php artisan --v``` you can see what is going on wrong.
 Also make sure before you run the application to do  
 ``php artisan key:generate`` This will set the application key.
 With that you now can successfully run the application.
+
+## Step 4 Seeders not recognized but they are there
+There might be the issue that your seeders are not recognized.
+for example this can occur after running db:seed
+```Target class [SeedLocations] does not exist.```  
+Don't worry I had this issue too, and I will help you through the steps I took.
+
+### 4.1 Missing namespace Database\Seeders;
+There is a chance that since updating that the seeders won't contain the above namespace.
+so im asking, and I know it a long task but.
+Check every seeder that there is and if its misses the namespace than add it  
+after that run  
+```composer dump-autoload``` and after that you could run db:seed
+
+###4.2 Class "Database\Seeders\DB" not found
+One more thing in case that is not working. You might run into the issue of what you see above. Don`t worry the solution can be simmple  
+You might need to add ```
+use Illuminate\Support\Facades\DB;``` in all the seeders. Or the one seeder giving the error.  
+After this again run ```composer dump-autoload``` and things you should be normal  
+Than you can run ```db:seed```

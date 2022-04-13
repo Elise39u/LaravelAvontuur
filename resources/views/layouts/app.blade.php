@@ -40,15 +40,19 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <p>Current level&nbsp;<strong>{{$user['level']}}</strong></p>
-                        <p>Current Exp   <strong>{{$user['current_exp']}}</strong></p>
+                        <?php
+                            if($user == null) {} else {
+                        ?>
+                        <p>Current level&nbsp;<strong><?php echo e($user['level']); ?></strong></p>
+                        <p>Current Exp   <strong><?php echo e($user['current_exp']); ?></strong></p>
                         <?php if($user['current_exp'] > $user['exp_needed_to_next_level']) {
                             $user->level = $user->level + 1;
                             $user->exp_needed_to_next_level = $user->exp_needed_to_next_level * 3;
                             $user->save();
                         }
                         ?>
-                        <p>Exp to next level&nbsp;<strong>{{$user['level'] + 1}} {{$user['exp_needed_to_next_level']}}</strong></p>
+                        <p>Exp to next level&nbsp;<strong><?php echo e($user['level'] + 1); ?> <?php echo e($user['exp_needed_to_next_level']); ?></strong></p>
+                        <?php } ?>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

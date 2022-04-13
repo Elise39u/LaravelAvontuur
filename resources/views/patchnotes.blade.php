@@ -106,6 +106,7 @@
                     <p> The Axe is now not anymore obtainable this due to other plans regarding the second floor in the school</p>
                     <p> Updated the monster page with the correct values when a user defeats a monster with either taunt or cry option</p>
                     <p> Added Background music to the Inky animation studio (W.I.P) Needs some conditions </p>
+                    <p> Changes has been made to several story to fit my change to transgender. So to note im Elise aka Elis and Justin. </p>
 
                     <p>Planned Features for 1.2</p>
                     <ul>
