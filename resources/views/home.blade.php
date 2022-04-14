@@ -95,7 +95,7 @@ if (strpos($location->story, "username") === 0) {
                             $conditionCheck = $choice->conditions->first();
                             if ($choiceCondition == '[]') { ?>
                                 <li class="menuchoice"><a class="link" href="/location/{{ $choice->to_location_id }}">{{$choice->name }}</a></li>
-                            <?php } elseif($conditionCheck["action"] == 'NEED ITEM') {
+                            <?php } elseif($conditionCheck["action"] != "" || !empty($conditionCheck["action"])) {
                                 $choiceCheck = json_decode($choiceCondition);
                                 $ItemCheck = json_decode(json_encode($inventory->get_inventory_items), true);
                                 $length = count($ItemCheck);

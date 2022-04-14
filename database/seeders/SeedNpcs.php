@@ -148,7 +148,7 @@ class SeedNpcs extends Seeder
         How did they wake up? i wanna know that now<br>
         <b>Jeroen:</b> Well both are shocked when they wake up of course <br>
          And after that they remember the night before and realized they had a few more drinks than they want <br>
-         And of course don\'t forget the head ache ', 'Talk' => 'I have some questions about him', 'location_id' => 76]);
+         And of course don\'t forget the head ache ', 'Talk' => 'I have some questions about him/ her or whatever!', 'location_id' => 76]);
         DB::table('npcs')->insert(['id' => 13, 'name' => 'Mother Lieke', 'foto_url' => '/img/npc/Lieke.png', 'story' => 'Well hi there username<br>
         Yeah i called you username because you are right?<br>
         Your somewhere behind a screen in the world. But that is not the problem now<br>

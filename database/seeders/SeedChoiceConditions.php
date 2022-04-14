@@ -31,6 +31,8 @@ class SeedChoiceConditions extends Seeder
         DB::table('choice_conditions')->insert(['choice_id' => 149, 'action' => 'NEED ITEM', 'action_value' => 60]);
         DB::table('choice_conditions')->insert(['choice_id' => 154, 'action' => 'NEED ITEM', 'action_value' => 64]);
         DB::table('choice_conditions')->insert(['choice_id' => 162, 'action' => 'QUEST COMPLETED', 'action_value' => '']);
-        DB::table('choice_conditions')->insert(['choice_id' => 222, 'action' => 'TRIGGER ALERT', 'action_value' => '']);
+        DB::table('choice_conditions')->insert(['choice_id' => 191, 'action' => 'NEED NPC', 'action_value' => '']);
+        DB::table('choice_conditions')->insert(['choice_id' => 222, 'action' => 'NEED NPC', 'action_value' => '']);
+        DB::table('choice_conditions')->insert(['choice_id' => 220, 'action' => 'NEED NPC', 'action_value' => '']);
     }
 }
