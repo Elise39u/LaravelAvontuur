@@ -48,7 +48,7 @@ Then congrats your composer is correctly installed
 
 If not make sure to once again go to Step 0 and follow the composer link.
 
-Now comes the second step.
+Now comes the second step.  
 ###Step 2.2 running Composer update?
 First thing first. Check if composer install works.
 In case not don't panic since were trying to make your project work
