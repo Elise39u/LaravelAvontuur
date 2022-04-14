@@ -40,6 +40,11 @@
                             Due to this your defence can be bigger than you think <br>
                             This can cause confusion in the combat system
                         </li>
+                        <li> New players dont recive a inventory after registering <br>
+                        <i> Apprently after registering the players dont recive a inventory <br>
+                        This is a issue due to the fact that game will throw back a error <br>
+                        Reason for this is that the player has no inventory and the game cant find something <br>
+                        On a empty "array" or non existing inventory </i> </li>
                     </ul> <br>
                     <p> Added the next items </p>
                     <ul>

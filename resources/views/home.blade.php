@@ -21,7 +21,7 @@ if (strpos($location->story, "username") === 0) {
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
-                <div class="panel-heading" onclick="playAudio()">{{$location->title or 'geen titel beschikbaar' }}
+                <div class="panel-heading" onclick="playAudio()"> {{$location->title ?? 'No title found for this location' }}
                     <?php if (isset($areaname)) {
                         $areainfo = json_decode(json_encode($areaname), true);
                         $lengtharea = count($areainfo);
@@ -92,9 +92,10 @@ if (strpos($location->story, "username") === 0) {
                         <?php
                         foreach ($location->choices as $choice) {
                             $choiceCondition = json_encode($choice->conditions);
+                            $conditionCheck = $choice->conditions->first();
                             if ($choiceCondition == '[]') { ?>
                                 <li class="menuchoice"><a class="link" href="/location/{{ $choice->to_location_id }}">{{$choice->name }}</a></li>
-                            <?php } elseif($choiceCondition == 'NEED ITEM') {
+                            <?php } elseif($conditionCheck["action"] == 'NEED ITEM') {
                                 $choiceCheck = json_decode($choiceCondition);
                                 $ItemCheck = json_decode(json_encode($inventory->get_inventory_items), true);
                                 $length = count($ItemCheck);
