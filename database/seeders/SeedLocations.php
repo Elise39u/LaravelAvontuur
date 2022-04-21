@@ -461,7 +461,7 @@ class SeedLocations extends Seeder
         DB::table('locations')->insert(['id' => 67, 'name' => 'A forbidden area', 'area_id' => 3, 'title' => 'Access needed', 'story' => 'Well there we are standing in front of the steer cabin<br>
         Who known what is in there <br>
         Perhaps there is a fortune there or dead<br>
-        But if i want to go to the sub bade i have to go inside', 'foto_url' => '/img/ShipDoor.png']);
+        But if i want to go to the sub base i have to go inside', 'foto_url' => '/img/ShipDoor.png']);
         DB::table('choices')->insert(['name' => 'Go back', 'from_location_id' => 67, 'to_location_id' => 65]);
         DB::table('choices')->insert(['id' => 149, 'name' => 'Go inside the cabin', 'from_location_id' => 67, 'to_location_id' => 70]);
 

@@ -1,3 +1,21 @@
+.img-thumbnail, body {
+    background: url(/img/background.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/*
+.collapse:not(.show) {
+    display: block;
+}
+ */
+
+.bg-light {
+    margin-left: 10%;
+}
+
 .storyimg {
     width: 38%;
     height: 38%;
