@@ -57,6 +57,10 @@ class HomeController extends Controller
         return view('home')->with('location', $location)->with('inventory', $inventory);
     }
 
+    public function reciveGoogleJTW($jsonToken) {
+        echo $jsonToken;
+    }
+
     public function patchnotes() {
         return view('patchnotes');
     }

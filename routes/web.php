@@ -10,9 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {return view('Auth/login');});
 
 Route::get('login', function (){return view('Auth/login');});
+Route::any('googleLogin', 'HomeController@reciveGoogleJTW');
 Route::any('patchnotes', 'HomeController@patchnotes')->name('patchnotes');
 
 Auth::routes();

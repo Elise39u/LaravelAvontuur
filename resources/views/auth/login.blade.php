@@ -59,10 +59,52 @@
                                 </a>
                             </div>
                         </div>
+
+                        <div id="g_id_onload"
+                             data-client_id="867351337391-p358e9a974apcf2a6bc7e6eo216fjllk.apps.googleusercontent.com"
+                             data-callback="handleCredentialResponse"
+                             data-auto_prompt="false">
+                        </div>
+                        <div class="g_id_signin"
+                             data-type="standard"
+                             data-size="large"
+                             data-theme="outline"
+                             data-text="sign_in_with"
+                             data-shape="rectangular"
+                             data-logo_alignment="left">
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+    <script>
+        function decodeJwtResponse(credential) {
+
+            //https://stackoverflow.com/a/38552302
+            var base64Url = credential.split('.')[1];
+            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+
+            return JSON.parse(jsonPayload);
+        }
+
+        function handleCredentialResponse(response) {
+            // decodeJwtResponse() is a custom function defined by you
+            // to decode the credential response.
+            const responsePayload = decodeJwtResponse(response.credential);
+
+            console.log("ID: " + responsePayload.sub);
+            console.log('Full Name: ' + responsePayload.name);
+            console.log('Given Name: ' + responsePayload.given_name);
+            console.log('Family Name: ' + responsePayload.family_name);
+            console.log("Image URL: " + responsePayload.picture);
+            console.log("Email: " + responsePayload.email);
+        }
+    </script>
 @endsection
