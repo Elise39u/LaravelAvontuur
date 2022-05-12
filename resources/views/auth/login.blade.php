@@ -82,9 +82,12 @@
 
 
     <script>
+        /*
+            Sources used
+            https://stackoverflow.com/a/38552302 (Structre for the decoding)
+            https://developers.google.com/identity/gsi/web/guides/overview (Docs on Identity google, Read and follow carefully)
+         */
         function decodeJwtResponse(credential) {
-
-            //https://stackoverflow.com/a/38552302
             var base64Url = credential.split('.')[1];
             var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
             var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
